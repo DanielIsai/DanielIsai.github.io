@@ -1,0 +1,1 @@
+# DanielIsai.github.io

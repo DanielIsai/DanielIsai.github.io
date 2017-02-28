@@ -14,7 +14,9 @@ var material = new THREE.MeshNormalMaterial();
 var arbolMalla = new THREE.Mesh(arbolForma, material);
 
 var escena = new THREE.Scene();
-escena.add(arbolMalla);
+//escena.add(arbolMalla);
+escena.add(troncoMalla);
+escena.add(esferaMalla);
 
 var camara = new THREE.PerspectiveCamera();
 camara.position.z = 5;

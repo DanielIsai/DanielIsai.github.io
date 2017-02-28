@@ -1,12 +1,3 @@
-//Visualizar escena
-var escena = new THREE.Scene();
-var camara = new THREE.PerspectiveCamera();
-camara.position.z=5;
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerHeight*.9, window.innerHeight*.9 );
-document.body.appendChild( renderer.domElement );
-renderer.render( escena, camara );
-
 //Definir figura
 var forma = new THREE.Geometry();
 
@@ -31,8 +22,18 @@ var material = new THREE.MeshNormalMaterial();
 var malla = new THREE.Mesh( forma, material );
 malla.rotateX(Math.PI/4);
 
-
-
-//Agregar a la escena
+//Visualizar escena
+var escena = new THREE.Scene();
 escena.add(malla);
+
+var camara = new THREE.PerspectiveCamera();
+camara.position.z=5;
+
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerHeight*.9, window.innerHeight*.9 );
+
+document.body.appendChild( renderer.domElement );
 renderer.render( escena, camara );
+
+
+

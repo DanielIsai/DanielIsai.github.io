@@ -5,7 +5,6 @@ camara.position.z=100;
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerHeight*.9, window.innerHeight*.9 );
 document.body.appendChild( renderer.domElement );
-renderer.render( escena, camara );
 
 //Definir figura
 var figura = new THREE.Shape();

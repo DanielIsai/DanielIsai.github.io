@@ -1,18 +1,26 @@
 //Definir figura
+
+
 var forma = new THREE.Geometry();
 
-forma.vertices.push( new THREE.Vector3( 1,  0,  1 ) ); // Vértice 0
-forma.vertices.push( new THREE.Vector3( 1,  0, -1 ) ); // Vértice 1
-forma.vertices.push( new THREE.Vector3(-1,  0, -1 ) ); // Vértice 2
-forma.vertices.push( new THREE.Vector3(-1,  0,  1 ) ); // Vértice 3
-forma.vertices.push( new THREE.Vector3( 0,  1,  0 ) ); // Vértice 4
+forma.vertices.push( new THREE.Vector3( 0,  0,  0 ) ); // Vértice 0
+forma.vertices.push( new THREE.Vector3( 1,  0,  0 ) ); // Vértice 1
+forma.vertices.push( new THREE.Vector3( 1,  1,  0 ) ); // Vértice 2
+forma.vertices.push( new THREE.Vector3( 0,  1,  0 ) ); // Vértice 3
 
-forma.faces.push( new THREE.Face3( 3, 2, 1 ) ); // Cara 0
-forma.faces.push( new THREE.Face3( 3, 1, 0 ) ); // Cara 1
-forma.faces.push( new THREE.Face3( 3, 0, 4 ) ); // Cara 2
-forma.faces.push( new THREE.Face3( 0, 1, 4 ) ); // Cara 3
-forma.faces.push( new THREE.Face3( 1, 2, 4 ) ); // Cara 4
-forma.faces.push( new THREE.Face3( 2, 3, 4 ) ); // Cara 5
+forma.vertices.push( new THREE.Vector3( 0,  0,  1 ) ); // Vértice 4
+forma.vertices.push( new THREE.Vector3( 1,  0,  1 ) ); // Vértice 5
+forma.vertices.push( new THREE.Vector3( 1,  1,  1 ) ); // Vértice 6
+forma.vertices.push( new THREE.Vector3( 0,  1,  1 ) ); // Vértice 7
+
+
+
+forma.faces.push( new THREE.Face4( 0, 1, 2, 3 ) ); // Cara 0
+forma.faces.push( new THREE.Face4( 4, 5, 6, 7 ) ); // Cara 1
+forma.faces.push( new THREE.Face4( 0, 1, 5, 4 ) ); // Cara 2
+forma.faces.push( new THREE.Face4( 6, 7, 2, 3 ) ); // Cara 3
+forma.faces.push( new THREE.Face4( 5, 6, 1, 2 ) ); // Cara 4
+forma.faces.push( new THREE.Face4( 4, 7, 0, 3 ) ); // Cara 5
 
 forma.computeBoundingSphere();
 

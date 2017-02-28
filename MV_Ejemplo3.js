@@ -8,12 +8,16 @@ document.body.appendChild( renderer.domElement );
 renderer.render( escena, camara );
 
 //Definir figura
-var forma = new THREE.BoxGeometry( 1, 1, 1 );
-var cubo  = new THREE.Mesh( forma );
-cubo.rotation.x += 0.1;
-cubo.rotation.y += 0.1;
+var figura = new THREE.Shape();
 
+figura.moveTo(10, 10);
+figura.lineTo(10, 40);
+figura.lineTo(40, 40);
+figura.lineTo(10, 10);
+
+var forma = new THREE.ShapeGeometry(figura);
+var malla = new THREE.Mesh(forma);
 
 //Agregar a la escena
-escena.add( cubo);
+escena.add(malla);
 renderer.render( escena, camara );

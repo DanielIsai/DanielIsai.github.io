@@ -1,20 +1,20 @@
 //Definir figura
-var figura = new THREE.Shape();
+var cuerpoFigura = new THREE.Shape();
 
-figura.moveTo( 0,  0,  0);
-figura.lineTo( 0,  0,  0);
-figura.lineTo( 1,  0,  0);
-figura.lineTo( 1,  1,  0);
-figura.lineTo( 0,  1,  0);
-figura.lineTo( 0,  0,  5);
-figura.lineTo( 1,  0,  5);
-figura.lineTo( 1,  1,  5);
-figura.lineTo( 0,  1,  5);
+cuerpoFigura.moveTo( 0,  0,  0);
+cuerpoFigura.lineTo( 0,  0,  0);
+cuerpoFigura.lineTo( 1,  0,  0);
+cuerpoFigura.lineTo( 1,  1,  0);
+cuerpoFigura.lineTo( 0,  1,  0);
+cuerpoFigura.lineTo( 0,  0,  5);
+cuerpoFigura.lineTo( 1,  0,  5);
+cuerpoFigura.lineTo( 1,  1,  5);
+cuerpoFigura.lineTo( 0,  1,  5);
 
-figura.translate(0,3,0);
+cuerpoFigura.translate(0,3,0);
 
-var forma = new THREE.ShapeGeometry(figura);
-var malla = new THREE.Mesh(forma);
+var cuerpoForma = new THREE.ShapeGeometry(cuerpoFigura);
+var malla = new THREE.Mesh(cuerpoForma);
 malla.rotateX(Math.PI/4);
 
 var escena = new THREE.Scene();

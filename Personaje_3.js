@@ -1,15 +1,21 @@
-var cuelloForma = new THREE.CylinderGeometry(3, 3, 7);
+var cuelloForma = new THREE.CylinderGeometry(1, 1, 7);
+var cuerpoForma = new THREE.SphereGeometry(3);
 
 var cuelloMalla = new THREE.Mesh(cuelloForma);
+var cuerpoMalla= new THREE.Mesch(cuerpoForma);
 
+var arbolForma = new THREE.Geometry();
 
-
+arbolForma.merge(cuelloMalla.geometry, cuelloMalla.matrix);
+arbolForma.merge(cuerpoMalla.geometry, cuerpoMalla.matrix);
 
 var material = new THREE.MeshNormalMaterial();
-var arbolMalla = new THREE.Mesh(cuelloForma, material);
+var arbolMalla = new THREE.Mesh(arbolForma, material);
+
+
 
 var escena = new THREE.Scene();
-escena.add(cuelloMalla);
+escena.add(arbolMalla);
 //escena.add(troncoMalla);
 //escena.add(esferaMalla);
 

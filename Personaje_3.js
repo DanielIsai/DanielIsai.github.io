@@ -3,8 +3,9 @@ var cuello2Forma = new THREE.CylinderGeometry(1, 1, 10);
 var cuerpoForma = new THREE.SphereGeometry(3);
 var baseForma = new THREE.CylinderGeometry(5, 5, 1);
 
-cuello2Forma.rotateX( Math.PI/4 );
+cuello2Forma.rotateY( Math.PI/4 );
 cuelloForma.translate(0,3,0);
+baseForma.translate(0,-3,0);
 
 var cuelloMalla = new THREE.Mesh(cuelloForma);
 var cuello2Malla = new THREE.Mesh(cuello2Forma);

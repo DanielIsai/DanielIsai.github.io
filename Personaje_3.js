@@ -1,4 +1,4 @@
-var cuelloForma = new THREE.CylinderGeometry(.25, .5, 1);
+var cuelloForma = new THREE.CylinderGeometry(3, 3, 7);
 
 var cuelloMalla = new THREE.Mesh(cuelloForma);
 

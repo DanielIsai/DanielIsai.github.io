@@ -11,6 +11,8 @@ figura.lineTo( 1,  0,  5);
 figura.lineTo( 1,  1,  5);
 figura.lineTo( 0,  1,  5);
 
+figura.translate(0,3,0);
+
 var forma = new THREE.ShapeGeometry(figura);
 var malla = new THREE.Mesh(forma);
 malla.rotateX(Math.PI/4);

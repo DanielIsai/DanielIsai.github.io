@@ -2,7 +2,7 @@ var cuelloForma = new THREE.CylinderGeometry(1, 1, 7);
 var cuerpoForma = new THREE.SphereGeometry(3);
 
 var cuelloMalla = new THREE.Mesh(cuelloForma);
-var cuerpoMalla= new THREE.Mesch(cuerpoForma);
+var cuerpoMalla= new THREE.Mesh(cuerpoForma);
 
 var arbolForma = new THREE.Geometry();
 

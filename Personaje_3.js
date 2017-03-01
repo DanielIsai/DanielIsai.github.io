@@ -1,5 +1,5 @@
 var cuelloForma = new THREE.CylinderGeometry(1, 1, 10);
-var cuellForma = new THREE.CylinderGeometry(1, 1, 10);
+var cuello2Forma = new THREE.CylinderGeometry(1, 1, 10);
 var cuerpoForma = new THREE.SphereGeometry(3);
 var baseForma = new THREE.CylinderGeometry(5, 5, 1);
 

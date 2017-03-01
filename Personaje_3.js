@@ -1,5 +1,6 @@
 var cuelloForma = new THREE.CylinderGeometry(1, 1, 7);
 var cuerpoForma = new THREE.SphereGeometry(3);
+cuelloForma.translate(0,3,0);
 
 var cuelloMalla = new THREE.Mesh(cuelloForma);
 var cuerpoMalla= new THREE.Mesh(cuerpoForma);

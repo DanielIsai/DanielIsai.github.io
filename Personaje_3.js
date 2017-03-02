@@ -4,6 +4,7 @@ var cuerpoForma = new THREE.SphereGeometry(3);
 var baseForma = new THREE.CylinderGeometry(5, 5, 1);
 
 cuello2Forma.rotateZ( Math.PI/4);
+cuello2Forma.translate(0,-10,0);
 cuelloForma.translate(0,3,0);
 baseForma.translate(0,-3,0);
 

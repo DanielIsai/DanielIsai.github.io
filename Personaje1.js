@@ -1,10 +1,9 @@
 var puntos = [];
-for ( var i = 0; i < 100; i ++ ) {
+for ( var i = 0; i < 50; i ++ ) {
     puntos.push( new THREE.Vector2(
-                     Math.sin( i * 0.4 ) * i/3;
-          
+                     Math.sin( i * 0.3 ) * 17 + 63,
+                     ( i - 4 ) * 4 ) );
 }
-
 
 var forma = new THREE.LatheGeometry(puntos);
 var material = new THREE.MeshNormalMaterial();

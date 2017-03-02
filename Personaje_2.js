@@ -41,9 +41,23 @@ figura.lineTo(1,4);
 figura.lineTo(0,4);
 
 
+var extrudeSettings = {
+	steps: 2,
+	amount: 5,
+	bevelEnabled: true,
+	bevelThickness: 1,
+	bevelSize: 1,
+	bevelSegments: 1
+};
+
+
+//var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
+
+
+
 //var forma = new THREE.ShapeGeometry(figura);
 
-var forma = new THREE.ExtrudeGeometry( figura,{amount: 2});
+var forma = new THREE.ExtrudeGeometry( figura,extrudeSettings);
 
 var material = new THREE.MeshNormalMaterial();
 var malla = new THREE.Mesh( forma, material );

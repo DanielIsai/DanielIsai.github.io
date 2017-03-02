@@ -5,13 +5,24 @@ for ( var i = 0; i < 50; i ++ ) {
                      ( i - 4 ) * 4 ) );
 }
 
-var forma = new THREE.LatheGeometry(puntos);
+var sombreroForma= new THREE.LatheGeometry(puntos);
+var esferaForma = new THREE.SphereGeometry(.65);
+
+var sombreroMaya = new THREE.Mesh(sombreroForma);
+var esferaMalla = new THREE.Mesh(esferaForma);
+
+var arbolForma = new THREE.Geometry();
+
+arbolForma.merge(sombreroMalla.geometry, sombreroMalla.matrix);
+arbolForma.merge(esferaMalla.geometry, esferaMalla.matrix);
+
+
 var material = new THREE.MeshNormalMaterial();
-var malla = new THREE.Mesh( forma, material );
-malla.rotateX( Math.PI/6 );
+var arbolMalla = new THREE.Mesh( arbolForma, material );
+
 
 var escena = new THREE.Scene();
-escena.add(malla);
+escena.add(arbolMalla);
 
 var camara = new THREE.PerspectiveCamera();
 camara.position.z = 500;

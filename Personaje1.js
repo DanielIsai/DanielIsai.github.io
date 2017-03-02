@@ -1,8 +1,8 @@
 var puntos = [];
-for ( var i = 0; i < 50; i ++ ) {
+for ( var i = 0; i < 100; i ++ ) {
     puntos.push( new THREE.Vector2(
-                     Math.sin( i * 0.4 ) * 12 + 57,
-                     ( i - 6 ) * .9 ) );
+                     Math.sin( i * 0.4 ) * i/3;
+          
 }
 
 

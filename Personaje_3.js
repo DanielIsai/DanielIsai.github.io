@@ -1,13 +1,13 @@
 var cuelloForma = new THREE.CylinderGeometry(1, 1, 10);
 var cuello2Forma = new THREE.CylinderGeometry(1, 1, 10);
-var pataForma = new THREE.CylinderGeometry(2, 2, 10);
+var pataForma = new THREE.CylinderGeometry(1.5, 1.5, 10);
 var cuerpoForma = new THREE.SphereGeometry(3);
 var baseForma = new THREE.CylinderGeometry(5, 5, 1);
 
 cuello2Forma.rotateZ( Math.PI/4);
 cuello2Forma.translate(-3,3,0);
 cuelloForma.translate(0,3,0);
-baseForma.translate(0,-7,0);
+baseForma.translate(0,-8,0);
 pataForma.translate(0,-4,0);
 
 var cuelloMalla = new THREE.Mesh(cuelloForma);

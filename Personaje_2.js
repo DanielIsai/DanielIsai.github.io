@@ -1,30 +1,75 @@
-//Definir figura
-var cuerpoFigura = new THREE.Shape();
+var figura = new THREE.Shape();
 
-cuerpoFigura.moveTo( 0,  0,  0);
-cuerpoFigura.lineTo( 0,  0,  0);
-cuerpoFigura.lineTo( 1,  0,  0);
-cuerpoFigura.lineTo( 1,  1,  0);
-cuerpoFigura.lineTo( 0,  1,  0);
-cuerpoFigura.lineTo( 0,  0,  5);
-cuerpoFigura.lineTo( 1,  0,  5);
-cuerpoFigura.lineTo( 1,  1,  5);
-cuerpoFigura.lineTo( 0,  1,  5);
 
-cuerpoFigura.translate(0,3,0);
+figura.lineTo(0,0);
+figura.lineTo(1,0);
+figura.lineTo(1,2);
+figura.lineTo(2,2);
+figura.lineTo(2,1);
 
-var cuerpoForma = new THREE.ShapeGeometry(cuerpoFigura);
-var malla = new THREE.Mesh(cuerpoForma);
-malla.rotateX(Math.PI/4);
+figura.lineTo(3,1);
+figura.lineTo(3,2);
+figura.lineTo(4,2);
+figura.lineTo(4,1);
+figura.lineTo(5,1);
+
+figura.lineTo(5,2);
+figura.lineTo(6,2);
+figura.lineTo(6,0);
+figura.lineTo(7,0);
+figura.lineTo(7,4);
+
+figura.lineTo(6,4);
+figura.lineTo(6,5);
+figura.lineTo(7,5);
+figura.lineTo(7,7);
+figura.lineTo(6,7);
+
+figura.lineTo(6,6);
+figura.lineTo(4,6);
+figura.lineTo(4,7);
+figura.lineTo(3,7);
+figura.lineTo(3,6);
+
+figura.lineTo(1,6);
+figura.lineTo(1,7);
+figura.lineTo(0,7);
+figura.lineTo(0,5);
+figura.lineTo(1,5);
+
+figura.lineTo(1,4);
+figura.lineTo(0,4);
+
+
+var forma = new THREE.ExtrudeGeometry( figura,{amount: 10});
+
+var material = new THREE.MeshNormalMaterial();
+var malla = new THREE.Mesh( forma, material );
+//malla.rotateY( Math.PI/4 );
 
 var escena = new THREE.Scene();
 escena.add(malla);
 
 var camara = new THREE.PerspectiveCamera();
-camara.position.z = 8;
+camara.position.z = 50;
 
 var renderizador = new THREE.WebGLRenderer();
 renderizador.setSize( window.innerHeight*.95,
                       window.innerHeight*.95 );
 document.body.appendChild( renderizador.domElement );
 renderizador.render( escena, camara );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

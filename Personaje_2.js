@@ -43,7 +43,7 @@ figura.lineTo(0,4);
 
 var extrudeSettings = {
 	steps: 2,
-	amount: 2,
+	amount: 1,
 	bevelEnabled: true,
 	bevelThickness: 1,
 	bevelSize: 1,

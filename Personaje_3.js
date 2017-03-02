@@ -8,7 +8,7 @@ cuello2Forma.rotateZ( Math.PI/4);
 cuello2Forma.translate(-3,-3,0);
 cuelloForma.translate(0,3,0);
 baseForma.translate(0,-7,0);
-pataForma.traslate(0,4,0);
+pataForma.translate(0,4,0);
 
 var cuelloMalla = new THREE.Mesh(cuelloForma);
 var cuello2Malla = new THREE.Mesh(cuello2Forma);

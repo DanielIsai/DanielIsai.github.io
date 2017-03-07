@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Ejemplo con THREE.js_:O</title>
+    <title>	Actividad_2	</title>
     <meta http-equiv="Content-Type"
               content="text/html; charset=UTF-8">
   
@@ -11,15 +11,21 @@
   </script>
 
   <script> 
-	var campoVision 	= 45;	//grados
-	var relacionAspecto 	= window.innerWidth / window.innerHeight;
-	var planoCercano 	= 1;
-	var planoLejano		= 1000;
-	var camara = new THREE.PerspectiveCamera(	campoVision,
-							relacionAspecto,
-							planoCercano,
-							planoLejano	);
-	camara.position.z = 15;
+	  
+	var camara = new THREE.OrthographicCamera();
+	
+	camara.left = window.innerWidth	/-2;
+	camara.right = window.innerWidth / 2;
+	camara.top = window.innerHeight / 2;
+	camara.bottom = window.innerHeight / -2;
+	camara.near = 0.1;
+	camara.far = 1000;
+	camara.updateProjectionMatrix();
+	
+	camara.position.z = 100;
+	  
+	  
+	
 	var cubo = new THREE.Mesh(	new THREE.BoxGeometry(2,2,2),
 					new THREE.MeshNormalMaterial() );
 	cubo.rotateY(Math.PI/4);

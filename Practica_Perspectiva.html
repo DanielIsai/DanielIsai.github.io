@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Ejemplo con THREE.js_:O</title>
+    <meta http-equiv="Content-Type"
+              content="text/html; charset=UTF-8">
+  
+  </head>
+  <body>
+  <script   src="three.min.js">
+  </script>
+  
+  
+    <script>
+  
+ 
+ var a = 1;
+ var arbolForma = new THREE.Geometry();
+ 
+  for ( var j = 0; j < 3; j ++ ) {
+    for ( var i = 0; i < 3; i ++ ) {
+      var figura = new THREE.Shape();
+      figura.moveTo(0+i*a, 0+j*a);
+      figura.lineTo(a+i*a, 0+j*a);
+      figura.lineTo(a+i*a, a+j*a);
+      figura.lineTo(0, a);
+      var forma = new THREE.ShapeGeometry(figura);
+      var malla = new THREE.Mesh(forma);          
+      arbolForma.merge(malla.geometry, malla.matrix);
+    }
+  }
+
+var material = new THREE.MeshNormalMaterial();
+var arbolMalla = new THREE.Mesh(arbolForma, material);
+
+var escena = new THREE.Scene();
+escena.add(arbolMalla);
+var camara = new THREE.PerspectiveCamera();
+camara.position.z = 50;
+
+renderizador = new THREE.WebGLRenderer();
+renderizador.setSize( window.innerHeight*.95, window.innerHeight*.95 );
+document.body.appendChild( renderizador.domElement );
+renderizador.render( escena, camara );
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    </script>
+    
+    
+    
+    
+  </body>
+</html>

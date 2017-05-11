@@ -1,43 +1,27 @@
-var cuelloForma = new THREE.CylinderGeometry(1, 1, 10);
-var cuello2Forma = new THREE.CylinderGeometry(1, 1, 10);
-var pataForma = new THREE.CylinderGeometry(1.5, 1.5, 10);
-var cuerpoForma = new THREE.SphereGeometry(3);
-var baseForma = new THREE.CylinderGeometry(5, 5, 1);
+var P3puntos = [];
+for ( var i = 0; i < 4; i ++ ) {
+    P3puntos.push( new THREE.Vector2(
+                     Math.sin( i * 10 ) * 2 + 1,
+                     ( i - 4 ) *5) );
+}
 
-cuello2Forma.rotateZ( Math.PI/4);
-cuello2Forma.translate(-3,3,0);
-cuelloForma.translate(0,3,0);
-baseForma.translate(0,-8,0);
-pataForma.translate(0,-4,0);
+var P3sombreroForma= new THREE.LatheGeometry(P3puntos);
+var P3esferaForma = new THREE.SphereGeometry(4.5);
+var P3baseForma = new THREE.CylinderGeometry(4, 4, 1);
 
-var cuelloMalla = new THREE.Mesh(cuelloForma);
-var cuello2Malla = new THREE.Mesh(cuello2Forma);
-var cuerpoMalla= new THREE.Mesh(cuerpoForma);
-var baseMalla= new THREE.Mesh(baseForma);
-var pataMalla= new THREE.Mesh(pataForma);
+P3sombreroForma.translate(0,2,0);
+P3baseForma.translate(0,-17,0);
 
-var arbolForma = new THREE.Geometry();
-
-arbolForma.merge(cuelloMalla.geometry, cuelloMalla.matrix);
-arbolForma.merge(cuello2Malla.geometry, cuello2Malla.matrix);
-arbolForma.merge(cuerpoMalla.geometry, cuerpoMalla.matrix);
-arbolForma.merge(baseMalla.geometry, baseMalla.matrix);
-arbolForma.merge(pataMalla.geometry, pataMalla.matrix);
-
-var material = new THREE.MeshNormalMaterial();
-var arbolMalla = new THREE.Mesh(arbolForma, material);
+var P3sombreroMalla = new THREE.Mesh(P3sombreroForma);
+var P3esferaMalla = new THREE.Mesh(P3esferaForma);
+var P3baseMalla= new THREE.Mesh(P3baseForma);
 
 
+var P3arbolForma = new THREE.Geometry();
 
-var escena = new THREE.Scene();
-escena.add(arbolMalla);
-//escena.add(troncoMalla);
-//escena.add(esferaMalla);
+P3arbolForma.merge(P3sombreroMalla.geometry, P3sombreroMalla.matrix);
+P3arbolForma.merge(P3esferaMalla.geometry, P3esferaMalla.matrix);
+P3arbolForma.merge(P3baseMalla.geometry, P3baseMalla.matrix);
 
-var camara = new THREE.PerspectiveCamera();
-camara.position.z = 50;
-
-renderizador = new THREE.WebGLRenderer();
-renderizador.setSize( window.innerHeight*.95, window.innerHeight*.95 );
-document.body.appendChild( renderizador.domElement );
-renderizador.render( escena, camara );
+var P3material = new THREE.MeshNormalMaterial();
+var P3arbolMalla = new THREE.Mesh( P3arbolForma, P3material );

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Fantasma</title>
+    <title> Prueba 1</title>
     <meta http-equiv="Content-Type"
               content="text/html; charset=UTF-8">
   
@@ -23,6 +23,10 @@
   </script>
 
   <script>
+	  
+var iluminacion = new THREE.PointLight(0xFFFFFF);
+iluminacion.position.y=20;  	  
+	
 P4forma.translate(-50, 2, -20);
 P2forma.translate(1, 2, 55);
 P3arbolForma.translate(25, 18, 20);
@@ -31,18 +35,25 @@ MagnemiteForma.translate(-10, -18, 10);
 TorchitForma.translate(-9, 7, -10);							
 P4forma.rotateY( Math.PI/4);
 P2forma.rotateY( Math.PI/6);
+	  
+	  
+	  
 var tableroForma = new THREE.CylinderGeometry(70, 70,1);
 var tableroMaterial = new THREE.MeshNormalMaterial();
 var tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
+
 var escena = new THREE.Scene();
 escena.add(P4malla,P2malla,P3arbolMalla,P1arbolMalla,MagnemiteMalla,TorchitMalla,tableroMalla);
+escena.add(iluminacion);
+
 var camara = new THREE.PerspectiveCamera();
 camara.position.z = 180;
 camara.position.y = 40;
-var renderizador = new THREE.WebGLRenderer();
-renderizador.setSize( window.innerHeight*.95, 
-                      window.innerHeight*.95 );
-document.body.appendChild( renderizador.domElement );
+
+var lienzo = document.getElementById("luzSinSombras");
+var renderizador = new THREE.WebGLRenderer({canvas: lienzo,antialias:true});
+
+renderizador.setSize(600,600);  
 renderizador.render( escena, camara );     
 			
     </script>

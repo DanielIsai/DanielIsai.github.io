@@ -16,7 +16,7 @@
   <body>
 	  
   
-  <canvas id= "luzSombras" width= "600" heigth= "600">
+  <canvas id= "luzSinSombras" width= "600" heigth= "600">
       &iexcl;No funciona!
   </canvas>
 	  
@@ -68,14 +68,15 @@ var camara = new THREE.PerspectiveCamera();
 camara.position.z = 180;
 camara.position.y = 40;
 
-var lienzo = document.getElementById("luzSombras");	//luzSombras
+var lienzo = document.getElementById("luzSinSombras");	//luzSombras
 var renderizador = new THREE.WebGLRenderer({canvas: lienzo,antialias:true});
 
 renderizador.setSize(600,600);  
-renderizador.shadowMapEnabled= true;
-malla.castShadow= true;
-base.receiveShadow= true;
-iluminacion.castShadow= true;
+
+//renderizador.shadowMapEnabled= true;
+//malla.castShadow= true;
+//base.receiveShadow= true;
+//iluminacion.castShadow= true;
 	  
 	  
 renderizador.render( escena, camara );     

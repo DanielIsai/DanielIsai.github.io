@@ -10,49 +10,27 @@
   <script   src="three.min.js">
   </script>
   <script>
-
+	  
+	  
+function setup() {
+  THREE.ImageUtils.crossOrigin = '';
+  var textura   = THREE.ImageUtils.loadTexture('espacionegro.jpg');
+  var material  = new THREE.MeshBasicMaterial( {map: textura} );
+	
+	
+	
+	
+  
 var P2figura = new THREE.Shape();
 
 
-P2figura.lineTo(0,0);
-P2figura.lineTo(1,0);
-P2figura.lineTo(1,2);
-P2figura.lineTo(2,2);
-P2figura.lineTo(2,1);
-
-P2figura.lineTo(3,1);
-P2figura.lineTo(3,2);
-P2figura.lineTo(4,2);
-P2figura.lineTo(4,1);
-P2figura.lineTo(5,1);
-
-P2figura.lineTo(5,2);
-P2figura.lineTo(6,2);
-P2figura.lineTo(6,0);
-P2figura.lineTo(7,0);
-P2figura.lineTo(7,4);
-
-P2figura.lineTo(6,4);
-P2figura.lineTo(6,5);
-P2figura.lineTo(7,5);
-P2figura.lineTo(7,7);
-P2figura.lineTo(6,7);
-
-P2figura.lineTo(6,6);
-P2figura.lineTo(4,6);
-P2figura.lineTo(4,7);
-P2figura.lineTo(3,7);
-P2figura.lineTo(3,6);
-
-P2figura.lineTo(1,6);
-P2figura.lineTo(1,7);
-P2figura.lineTo(0,7);
-P2figura.lineTo(0,5);
-P2figura.lineTo(1,5);
-
-P2figura.lineTo(1,4);
-P2figura.lineTo(0,4);
-
+P2figura.lineTo(0,0);P2figura.lineTo(1,0);P2figura.lineTo(1,2);P2figura.lineTo(2,2);P2figura.lineTo(2,1);
+P2figura.lineTo(3,1);P2figura.lineTo(3,2);P2figura.lineTo(4,2);P2figura.lineTo(4,1);P2figura.lineTo(5,1);
+P2figura.lineTo(5,2);P2figura.lineTo(6,2);P2figura.lineTo(6,0);P2figura.lineTo(7,0);P2figura.lineTo(7,4);
+P2figura.lineTo(6,4);P2figura.lineTo(6,5);P2figura.lineTo(7,5);P2figura.lineTo(7,7);P2figura.lineTo(6,7);
+P2figura.lineTo(6,6);P2figura.lineTo(4,6);P2figura.lineTo(4,7);P2figura.lineTo(3,7);P2figura.lineTo(3,6);
+P2figura.lineTo(1,6);P2figura.lineTo(1,7);P2figura.lineTo(0,7);P2figura.lineTo(0,5);P2figura.lineTo(1,5);
+P2figura.lineTo(1,4);P2figura.lineTo(0,4);
 
 var P2extrudeSettings = {
 	steps: 2,
@@ -67,23 +45,36 @@ var P2extrudeSettings = {
 
 
 var P2forma = new THREE.ExtrudeGeometry( P2figura,P2extrudeSettings);
-
-var P2material = new THREE.MeshNormalMaterial();
-var P2malla = new THREE.Mesh( P2forma, P2material );
-
-var escena = new THREE.Scene();
-escena.add(P2malla);
-
-var camara = new THREE.PerspectiveCamera();
-camara.position.z = 50;
-
-var renderizador = new THREE.WebGLRenderer();
-renderizador.setSize( window.innerHeight*.95,
-                      window.innerHeight*.95 );
-document.body.appendChild( renderizador.domElement );
-renderizador.render( escena, camara );
-
-
+	
+	
+	
+	
+	
+	
+  malla         = new THREE.Mesh( P2forma, material );
+  
+  escena = new THREE.Scene();
+  escena.add(malla);
+  
+  camara = new THREE.PerspectiveCamera();
+  camara.position.z = 50;
+  
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize( window.innerHeight*.95, window.innerHeight*.95 );
+  document.body.appendChild( renderer.domElement );
+}
+function loop() {
+  requestAnimationFrame( loop );
+  
+  malla.rotation.x += 0.01;
+  malla.rotation.y += 0.01;
+  
+  renderer.render( escena, camara );
+}
+var camara, escena, renderer, malla;
+setup();
+loop();	  
+	  
 
 
 

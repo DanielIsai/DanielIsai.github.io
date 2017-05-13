@@ -40,7 +40,7 @@
 	  
   <script>
 	  
-var iluminacion = new THREE.PointLight(0x00cc00);
+var iluminacion = new THREE.PointLight(0xFFFFFF);
 iluminacion.position.y=50;  	  
 iluminacion.position.x=20;
 	
@@ -56,6 +56,7 @@ P2forma.rotateY( Math.PI/6);
 	  
 	  
 var tableroForma = new THREE.CylinderGeometry(70, 70,1);
+tableroForma.traslate(-10,0,0);
 var tableroMaterial = new THREE.MeshNormalMaterial();
 var tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
 

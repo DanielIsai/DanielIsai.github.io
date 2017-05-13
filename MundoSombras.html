@@ -57,7 +57,7 @@ P2forma.rotateY( Math.PI/6);
 	  
 var tableroForma = new THREE.CylinderGeometry(70, 70,1);
 tableroForma.translate(0,-15,0);
-var tableroMaterial = new THREE.MeshNormalMaterial();
+var tableroMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
 var tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
 
 var escena = new THREE.Scene();

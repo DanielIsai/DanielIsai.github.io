@@ -29,10 +29,15 @@
 
 var iluminacion = new THREE.PointLight(0xFFFFFF);
 iluminacion.position.y=200; 
+	 
 var iluminacion1 = new THREE.PointLight(0xFFFFFF);
 iluminacion1.position.y=200; 
 iluminacion1.position.x=300; 
-
+	 
+var iluminacion2 = new THREE.PointLight(0xFFFFFF);
+iluminacion2.position.y=200; 
+iluminacion2.position.x=120;
+iluminacion2.position.z=80;
 
 	 
 var P2figura = new THREE.Shape();
@@ -63,6 +68,7 @@ escena.add(P2malla);
 escena.add(tableroMalla);
 escena.add(iluminacion);
 escena.add(iluminacion1);
+escena.add(iluminacion2);
 
 var camara = new THREE.PerspectiveCamera();
 camara.position.z = 180;
@@ -79,6 +85,7 @@ P2malla.castShadow= true;
 tableroMalla.receiveShadow= true;
 iluminacion.castShadow= true;
 iluminacion1.castShadow= true;
+iluminacion2.castShadow= true;
 
 renderizador.render(escena, camara);
 

@@ -60,11 +60,20 @@ var tableroForma = new THREE.CylinderGeometry(70, 70,1);
 var tableroMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
 var tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
 	  
-	  
+	
+	 
+
 
 var escena = new THREE.Scene();
+escena.add(P1arbolMalla);
 escena.add(P2malla);
+escena.add(P3arbolMalla);
+escena.add(P4malla);
+	 
+	 
 escena.add(tableroMalla);
+	 
+	 
 escena.add(iluminacion);
 escena.add(iluminacion1);
 escena.add(iluminacion2);
@@ -79,12 +88,20 @@ var renderizador = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});
 renderizador.setSize(600, 600);
 
 renderizador.shadowMapEnabled= true;
-	 
+
+P1arbolMalla.castShadow= true;
 P2malla.castShadow= true;
+P3arbolMalla.castShadow= true;
+P4malla.castShadow= true;
+	 
 tableroMalla.receiveShadow= true;
 iluminacion.castShadow= true;
 iluminacion1.castShadow= true;
 iluminacion2.castShadow= true;
+	 
+	 
+	 
+	
 
 renderizador.render(escena, camara);
 

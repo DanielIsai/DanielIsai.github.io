@@ -29,6 +29,10 @@
 
 var iluminacion = new THREE.PointLight(0xFFFFFF);
 iluminacion.position.y=200; 
+var iluminacion1 = new THREE.PointLight(0xFFFFFF);
+iluminacion1.position.y=200; 
+iluminacion1.position.x=80; 
+
 
 	 
 var P2figura = new THREE.Shape();
@@ -58,6 +62,7 @@ var escena = new THREE.Scene();
 escena.add(P2malla);
 escena.add(tableroMalla);
 escena.add(iluminacion);
+escena.add(iluminacion1);
 
 var camara = new THREE.PerspectiveCamera();
 camara.position.z = 180;
@@ -69,10 +74,11 @@ var renderizador = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});
 renderizador.setSize(600, 600);
 
 renderizador.shadowMapEnabled= true;
+	 
 P2malla.castShadow= true;
 tableroMalla.receiveShadow= true;
 iluminacion.castShadow= true;
-
+iluminacion1.castShadow= true;
 
 renderizador.render(escena, camara);
 

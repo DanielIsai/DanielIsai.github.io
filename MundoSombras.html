@@ -24,29 +24,44 @@
 	  
   <script   src="three.min.js">
   </script>
-	  
 
-	  
-	  
-  <script>
+ <script>
+
 var iluminacion = new THREE.PointLight(0xFFFFFF);
-iluminacion.position.y=20;
+iluminacion.position.y=20; 
 
-var forma = new THREE.SphereGeometry(1);
-var material = new THREE.MeshLambertMaterial({color: "#00cc00"});
-var malla = new THREE.Mesh(forma, material);
-malla.position.y=2;
+	 
+var P2figura = new THREE.Shape();
+P2figura.lineTo(0,0);P2figura.lineTo(1,0);P2figura.lineTo(1,2);P2figura.lineTo(2,2);P2figura.lineTo(2,1);
+P2figura.lineTo(3,1);P2figura.lineTo(3,2);P2figura.lineTo(4,2);P2figura.lineTo(4,1);P2figura.lineTo(5,1);
+P2figura.lineTo(5,2);P2figura.lineTo(6,2);P2figura.lineTo(6,0);P2figura.lineTo(7,0);P2figura.lineTo(7,4);
+P2figura.lineTo(6,4);P2figura.lineTo(6,5);P2figura.lineTo(7,5);P2figura.lineTo(7,7);P2figura.lineTo(6,7);
+P2figura.lineTo(6,6);P2figura.lineTo(4,6);P2figura.lineTo(4,7);P2figura.lineTo(3,7);P2figura.lineTo(3,6);
+P2figura.lineTo(1,6);P2figura.lineTo(1,7);P2figura.lineTo(0,7);P2figura.lineTo(0,5);P2figura.lineTo(1,5);
+P2figura.lineTo(1,4);P2figura.lineTo(0,4);
+var P2extrudeSettings = {steps: 2,	amount: 1,	bevelEnabled: true,	bevelThickness: 1,	bevelSize: 1,	bevelSegments: 1	};
 
-var base= new THREE.Mesh( new THREE.BoxGeometry(5,.1,5), new THREE.MeshLambertMaterial({color: 0xFFFFFF}));
+var P2forma = new THREE.ExtrudeGeometry( P2figura,P2extrudeSettings);
+var P2material = new THREE.MeshLambertMaterial({color: "#00cc00"});
+var P2malla = new THREE.Mesh( P2forma, P2material );
+
+P2forma.translate(1, 12, 55);
+P2forma.rotateY( Math.PI/6);
+	  
+var tableroForma = new THREE.CylinderGeometry(70, 70,1);
+var tableroMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+var tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
+	  
+	  
 
 var escena = new THREE.Scene();
-escena.add(malla);
-escena.add(base);
+escena.add(P2malla);
+escena.add(tableroMalla);
 escena.add(iluminacion);
 
 var camara = new THREE.PerspectiveCamera();
-camara.position.z= 15;
-camara.position.y=5;
+camara.position.z = 180;
+camara.position.y = 40;
 
 var lienzo= document.getElementById("luzSombras");
 var renderizador = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});

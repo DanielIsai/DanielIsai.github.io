@@ -1,19 +1,3 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Fantasma</title>
-    <meta http-equiv="Content-Type"
-              content="text/html; charset=UTF-8">
-  
-  </head>
-  <body>
-  <script   src="three.min.js">
-  </script>
-  <script>
-	  
-	  
-
-function setup() {
   THREE.ImageUtils.crossOrigin = '';
   var textura   = THREE.ImageUtils.loadTexture('espacio.jpg');
   var material  = new THREE.MeshBasicMaterial( {map: textura} );
@@ -36,38 +20,6 @@ var P4extrudeSettings = {
 	bevelSegments: 1
 };
 var P4forma = new THREE.ExtrudeGeometry( P4figura,P4extrudeSettings);
-malla         = new THREE.Mesh( P4forma, material );
+var P4malla         = new THREE.Mesh( P4forma, material );
   
-  escena = new THREE.Scene();
-  escena.add(malla);
-  
-  camara = new THREE.PerspectiveCamera();
-  camara.position.z = 50;
-  
-  renderer = new THREE.WebGLRenderer();
-  renderer.setSize( window.innerHeight*.95, window.innerHeight*.95 );
-  document.body.appendChild( renderer.domElement );
-}
-function loop() {
-  requestAnimationFrame( loop );
-  
-  malla.rotation.x += 0.01;
-  malla.rotation.y += 0.01;
-  
-  renderer.render( escena, camara );
-}
-var camara, escena, renderer, malla;
-setup();
-loop();
-  
-	  
-
-
-
-
-
-
-
-    </script>
-  </body>
-</html>
+ 

@@ -54,5 +54,6 @@ var P2extrudeSettings = {
 
 
 var P2forma = new THREE.ExtrudeGeometry( P2figura,P2extrudeSettings);
-var P2material = new THREE.MeshLambertMaterial({color: "#00cc00"});
+
+var P2material = new THREE.MeshNormalMaterial();
 var P2malla = new THREE.Mesh( P2forma, P2material );

@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Fantasma</title>
+    <meta http-equiv="Content-Type"
+              content="text/html; charset=UTF-8">
+  
+  </head>
+  <body>
+  <script   src="three.min.js">
+  </script>
+
+  <script   src="Personaje_2.js">
+  </script>
+
+
+  <script>
+
+
+
+
+function push(e){
+
+	if (e.keyCode===65)
+	P2malla.translateX( -1 );
+
+	else if (e.keyCode===90)
+	P2malla.translateX(  1 );
+	
+
+	else if (e.keyCode===83)
+	P2malla.translateY(  -1 );
+
+	else if (e.keyCode===68)
+	P2malla.translateY(  1 );
+	}
+
+
+var listener = function() {
+	camara.aspect = window.innerWidth/window.innerHeight;
+	camara.updateProjectionMatrix();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	}
+
+
+
+function setup(){
+	escena = new THREE.Scene();
+	camara = new THREE.PerspectiveCamera();
+	camara.position.z = 90;
+
+	renderer = new THREE.WebGLRenderer();
+	renderer.setSize( window.innerHeight*.95, 
+                      window.innerHeight*.95 );
+	document.body.appendChild(renderer.domElement);
+
+for(j = 0; j <50; j++){
+
+	for(i = 0; i < j; i++){
+
+		malla = new THREE.Mesh(new THREE.SphereGeometry((Math.random()+2),20,20), new THREE.MeshNormalMaterial());
+		malla.translateX( 50*(2*Math.random()-1) );
+		malla.translateY( 50*(2*Math.random()-1) );
+		malla.translateZ( (-100*Math.random())-100*j);
+		escena.add(malla);	
+	}
+
+}	
+
+
+	escena.add(P2malla);
+
+	var tipoEvento = 'resize';
+	var capturar = false;
+
+	window.addEventListener( tipoEvento, listener, capturar);
+	window.addEventListener( 'keydown',push, false);
+
+	}
+
+
+
+function loop(){
+	requestAnimationFrame( loop );
+	
+	
+	camara.position.z-=2;
+	P2malla.translateZ(  -2 );
+
+
+	renderer.render( escena, camara ); 
+	}
+
+
+
+
+
+var camara, renderer, escena, i;
+setup();
+loop();
+
+
+
+
+
+
+    </script>
+  </body>
+</html>

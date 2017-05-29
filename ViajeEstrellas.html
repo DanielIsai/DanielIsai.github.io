@@ -59,6 +59,9 @@ for(j = 0; j <50; j++){
 	for(i = 0; i < j; i++){
 
 		malla = new THREE.Mesh(new THREE.SphereGeometry((Math.random()+2),20,20), new THREE.MeshNormalMaterial());
+		
+		
+		
 		malla.translateX( 50*(2*Math.random()-1) );
 		malla.translateY( 50*(2*Math.random()-1) );
 		malla.translateZ( (-100*Math.random())-100*j);
@@ -68,7 +71,7 @@ for(j = 0; j <50; j++){
 }	
 
 
-	escena.add(P2malla);
+	escena.add(A_V_malla);
 
 	var tipoEvento = 'resize';
 	var capturar = false;
@@ -85,7 +88,7 @@ function loop(){
 	
 	
 	camara.position.z-=2;
-	P2malla.translateZ(  -2 );
+	A_V_malla.translateZ(  -2 );
 
 
 	renderer.render( escena, camara ); 

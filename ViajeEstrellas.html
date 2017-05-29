@@ -58,10 +58,10 @@ for(j = 0; j <50; j++){
 
 	for(i = 0; i < j; i++){
 
-		malla = new THREE.Mesh(new THREE.SphereGeometry((Math.random()+2),20,20), new THREE.MeshNormalMaterial());
+		//malla = new THREE.Mesh(new THREE.SphereGeometry((Math.random()+2),20,20), new THREE.MeshNormalMaterial());
 		
 		
-		
+		malla = new THREE.Mesh( A_V_forma,A_V_material);
 		malla.translateX( 50*(2*Math.random()-1) );
 		malla.translateY( 50*(2*Math.random()-1) );
 		malla.translateZ( (-100*Math.random())-100*j);

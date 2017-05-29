@@ -65,13 +65,30 @@ function setup(){
 	renderer.setSize( window.innerHeight*.95, 
                       window.innerHeight*.95 );
 	document.body.appendChild(renderer.domElement);
+	
+	
+	
+	
+	
+for(j=0 ; j <30; j++){		
+	for(i=0; i<j/3;i++){ 
+		malla0 = new THREE.Mesh(new THREE.SphereGeometry(3*(Math.random()+2),20,20), new THREE.MeshNormalMaterial());
+		malla0.translateX( 50*(2*Math.random()-1) );
+		malla0.translateY( 50*(2*Math.random()-1) );
+		malla0.translateZ( (-300*Math.random())-300*j);
+		escena.add(malla0);
+	}
+}
+	
+	
+	
+	
 
-for(j = 0; j <30; j++){
+for(j; j <60; j++){
 
 	for(i = 0; i < j/10; i++){
 
 		//malla = new THREE.Mesh(new THREE.SphereGeometry((Math.random()+2),20,20), new THREE.MeshNormalMaterial());
-		
 		
 		malla = new THREE.Mesh( A_V_forma,A_V_material);
 		malla.translateX( 50*(2*Math.random()-1) );
@@ -107,14 +124,7 @@ for(j = 0; j <30; j++){
 }	
 
 
-	for(j ; j <60; j++){
-		
-		malla5 = new THREE.Mesh(new THREE.SphereGeometry((Math.random()+2),20,20), new THREE.MeshNormalMaterial());
-		malla5.translateX( 50*(2*Math.random()-1) );
-		malla5.translateY( 50*(2*Math.random()-1) );
-		malla5.translateZ( (-300*Math.random())-300*j);
-		escena.add(malla5);
-	}
+
 
 	
 	

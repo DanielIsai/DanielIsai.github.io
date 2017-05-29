@@ -2,7 +2,7 @@
 
 
 THREE.ImageUtils.crossOrigin = '';
-var A_B_textura   = THREE.ImageUtils.loadTexture('espacio.jpg');
+var A_B_textura   = THREE.ImageUtils.loadTexture('amar.jpg');
 var A_B_material  = new THREE.MeshBasicMaterial( {map: A_B_textura} );
 	 
 var A_B_figura = new THREE.Shape();

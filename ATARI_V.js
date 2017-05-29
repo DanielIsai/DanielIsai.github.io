@@ -3,7 +3,7 @@
 
 THREE.ImageUtils.crossOrigin = '';
 var A_V_textura   = THREE.ImageUtils.loadTexture('erdes.jpg');
-var A_V_material  = new THREE.MeshBasicMaterial( {map: textura} );
+var A_V_material  = new THREE.MeshBasicMaterial( {map: A_V_textura} );
 	 
 var A_V_figura = new THREE.Shape();
 

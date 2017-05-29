@@ -19,6 +19,8 @@
   <script   src="ATARI_B.js">
   </script>
 
+  <script   src="ATARI_A.js">
+  </script>
 
   <script>
 
@@ -84,6 +86,12 @@ for(j = 0; j <80; j++){
 		malla2.translateY( 50*(2*Math.random()-1) );
 		malla2.translateZ( (-300*Math.random())-300*j);
 		escena.add(malla2);
+		
+		malla3 = new THREE.Mesh( A_A_forma,A_A_material);
+		malla3.translateX( 50*(2*Math.random()-1) );
+		malla3.translateY( 50*(2*Math.random()-1) );
+		malla3.translateZ( (-300*Math.random())-300*j);
+		escena.add(malla3);
 	}
 
 }	

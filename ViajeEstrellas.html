@@ -66,7 +66,7 @@ function setup(){
                       window.innerHeight*.95 );
 	document.body.appendChild(renderer.domElement);
 
-for(j = 0; j <80; j++){
+for(j = 0; j <30; j++){
 
 	for(i = 0; i < j/10; i++){
 
@@ -107,6 +107,17 @@ for(j = 0; j <80; j++){
 }	
 
 
+	for(j ; j <60; j++){
+		
+		malla5 = new THREE.Mesh(new THREE.SphereGeometry((Math.random()+2),20,20), new THREE.MeshNormalMaterial());
+		malla5.translateX( 50*(2*Math.random()-1) );
+		malla5.translateY( 50*(2*Math.random()-1) );
+		malla5.translateZ( (-300*Math.random())-300*j);
+		escena.add(malla5);
+	}
+
+	
+	
 	escena.add(A_V_malla);
 
 	var tipoEvento = 'resize';

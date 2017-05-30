@@ -36,8 +36,15 @@
 
 function push(e){
 
-	if (e.keyCode===65)
-	A_V_malla.translateX( -1 );
+	
+	if (e.keyCode===65){
+		if(A_V_malla.position.x>-20){
+			A_V_malla.translateX( -1 );
+		}
+		else{
+			A_V_malla.translateX( 0 );
+		}		
+	}
 
 	else if (e.keyCode===90)
 	A_V_malla.translateX(  1 );
@@ -48,6 +55,11 @@ function push(e){
 
 	else if (e.keyCode===68)
 	A_V_malla.translateY(  1 );
+	
+	
+
+	
+	
 	}
 
 

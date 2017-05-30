@@ -91,9 +91,10 @@ for(j; j <20; j++){
 
 	for(i = 0; i < (j-10)/10; i++){
 
-		//malla = new THREE.Mesh(new THREE.SphereGeometry((Math.random()+2),20,20), new THREE.MeshNormalMaterial());
 		
-		malla = new THREE.Mesh( A_V_forma,A_V_material);
+		
+		//malla = new THREE.Mesh( A_V_forma,A_V_material);
+		malla =new THREE.Mesh( P4forma, material );
 		malla.translateX( 50*(2*Math.random()-1) );
 		malla.translateY( 50*(2*Math.random()-1) );
 		malla.translateZ( (-300*Math.random())-300*j);
@@ -129,26 +130,6 @@ for(j; j <20; j++){
 
 
 
-	for(j; j <30; j++){
-
-	for(i = 0; i < (j-20)/10; i++){
-
-		//malla = new THREE.Mesh(new THREE.SphereGeometry((Math.random()+2),20,20), new THREE.MeshNormalMaterial());
-		
-		malla5 = new THREE.ExtrudeGeometry( P4figura,P4extrudeSettings);
-		//malla5.translateX( 50*(2*Math.random()-1) );
-		//malla5.translateY( 50*(2*Math.random()-1) );
-		//malla5.translateZ( (-300*Math.random())-300*j);
-		escena.add(malla5);	
-		
-		
-	}
-
-}	
-	
-	
-	
-	
 	
 	
 	

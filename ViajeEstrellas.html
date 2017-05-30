@@ -93,8 +93,7 @@ for(j; j <20; j++){
 
 		
 		
-		//malla = new THREE.Mesh( A_V_forma,A_V_material);
-		malla =new THREE.Mesh( P4forma, material );
+		malla = new THREE.Mesh( A_V_forma,A_V_material);
 		malla.translateX( 50*(2*Math.random()-1) );
 		malla.translateY( 50*(2*Math.random()-1) );
 		malla.translateZ( (-300*Math.random())-300*j);
@@ -129,10 +128,20 @@ for(j; j <20; j++){
 
 
 
+for(j; j <30; j++){
 
+	for(i = 0; i < (j-20)/10; i++){		
+		
+		malla5 =new THREE.Mesh( P4forma, Fanmaterial );	
+		malla5.translateX( 50*(2*Math.random()-1) );
+		malla5.translateY( 50*(2*Math.random()-1) );
+		malla5.translateZ( (-300*Math.random())-300*j);
+		escena.add(malla5);	
+		
 	
-	
-	
+	}
+
+}	
 	
 	
 	

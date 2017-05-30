@@ -1,6 +1,6 @@
   THREE.ImageUtils.crossOrigin = '';
   var textura   = THREE.ImageUtils.loadTexture('espacio.jpg');
-  var material  = new THREE.MeshBasicMaterial( {map: textura} );
+  var Fanmaterial  = new THREE.MeshBasicMaterial( {map: textura} );
 
 var P4figura = new THREE.Shape();
 P4figura.lineTo(0,0);P4figura.lineTo(1,0);P4figura.lineTo(1,1);P4figura.lineTo(2,1);P4figura.lineTo(2,2);P4figura.lineTo(3,2);
@@ -20,6 +20,6 @@ var P4extrudeSettings = {
 	bevelSegments: 1
 };
 var P4forma = new THREE.ExtrudeGeometry( P4figura,P4extrudeSettings);
-var Fanmalla         = new THREE.Mesh( P4forma, material );
+var Fanmalla         = new THREE.Mesh( P4forma, Fanmaterial );
   
  

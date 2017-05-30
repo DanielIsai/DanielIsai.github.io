@@ -20,6 +20,6 @@ var P4extrudeSettings = {
 	bevelSegments: 1
 };
 var P4forma = new THREE.ExtrudeGeometry( P4figura,P4extrudeSettings);
-var P4malla         = new THREE.Mesh( P4forma, material );
+var Fanmalla         = new THREE.Mesh( P4forma, material );
   
  

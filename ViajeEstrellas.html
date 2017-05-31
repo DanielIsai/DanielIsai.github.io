@@ -7,6 +7,13 @@
   
   </head>
   <body>
+	  
+	  
+<div id="stats"></div>
+	  
+	  
+	  
+	  
   <script   src="three.min.js">
   </script>
 
@@ -226,7 +233,8 @@ function loop(){
 	
 	camara.position.z-=2;
 	A_V_malla.translateZ(  -2 );
-
+	
+	stats = "The cube's location is"+"("+A_V_malla.position.x+","+A_V_malla.position.y+","+A_V_malla.position.z+")";
 
 	renderer.render( escena, camara ); 
 	}
@@ -237,6 +245,7 @@ function loop(){
 
 var camara, renderer, escena, i, n;
 var puntos = [];
+var stats = document.getElementById('stats');
 setup();
 loop();
 

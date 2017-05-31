@@ -97,16 +97,20 @@ function setup(){
 	document.body.appendChild(renderer.domElement);
 	
 	
-	
+n = 0;	
 	
 	
 for(j=0 ; j <5; j++){		
 	for(i=0; i<j/3;i++){ 
-		malla0 = new THREE.Mesh(new THREE.SphereGeometry(3*(Math.random()+2),20,20), new THREE.MeshNormalMaterial());
-		malla0.translateX( 50*(2*Math.random()-1) );
-		malla0.translateY( 50*(2*Math.random()-1) );
-		malla0.translateZ( (-300*Math.random())-300*j);
-		escena.add(malla0);
+		
+		malla = new THREE.Mesh(new THREE.SphereGeometry(3*(Math.random()+2),20,20), new THREE.MeshNormalMaterial());
+		malla.translateX( 50*(2*Math.random()-1) );
+		malla.translateY( 50*(2*Math.random()-1) );
+		malla.translateZ( (-300*Math.random())-300*j);
+		
+		n++;		
+		puntos.push(malla);		
+		escena.add(malla);
 	}
 }
 	
@@ -124,31 +128,49 @@ for(j; j <10; j++){
 		malla.translateX( 50*(2*Math.random()-1) );
 		malla.translateY( 50*(2*Math.random()-1) );
 		malla.translateZ( (-300*Math.random())-300*j);
+		
+		n++;		
+		puntos.push(malla);
 		escena.add(malla);	
 		
-		malla1 = new THREE.Mesh( A_R_forma,A_R_material);
-		malla1.translateX( 50*(2*Math.random()-1) );
-		malla1.translateY( 50*(2*Math.random()-1) );
-		malla1.translateZ( (-300*Math.random())-300*j);
-		escena.add(malla1);	
+		malla = new THREE.Mesh( A_R_forma,A_R_material);
+		malla.translateX( 50*(2*Math.random()-1) );
+		malla.translateY( 50*(2*Math.random()-1) );
+		malla.translateZ( (-300*Math.random())-300*j);
+				
+		n++;		
+		puntos.push(malla);
+		escena.add(malla);
 		
-		malla2 = new THREE.Mesh( A_B_forma,A_B_material);
-		malla2.translateX( 50*(2*Math.random()-1) );
-		malla2.translateY( 50*(2*Math.random()-1) );
-		malla2.translateZ( (-300*Math.random())-300*j);
-		escena.add(malla2);
+		malla = new THREE.Mesh( A_B_forma,A_B_material);
+		malla.translateX( 50*(2*Math.random()-1) );
+		malla.translateY( 50*(2*Math.random()-1) );
+		malla.translateZ( (-300*Math.random())-300*j);
 		
-		malla3 = new THREE.Mesh( A_A_forma,A_A_material);
-		malla3.translateX( 50*(2*Math.random()-1) );
-		malla3.translateY( 50*(2*Math.random()-1) );
-		malla3.translateZ( (-300*Math.random())-300*j);
-		escena.add(malla3);
 		
-		malla4 = new THREE.Mesh( A_M_forma,A_M_material);
-		malla4.translateX( 50*(2*Math.random()-1) );
-		malla4.translateY( 50*(2*Math.random()-1) );
-		malla4.translateZ( (-300*Math.random())-300*j);
-		escena.add(malla4);
+		n++;		
+		puntos.push(malla);
+		escena.add(malla);
+		
+		malla = new THREE.Mesh( A_A_forma,A_A_material);
+		malla.translateX( 50*(2*Math.random()-1) );
+		malla.translateY( 50*(2*Math.random()-1) );
+		malla.translateZ( (-300*Math.random())-300*j);
+		
+		n++;		
+		puntos.push(malla);
+		escena.add(malla);
+		
+		
+		malla = new THREE.Mesh( A_M_forma,A_M_material);
+		malla.translateX( 50*(2*Math.random()-1) );
+		malla.translateY( 50*(2*Math.random()-1) );
+		malla.translateZ( (-300*Math.random())-300*j);
+		
+		n++;		
+		puntos.push(malla);
+		escena.add(malla);
+		
 	}
 
 }	
@@ -159,11 +181,15 @@ for(j; j <15; j++){
 
 	for(i = 0; i < (j-10)/10; i++){		
 		
-		malla5 =new THREE.Mesh( P4forma, Fanmaterial );	
-		malla5.translateX( 50*(2*Math.random()-1) );
-		malla5.translateY( 50*(2*Math.random()-1) );
-		malla5.translateZ( (-300*Math.random())-300*j);
-		escena.add(malla5);	
+		malla =new THREE.Mesh( P4forma, Fanmaterial );	
+		malla.translateX( 50*(2*Math.random()-1) );
+		malla.translateY( 50*(2*Math.random()-1) );
+		malla.translateZ( (-300*Math.random())-300*j);
+		
+		n++;		
+		puntos.push(malla);
+		escena.add(malla);
+			
 		
 	
 	}
@@ -209,7 +235,8 @@ function loop(){
 
 
 
-var camara, renderer, escena, i;
+var camara, renderer, escena, i, n;
+var puntos = [];
 setup();
 loop();
 

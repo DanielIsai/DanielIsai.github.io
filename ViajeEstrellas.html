@@ -81,6 +81,8 @@ function push(e){
 			A_V_malla.translateY( 0 );
 		}		
 	}
+	
+	stats = "The cube's location is"+"("+A_V_malla.position.x+","+A_V_malla.position.y+","+A_V_malla.position.z+")";
 
 }
 
@@ -234,7 +236,7 @@ function loop(){
 	camara.position.z-=2;
 	A_V_malla.translateZ(  -2 );
 	
-	stats = "The cube's location is"+"("+A_V_malla.position.x+","+A_V_malla.position.y+","+A_V_malla.position.z+")";
+	
 
 	renderer.render( escena, camara ); 
 	}

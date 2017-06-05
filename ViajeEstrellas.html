@@ -34,6 +34,10 @@
 	  
   <script   src="FANTASMA.js">
   </script>
+	  
+  <script   src="TIE.js">
+  </script>
+
 
 
   <script>
@@ -82,7 +86,7 @@ function push(e){
 		}		
 	}
 	
-	stats = "The cube's location is"+"("+A_V_malla.position.x+","+A_V_malla.position.y+","+A_V_malla.position.z+")";
+	
 
 }
 
@@ -96,6 +100,10 @@ var listener = function() {
 
 
 function setup(){
+	
+	k = 0;
+	bandera = 0;
+	
 	escena = new THREE.Scene();
 	camara = new THREE.PerspectiveCamera();
 	camara.position.z = 90;
@@ -106,19 +114,25 @@ function setup(){
 	document.body.appendChild(renderer.domElement);
 	
 	
-n = 0;	
+raycaster1 = new THREE.Raycaster(TIE.position, new THREE.Vector3(0,0,-1));
+raycaster2 = new THREE.Raycaster(TIE.position, new THREE.Vector3(1,0,0));
+raycaster3 = new THREE.Raycaster(TIE.position, new THREE.Vector3(-1,0,0));
+raycaster4 = new THREE.Raycaster(TIE.position, new THREE.Vector3(0,1,0));
+raycaster5 = new THREE.Raycaster(TIE.position, new THREE.Vector3(0,-1,0));
 	
 	
-for(j=0 ; j <5; j++){		
-	for(i=0; i<j/3;i++){ 
+	
+	
+for(j=0 ; j <15; j++){		
+	for(i=0; i<j/2;i++){ 
 		
-		malla = new THREE.Mesh(new THREE.SphereGeometry(3*(Math.random()+2),20,20), new THREE.MeshNormalMaterial());
+		malla = new THREE.Mesh(new THREE.SphereGeometry(4,20,20), new THREE.MeshNormalMaterial());
 		malla.translateX( 50*(2*Math.random()-1) );
-		malla.translateY( 50*(2*Math.random()-1) );
-		malla.translateZ( (-300*Math.random())-300*j);
+		malla.translateY( 0);
+		malla.translateZ( (-800*Math.random())-800*j);
 		
-		n++;		
-		puntos.push(malla);		
+			
+		Obstaculos.push(malla); 	
 		escena.add(malla);
 	}
 }
@@ -217,7 +231,7 @@ for(j; j <15; j++){
 	
 	
 	
-	escena.add(A_V_malla);
+	escena.add(TIE);
 
 	var tipoEvento = 'resize';
 	var capturar = false;
@@ -230,24 +244,63 @@ for(j; j <15; j++){
 
 
 function loop(){
-	requestAnimationFrame( loop );
 	
 	
+if(	 TIE.position.z > Obstaculos[k].position.z){
+
+
+
+
+
+	obstaculo1 = raycaster1.intersectObject(Obstaculos[k]);
+	obstaculo2 = raycaster2.intersectObject(Obstaculos[k]);
+	obstaculo3 = raycaster3.intersectObject(Obstaculos[k]);
+	obstaculo4 = raycaster4.intersectObject(Obstaculos[k]);
+	obstaculo5 = raycaster5.intersectObject(Obstaculos[k]);
+
+
+
+
+	if ( (obstaculo1.length>0 && (obstaculo1[0].distance<=6))	||	(obstaculo2.length>0 && (obstaculo2[0].distance<=6))	||	(obstaculo3.length>0 && (obstaculo3[0].distance<=6))	||	(obstaculo4.length>0 && (obstaculo4[0].distance<=4))	||	(obstaculo5.length>0 && (obstaculo5[0].distance<=4))	 ){
+			
+	camara.position.z-=0;
+	TIE.translateZ(0);
+	bandera = 1;
+
+	}
+
+	else{
+			
 	camara.position.z-=2;
-	A_V_malla.translateZ(  -2 );
+	TIE.translateZ(  -2 );
+	}
+
+	raycaster1.set(TIE.position, new THREE.Vector3(0,0,-1));
+	raycaster2.set(TIE.position, new THREE.Vector3(1,0,0));
+	raycaster3.set(TIE.position, new THREE.Vector3(-1,0,0));
+	raycaster4.set(TIE.position, new THREE.Vector3(0,1,0));
+	raycaster5.set(TIE.position, new THREE.Vector3(0,-1,0));
+
 	
+}
+
+else{
+	k++;
+}
 	
 
 	renderer.render( escena, camara ); 
+	requestAnimationFrame( loop );
 	}
 
 
 
 
-
-var camara, renderer, escena, i, n;
-var puntos = [];
-var stats = document.getElementById('stats');
+var camara, renderer, escena, malla, material,mov;
+var k, bandera;
+var Obstaculos = [];
+var raycaster1, raycaster2, raycaster3, raycaster4, raycaster5;
+var obstaculo1, obstaculo2, obstaculo3, obstaculo4, obstaculo5;
 setup();
 loop();
 

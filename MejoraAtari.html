@@ -212,34 +212,20 @@
 
 
 // Declarar un Agente llamado Pared
-
-
-	function Pared(size, x=0, y=0,z=0){
-	
+	function Pared(size, x=0, y=0,z=0){	
 		THREE.Object3D.call(this,x,y,z);
-
-		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),
-				             new THREE.MeshNormalMaterial()));
+		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),new THREE.MeshNormalMaterial()));
 		this.size= size;
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}
-
-
-	Pared.prototype= new THREE.Object3D();
+	}Pared.prototype= new THREE.Object3D();
 
 
 
 // Declarar un Agente llamado Atari
-
-
-	function Atari(size, x=0, y=0,z=0){
-	
+	function Atari(size, x=0, y=0,z=0){	
 		THREE.Object3D.call(this,x,y,z);
-
-
-
 		var P2figura = new THREE.Shape();
 		var escalaAtari = size;
 		P2figura.lineTo(0*escalaAtari,0*escalaAtari);P2figura.lineTo(1*escalaAtari,0*escalaAtari);P2figura.lineTo(1*escalaAtari,2*escalaAtari);P2figura.lineTo(2*escalaAtari,2*escalaAtari);P2figura.lineTo(2*escalaAtari,1*escalaAtari);
@@ -249,24 +235,17 @@
 		P2figura.lineTo(6*escalaAtari,6*escalaAtari);P2figura.lineTo(4*escalaAtari,6*escalaAtari);P2figura.lineTo(4*escalaAtari,7*escalaAtari);P2figura.lineTo(3*escalaAtari,7*escalaAtari);P2figura.lineTo(3*escalaAtari,6*escalaAtari);
 		P2figura.lineTo(1*escalaAtari,6*escalaAtari);P2figura.lineTo(1*escalaAtari,7*escalaAtari);P2figura.lineTo(0*escalaAtari,7*escalaAtari);P2figura.lineTo(0*escalaAtari,5*escalaAtari);P2figura.lineTo(1*escalaAtari,5*escalaAtari);
 		P2figura.lineTo(1*escalaAtari,4*escalaAtari);P2figura.lineTo(0*escalaAtari,4*escalaAtari);
-
 		var P2extrudeSettings = {steps: 2*escalaAtari,amount: 1*escalaAtari,bevelEnabled: true,bevelThickness: 1*escalaAtari,bevelSize: 1*escalaAtari,bevelSegments: 1*escalaAtari};
-
 		var P2forma = new THREE.ExtrudeGeometry( P2figura,P2extrudeSettings);
 		P2forma.translate(-3.5*escalaAtari,-3.5*escalaAtari,0);
-
 		var P2material = new THREE.MeshNormalMaterial();
 		var P2malla = new THREE.Mesh( P2forma, P2material );
-
 		this.add(P2malla);
 		this.size= size;
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}
-
-
-	Atari.prototype= new THREE.Object3D();
+	}Atari.prototype= new THREE.Object3D();
 
 
 
@@ -274,15 +253,10 @@
 
 
 // Declarar un Agente llamado Fantasma
-
-
-	function Fantasma(size, x=0, y=0,z=0){
-	
-		THREE.Object3D.call(this,x,y,z);
-		
+	function Fantasma(size, x=0, y=0,z=0){	
+		THREE.Object3D.call(this,x,y,z);		
 		var P4figura = new THREE.Shape();
 		var escalaFan = size;
-
 		P4figura.lineTo(0*escalaFan,0*escalaFan);P4figura.lineTo(1*escalaFan,0*escalaFan);P4figura.lineTo(1*escalaFan,1*escalaFan);P4figura.lineTo(2*escalaFan,1*escalaFan);P4figura.lineTo(2*escalaFan,2*escalaFan);
 		P4figura.lineTo(3*escalaFan,2*escalaFan);P4figura.lineTo(3*escalaFan,1*escalaFan);P4figura.lineTo(4*escalaFan,1*escalaFan);P4figura.lineTo(4*escalaFan,0*escalaFan);P4figura.lineTo(6*escalaFan,0*escalaFan);
 		P4figura.lineTo(6*escalaFan,2*escalaFan);P4figura.lineTo(8*escalaFan,2*escalaFan);P4figura.lineTo(8*escalaFan,0*escalaFan);P4figura.lineTo(10*escalaFan,0*escalaFan);P4figura.lineTo(10*escalaFan,1*escalaFan);
@@ -291,24 +265,17 @@
 		P4figura.lineTo(12*escalaFan,11*escalaFan);P4figura.lineTo(12*escalaFan,12*escalaFan);P4figura.lineTo(11*escalaFan,12*escalaFan);P4figura.lineTo(11*escalaFan,13*escalaFan);P4figura.lineTo(9*escalaFan,13*escalaFan);
 		P4figura.lineTo(9*escalaFan,14*escalaFan);P4figura.lineTo(5*escalaFan,14*escalaFan);P4figura.lineTo(5*escalaFan,13*escalaFan);P4figura.lineTo(3*escalaFan,13*escalaFan);P4figura.lineTo(3*escalaFan,12*escalaFan);
 		P4figura.lineTo(2*escalaFan,12*escalaFan);P4figura.lineTo(2*escalaFan,11*escalaFan);P4figura.lineTo(1*escalaFan,11*escalaFan);P4figura.lineTo(1*escalaFan,8*escalaFan);P4figura.lineTo(0*escalaFan,8*escalaFan);
-
 		var P4extrudeSettings = {steps: 2*escalaFan,amount: 6*escalaFan,bevelEnabled: true,bevelThickness: 1*escalaFan,bevelSize: 1*escalaFan,bevelSegments: 1*escalaFan};
-
 		var P4forma = new THREE.ExtrudeGeometry( P4figura,P4extrudeSettings);
 		P4forma.translate(-7*escalaFan,-7*escalaFan,0);
-
 		var P4material = new THREE.MeshNormalMaterial();
 		var P4malla = new THREE.Mesh( P4forma, P4material );
-
 		this.add(P4malla);
 		this.size= size;
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}
-
-
-	Fantasma.prototype= new THREE.Object3D();
+	}Fantasma.prototype= new THREE.Object3D();
 
 
 
@@ -321,19 +288,11 @@
 
 
 // Configuración del programa
-
-
-
 	function setup(){
-
 		entorno = new Environment();
 		camara = new THREE.PerspectiveCamera();
 		camara.position.z=30;
-
-
-
-
-
+		
 		var listener = new THREE.AudioListener();
 		camara.add( listener );
 		var sound = new THREE.Audio( listener );
@@ -345,7 +304,7 @@
 		audioLoader.load( 'cancion.ogg', function( buffer ) {
 		sound.setBuffer( buffer );
 		sound.setLoop(true);
-		sound.setVolume(10);
+		sound.setVolume(1);
 		sound.play();
 		});
 
@@ -442,6 +401,7 @@ for(j; j <60; j++){
 	
 	var entorno, camara, renderer;
 	var pos;
+	sound.play();
 	setup();
 	loop();
 

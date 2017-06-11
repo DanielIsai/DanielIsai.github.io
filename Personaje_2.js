@@ -55,5 +55,8 @@ var P2extrudeSettings = {
 
 var P2forma = new THREE.ExtrudeGeometry( P2figura,P2extrudeSettings);
 
-var P2material = new THREE.MeshNormalMaterial();
+
+THREE.ImageUtils.crossOrigin = '';
+var P2textura   = THREE.ImageUtils.loadTexture('amar.jpg');
+var P2material  = new THREE.MeshBasicMaterial( {map: P2textura} );
 var P2malla = new THREE.Mesh( P2forma, P2material );

@@ -204,7 +204,98 @@
 	}
 	Pared2.prototype= new THREE.Object3D();
 
+	  
+// Declarar el Agente corrrespondiente al Asteroide de Puntas
+	function Ast_Punta(size, x=0, y=0,z=0){	
+		  THREE.Object3D.call(this,x,y,z);
+		  var K=size;
+		  var material = new THREE.MeshNormalMaterial( );	
+		  //var cuerpo = new THREE.IcosahedronBufferGeometry(3,0);
+		  var crp_Punta = new THREE.SphereGeometry(3*K,7,7);
+		  var crp_PuntaM = new THREE.Mesh(crp_Punta, material)
 
+		  var punta1 = new THREE.ConeGeometry( 0.8*K, 1.0*K, 7 );
+		  punta1.rotateZ(Math.PI/3.5);
+		  punta1.rotateY(Math.PI/4);
+		  punta1.translate(-1.7*K,1.7*K,2.2*K);
+		  var puntaM1 = new THREE.Mesh(punta1, material)
+
+		  var punta2 = new THREE.ConeGeometry( 1.0*K, 1.0*K, 7 );
+		  punta2.rotateZ(Math.PI/-4);
+		  punta2.rotateX(Math.PI/4);
+		  punta2.translate(1.9*K,1.7*K,2.2*K);
+		  var puntaM2 = new THREE.Mesh(punta2, material)
+
+		  var punta3 = new THREE.ConeGeometry( 0.9*K, 0.8*K, 7);
+		  punta3.rotateZ(Math.PI/-3);
+		  punta3.rotateY(Math.PI/-4);
+		  punta3.rotateX(Math.PI/2.4);
+		  punta3.translate(1.9*K,-1.7*K,2.0*K);
+		  var puntaM3 = new THREE.Mesh(punta3, material)
+
+		  var punta4 = new THREE.ConeGeometry( 1.0*K, 1.0*K, 7 );
+		  punta4.rotateX(Math.PI/2); 
+		  punta4.translate(-0.2*K,0,4.4*K);
+		  var puntaM4 =  new THREE.Mesh(punta4, material)
+
+		  var punta5 = new THREE.ConeGeometry( 0.4*K, 0.8*K, 7 );
+		  punta5.rotateZ(Math.PI*0.8);
+		  punta5.rotateY(Math.PI*0.2);
+		  punta5.rotateX(Math.PI*-0.2);
+		  punta5.translate(-1.8*K,-1.8*K,2.2*K);
+		  var puntaM5 =  new THREE.Mesh(punta5, material)
+
+		  var punta5 = new THREE.ConeGeometry( 0.6*K, 0.8*K, 7 );
+		  punta5.rotateZ(Math.PI*0.8);
+		  punta5.rotateY(Math.PI*0.2);
+		  punta5.rotateX(Math.PI*-0.2);
+		  punta5.translate(-1.8*K,-1.8*K,2.2*K);
+		  var puntaM5 =  new THREE.Mesh(punta5, material)
+
+		  var punta6 = new THREE.ConeGeometry( 0.5*K, 0.8*K, 7 );
+		  punta6.rotateZ(Math.PI);
+		  punta6.rotateX(Math.PI*-0.3);
+		  punta6.translate(-0.2*K,-2.5*K,2.5*K);
+		  var puntaM6 =  new THREE.Mesh(punta6, material)
+
+		  var punta7 = new THREE.ConeGeometry( 1.0*K, 0.8*K, 7 );
+		  punta7.rotateZ(Math.PI/2);
+		  punta7.rotateY(Math.PI*0.1);
+		  punta7.translate(-3.2*K,0,0);
+		  var puntaM7 =  new THREE.Mesh(punta7, material)
+
+		  var punta8 = new THREE.ConeGeometry( 1.0*K, 0.8*K, 7 );
+		  punta8.translate(0,3.15*K,0);
+		  var puntaM8 =  new THREE.Mesh(punta8, material)
+
+		  var punta9 = new THREE.ConeGeometry( 1.0*K, 0.8*K, 7 );
+		  punta9.rotateZ(Math.PI/-2);
+		  punta9.rotateY(Math.PI*-0.1);
+		  punta9.translate(3.0*K,0,0.3*K);
+		  var puntaM9 =  new THREE.Mesh(punta9, material)
+
+		  var Ast_Punta = new THREE.Geometry();
+		  Ast_Punta.merge(crp_PuntaM.geometry, crp_PuntaM.matrix);
+		  Ast_Punta.merge(puntaM1.geometry, puntaM1.matrix);
+		  Ast_Punta.merge(puntaM2.geometry, puntaM2.matrix);
+		  Ast_Punta.merge(puntaM3.geometry, puntaM3.matrix);
+		  Ast_Punta.merge(puntaM4.geometry, puntaM4.matrix);
+		  Ast_Punta.merge(puntaM5.geometry, puntaM5.matrix);
+		  Ast_Punta.merge(puntaM6.geometry, puntaM6.matrix);
+		  Ast_Punta.merge(puntaM7.geometry, puntaM7.matrix);
+		  Ast_Punta.merge(puntaM8.geometry, puntaM8.matrix);
+		  Ast_Punta.merge(puntaM9.geometry, puntaM9.matrix);
+		  var Ast_PuntaM = new THREE.Mesh( Ast_Punta, material );
+		
+	        this.add(Ast_PuntaM);
+	       	this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;
+	}
+	Ast_Punta.prototype= new THREE.Object3D();  
+	  
+	  
 
 // Declarar un Agente llamado Atari
 	function Atari(size, x=0, y=0,z=0){	
@@ -287,7 +378,7 @@ for(j = 0; j <20; j++){
 
 for(j; j <40; j++){
 	for(i = 0; i < (j-20); i++){
-		entorno.add(new Atari(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
+		entorno.add(new Ast_Punta(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
 	}
 }
 

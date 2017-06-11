@@ -1,3 +1,8 @@
+THREE.ImageUtils.crossOrigin = '';
+var P1textura   = THREE.ImageUtils.loadTexture('espacio.jpg');
+var P1material  = new THREE.MeshBasicMaterial( {map: P1textura} );
+
+
 var P1cuelloForma = new THREE.CylinderGeometry(1, 1, 10);
 var P1cuello2Forma = new THREE.CylinderGeometry(1, 1, 10);
 var P1pataForma = new THREE.CylinderGeometry(1.5, 1.5, 10);
@@ -32,9 +37,5 @@ P1arbolForma.merge(P1pataMalla.geometry, P1pataMalla.matrix);
 P1arbolForma.merge(P1cabeza1Malla.geometry, P1cabeza1Malla.matrix);
 P1arbolForma.merge(P1cabeza2Malla.geometry, P1cabeza2Malla.matrix);
 
-
-THREE.ImageUtils.crossOrigin = '';
-var P1textura   = THREE.ImageUtils.loadTexture('espacio.jpg');
-var P1material  = new THREE.MeshBasicMaterial( {map: P1textura} );
 var P1arbolMalla = new THREE.Mesh(P1arbolForma, P1material);
 

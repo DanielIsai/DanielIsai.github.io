@@ -102,15 +102,27 @@
 		TIEForma.merge(ala1Malla.geometry, ala1Malla.matrix);
 		TIEForma.merge(ala2Malla.geometry, ala2Malla.matrix);
 		TIEForma.merge(soporteMalla.geometry, soporteMalla.matrix);
-		var TIE = new THREE.Mesh(TIEForma,new THREE.MeshNormalMaterial());
+		
+		
+		
+		
+		
+		
+		THREE.ImageUtils.crossOrigin = '';
+		var TIE_textura  = THREE.ImageUtils.loadTexture('nave.jpg');
+		var TIE_material  = new THREE.MeshBasicMaterial( {map: TIE_textura} );
+		
+		var TIE = new THREE.Mesh(TIEForma,TIE_material);
+		
+		
+		
+		
 		
 		this.add(TIE);			
 		this.step= 1;
 		this.colision=0;
 		this.radius = r;
 		this.sensor1= new THREE.Raycaster( this.position,new THREE.Vector3(0,0,-1));
-		//this.sensor2= new THREE.Raycaster( this.position,new THREE.Vector3(-1,0,0));
-		//this.sensor3= new THREE.Raycaster( this.position,new THREE.Vector3( 1,0,0));
 	}
 
 	Nave.prototype= new Agent();

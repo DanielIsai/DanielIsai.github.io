@@ -209,7 +209,11 @@
 	function Ast_Punta(size, x=0, y=0,z=0){	
 		  THREE.Object3D.call(this,x,y,z);
 		  var K=size;
-		  var material = new THREE.MeshNormalMaterial( );	
+		  //var material = new THREE.MeshNormalMaterial( );	
+		  THREE.ImageUtils.crossOrigin = '';
+		  var ast_textura1   = THREE.ImageUtils.loadTexture('Lava.jpg');
+		  var material  = new THREE.MeshBasicMaterial( {map: ast_textura1} );
+		
 		  //var cuerpo = new THREE.IcosahedronBufferGeometry(3,0);
 		  var crp_Punta = new THREE.SphereGeometry(3*K,7,7);
 		  var crp_PuntaM = new THREE.Mesh(crp_Punta, material)

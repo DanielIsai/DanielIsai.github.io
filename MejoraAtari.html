@@ -216,7 +216,7 @@
 		THREE.Object3D.call(this,x,y,z);		
 		THREE.ImageUtils.crossOrigin = '';
 		var cajatextura1   = THREE.ImageUtils.loadTexture('bmetal.jpg');
-		var cajamaterial1  = new THREE.MeshBasicMaterial( {map: cajatextur1a} );		
+		var cajamaterial1  = new THREE.MeshBasicMaterial( {map: cajatextura1} );		
 		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial1));
 		this.size= size;
 		this.position.x= x;

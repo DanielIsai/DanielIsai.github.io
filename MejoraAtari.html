@@ -7,16 +7,13 @@
               content="text/html; charset=UTF-8">  
   </head>
   <body>
-
-  <script   src="three.min.js">
+  <script src="three.min.js">
   </script>
 
-  
 
   <script>
 
 // Funcion de movimiento con el teclado
-
 	function push(e){
 		if (e.keyCode===65)
 		pos = 1;
@@ -28,48 +25,34 @@
 		pos = 4;
 	}
 
-
-
-
-
+	  
 // Funcion para ajuste de pantalla
-
 	var listener = function() {
 		camara.aspect = window.innerWidth/window.innerHeight;
 		camara.updateProjectionMatrix();
 		renderer.setSize(window.innerWidth, window.innerHeight);
 	}
 
-
-
-
-
-
+	
 // Declaración de Agente
-
 	function Agent(x=0, y=0){
 		THREE.Object3D.call(this);
 		this.position.x= x;
 		this.position.y= y;
-		}
-
+	}
 
 	Agent.prototype = new THREE.Object3D();
-
 	Agent.prototype.sense= function(environment) {};
 	Agent.prototype.plan= function(environment) {};
 	Agent.prototype.act= function(environment) {};
 
-
+	  
 // Declaración del Ambiente
-
 	function Environment(){
 		THREE.Scene.call(this);
 	}
 
-
 	Environment.prototype= new THREE.Scene();
-
 
 	Environment.prototype.sense = function(){
 		for(var i=0; i< this.children.length; i++){
@@ -78,14 +61,12 @@
 		}
 	}
 
-
 	Environment.prototype.plan= function(){
 		for(var i=0; i< this.children.length; i++){
 			if (this.children[i].plan !== undefined)
 				this.children[i].plan(this);
 		}
 	}
-
 
 	Environment.prototype.act = function (){
 		for(var i=0; i< this.children.length; i++){
@@ -96,20 +77,14 @@
 
 
 
-
 // Declarar un Agente llamado Nave
-
-
 	function Nave (r,x=0, y=0){
 
 		Agent.call(this,x,y);
-
-		
 		var escalaTIE = r;
-
+		
 		var cabinaForma = new THREE.SphereGeometry(1*escalaTIE);
 		var cabinaMalla = new THREE.Mesh(cabinaForma);
-		
 		
 		var ala1Forma = new THREE.CylinderGeometry(1.5*escalaTIE, 1.5*escalaTIE, 0.25*escalaTIE, 6);
 		ala1Forma.rotateZ( Math.PI/2);
@@ -129,10 +104,6 @@
 		TIEForma.merge(soporteMalla.geometry, soporteMalla.matrix);
 		var TIE = new THREE.Mesh(TIEForma,new THREE.MeshNormalMaterial());
 		
-		
-		
-		
-		
 		this.add(TIE);			
 		this.step= 1;
 		this.colision=0;
@@ -140,25 +111,18 @@
 		this.sensor1= new THREE.Raycaster( this.position,new THREE.Vector3(0,0,-1));
 		//this.sensor2= new THREE.Raycaster( this.position,new THREE.Vector3(-1,0,0));
 		//this.sensor3= new THREE.Raycaster( this.position,new THREE.Vector3( 1,0,0));
-
 	}
 
 	Nave.prototype= new Agent();
 
-
-
-	Nave.prototype.sense = function(environment){
-	
+	Nave.prototype.sense = function(environment){	
 		this.sensor1.set(this.position, new THREE.Vector3(0,0,-1));
 		//this.sensor2.set(this.position, new THREE.Vector3(-1,0,0));
 		//this.sensor3.set(this.position, new THREE.Vector3( 1,0,0));
-
-
-
+		
 		var obstaculo1= this.sensor1.intersectObjects(environment.children,true);
 		//var obstaculo2= this.sensor2.intersectObjects(environment.children,true);
 		//var obstaculo3= this.sensor3.intersectObjects(environment.children,true);
-
 
 		if ( (obstaculo1.length >0 && ( obstaculo1[0].distance <=2)))
 			this.colision= 1;
@@ -167,13 +131,11 @@
 
 		};
 
-
 	Nave.prototype.act= function(environment) {
 
 		if (this.colision===1){
 			this.step= 0;
 		}
-
 		else{
 			if(pos==1)
 			this.position.y += this.step/10;
@@ -200,15 +162,8 @@
 		if(this.step==0)
 		sound.pause ();
 
-
 		this.position.z -= this.step;
-		camara.position.z-=this.step;
-
-
-
-
-
-		
+		camara.position.z-=this.step;		
 
 	};
 
@@ -225,14 +180,14 @@
 		var cajatextura1   = THREE.ImageUtils.loadTexture('bmetal.jpg');
 		var cajamaterial1  = new THREE.MeshBasicMaterial( {map: cajatextura1} );
 		
-		
-		
 		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial1));
 		this.size= size;
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}Pared1.prototype= new THREE.Object3D();
+	}
+	Pared1.prototype= new THREE.Object3D();
+	  
 	  
 	  
 // Declarar un Agente llamado Pared2
@@ -246,7 +201,8 @@
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}Pared2.prototype= new THREE.Object3D();
+	}
+	Pared2.prototype= new THREE.Object3D();
 
 
 
@@ -272,12 +228,10 @@
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}Atari.prototype= new THREE.Object3D();
+	}
+	Atari.prototype= new THREE.Object3D();
 
-
-
-
-
+	  
 
 // Declarar un Agente llamado Fantasma
 	function Fantasma(size, x=0, y=0,z=0){	
@@ -302,14 +256,8 @@
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}Fantasma.prototype= new THREE.Object3D();
-
-
-
-
-
-
-
+	}
+	Fantasma.prototype= new THREE.Object3D();
 
 
 
@@ -325,22 +273,6 @@
 		sound = new THREE.Audio( listener );
 		audioLoader = new THREE.AudioLoader();
 		audioLoader.load( 'cancion.ogg', function( buffer ) {sound.setBuffer( buffer );sound.setLoop(true);sound.setVolume(1);sound.play();});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -367,41 +299,24 @@ for(j; j <60; j++){
 }
 
 
-
-
-
-
-
-
-
 		entorno.add(new Nave(1,0,0));
-
-
 		entorno.add(camara);
 
-		
-
 		renderer = new THREE.WebGLRenderer();
-
 		renderer.setSize( window.innerHeight*.95,
 				  window.innerHeight*.95);
-
 		document.body.appendChild( renderer.domElement);
 
 		
 		var tipoEvento = 'resize';
 		var capturar = false;
-
 		window.addEventListener( tipoEvento, listener, capturar);
 		window.addEventListener( 'keydown',push, false);
 	}
 
-
-
-
+	  
+	  
 // Inicio del programa
-
-
 	function loop(){
 
 		requestAnimationFrame( loop);
@@ -411,28 +326,15 @@ for(j; j <60; j++){
 		renderer.render(entorno, camara);
 	}
 
-
-	
-
-
-
+	  
+	  
 // Declaración de variables
-	
 	var entorno, camara, renderer;
 	var pos;
 	var listener, sound, audioLoader;
 	  
 	setup();
 	loop();
-
-
-
-		
-
-
-
-
-
 
     </script>
   </body>

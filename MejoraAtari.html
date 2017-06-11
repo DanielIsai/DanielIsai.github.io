@@ -211,18 +211,32 @@
 
 
 
-// Declarar un Agente llamado Pared
-	function Pared(size, x=0, y=0,z=0){	
+// Declarar un Agente llamado Pared1
+	function Pared1(size, x=0, y=0,z=0){	
 		THREE.Object3D.call(this,x,y,z);		
 		THREE.ImageUtils.crossOrigin = '';
-		var cajatextura   = THREE.ImageUtils.loadTexture('bmetal.jpg');
-		var cajamaterial  = new THREE.MeshBasicMaterial( {map: cajatextura} );		
-		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial));
+		var cajatextura1   = THREE.ImageUtils.loadTexture('bmetal.jpg');
+		var cajamaterial1  = new THREE.MeshBasicMaterial( {map: cajatextur1a} );		
+		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial1));
 		this.size= size;
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}Pared.prototype= new THREE.Object3D();
+	}Pared1.prototype= new THREE.Object3D();
+	  
+	  
+// Declarar un Agente llamado Pared2
+	function Pared2(size, x=0, y=0,z=0){	
+		THREE.Object3D.call(this,x,y,z);		
+		THREE.ImageUtils.crossOrigin = '';
+		var cajatextura2   = THREE.ImageUtils.loadTexture('metal.jpg');
+		var cajamaterial2  = new THREE.MeshBasicMaterial( {map: cajatextura2} );		
+		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial2));
+		this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;
+	}Pared2.prototype= new THREE.Object3D();
 
 
 
@@ -322,8 +336,9 @@
 
 
 for(j = 0; j <20; j++){
-	for(i = 0; i < j; i++){
-		entorno.add(new Pared(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
+	for(i = 0; i < j/2; i++){
+		entorno.add(new Pared1(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
+		entorno.add(new Pared2(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
 	}
 }
 

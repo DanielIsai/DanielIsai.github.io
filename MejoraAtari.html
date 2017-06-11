@@ -209,7 +209,7 @@
 	          var L = size;
 		  THREE.ImageUtils.crossOrigin = '';
 		  var ast_textura2   = THREE.ImageUtils.loadTexture('Tierra.jpg');
-		  var ast_material  = new THREE.MeshBasicMaterial( {map: ast_textura2} );
+		  var material  = new THREE.MeshBasicMaterial( {map: ast_textura2} );
 		
 		  var crp_basico = new THREE.SphereGeometry(3*L,6,6);
 		  var crp_basicoM = new THREE.Mesh(crp_basico, material)
@@ -275,7 +275,7 @@
 		  Asteroide.merge(toroM7.geometry, toroM7.matrix);
 		  Asteroide.merge(toroM8.geometry, toroM8.matrix);
 		  Asteroide.merge(toroM9.geometry, toroM9.matrix);
-		  var AsteroideM = new THREE.Mesh( Asteroide, ast_material );
+		  var AsteroideM = new THREE.Mesh( Asteroide, material );
 		
 		this.add(Asteroide);
 	       	this.size= size;

@@ -15,14 +15,10 @@
 
 // Funcion de movimiento con el teclado4
 	function push(e){
-		if (e.keyCode===65)
-		pos = 1;
-		else if (e.keyCode===90)
-		pos = 2;
-		else if (e.keyCode===83)
-		pos = 3;
-		else if (e.keyCode===68)
-		pos = 4;
+		if (e.keyCode===65)		pos = 1;
+		else if (e.keyCode===90)	pos = 2;
+		else if (e.keyCode===83)	pos = 3;
+		else if (e.keyCode===68)	pos = 4;
 	}
 
 	  
@@ -40,7 +36,6 @@
 		this.position.x= x;
 		this.position.y= y;
 	}
-
 	Agent.prototype = new THREE.Object3D();
 	Agent.prototype.sense= function(environment) {};
 	Agent.prototype.plan= function(environment) {};
@@ -51,41 +46,33 @@
 	function Environment(){
 		THREE.Scene.call(this);
 	}
-
 	Environment.prototype= new THREE.Scene();
-
 	Environment.prototype.sense = function(){
 		for(var i=0; i< this.children.length; i++){
 			if (this.children[i].sense !== undefined)
 				this.children[i].sense(this);
 		}
 	}
-
 	Environment.prototype.plan= function(){
 		for(var i=0; i< this.children.length; i++){
 			if (this.children[i].plan !== undefined)
 				this.children[i].plan(this);
 		}
 	}
-
 	Environment.prototype.act = function (){
 		for(var i=0; i< this.children.length; i++){
 			if (this.children[i].act !== undefined)
 				this.children[i].act(this);	
 		}
 	}
-
-
+	
 
 // Declarar un Agente llamado Nave
 	function Nave (r,x=0, y=0){
-
 		Agent.call(this,x,y);
-		var escalaTIE = r;
-		
+		var escalaTIE = r;		
 		var cabinaForma = new THREE.SphereGeometry(1*escalaTIE);
-		var cabinaMalla = new THREE.Mesh(cabinaForma);
-		
+		var cabinaMalla = new THREE.Mesh(cabinaForma);		
 		var ala1Forma = new THREE.CylinderGeometry(1.5*escalaTIE, 1.5*escalaTIE, 0.25*escalaTIE, 6);
 		ala1Forma.rotateZ( Math.PI/2);
 		ala1Forma.translate(-1.5*escalaTIE,0,0);
@@ -101,102 +88,64 @@
 		TIEForma.merge(cabinaMalla.geometry, cabinaMalla.matrix);
 		TIEForma.merge(ala1Malla.geometry, ala1Malla.matrix);
 		TIEForma.merge(ala2Malla.geometry, ala2Malla.matrix);
-		TIEForma.merge(soporteMalla.geometry, soporteMalla.matrix);
-		
-		
-		
-		
-		
-		
+		TIEForma.merge(soporteMalla.geometry, soporteMalla.matrix);		
 		THREE.ImageUtils.crossOrigin = '';
 		var TIE_textura  = THREE.ImageUtils.loadTexture('nave.jpg');
-		var TIE_material  = new THREE.MeshBasicMaterial( {map: TIE_textura} );
-		
-		var TIE = new THREE.Mesh(TIEForma,TIE_material);
-		
-		
-		
-		
-		
+		var TIE_material  = new THREE.MeshBasicMaterial( {map: TIE_textura} );		
+		var TIE = new THREE.Mesh(TIEForma,TIE_material);		
 		this.add(TIE);			
 		this.step= 1;
 		this.colision=0;
 		this.radius = r;
 		this.sensor1= new THREE.Raycaster( this.position,new THREE.Vector3(0,0,-1));
-	}
+	}Nave.prototype= new Agent();
 
-	Nave.prototype= new Agent();
-
+	  
+	  
 	Nave.prototype.sense = function(environment){	
 		this.sensor1.set(this.position, new THREE.Vector3(0,0,-1));
-		//this.sensor2.set(this.position, new THREE.Vector3(-1,0,0));
-		//this.sensor3.set(this.position, new THREE.Vector3( 1,0,0));
-		
 		var obstaculo1= this.sensor1.intersectObjects(environment.children,true);
-		//var obstaculo2= this.sensor2.intersectObjects(environment.children,true);
-		//var obstaculo3= this.sensor3.intersectObjects(environment.children,true);
-
 		if ( (obstaculo1.length >0 && ( obstaculo1[0].distance <=2)))
 			this.colision= 1;
 		else
 			this.colision=0;
-
 		};
+	  
+	  
 
 	Nave.prototype.act= function(environment) {
-
-		if (this.colision===1){
+		if (this.colision===1)
 			this.step= 0;
-		}
 		else{
-			if(pos==1)
-			this.position.y += this.step/10;
-			if(pos==2)
-			this.position.y -= this.step/10;
-			if(pos==3)
-			this.position.x -= this.step/10;
-			if(pos==4)
-			this.position.x += this.step/10;
+			if(pos==1)	this.position.y += this.step/10;
+			if(pos==2)	this.position.y -= this.step/10;
+			if(pos==3)	this.position.x -= this.step/10;
+			if(pos==4)	this.position.x += this.step/10;
 		}
-
-		if(this.position.x<-15)
-		this.step = 0;
-
-		if(this.position.x>15)
-		this.step = 0;
-
-		if(this.position.y>15)
-		this.step = 0;
-
-		if(this.position.y<-15)
-		this.step = 0;
-		
-		if(this.step==0)
-		sound.pause ();
-
+		if(this.position.x<-15)	this.step = 0;
+		if(this.position.x>15)	this.step = 0;
+		if(this.position.y>15)	this.step = 0;
+		if(this.position.y<-15)	this.step = 0;		
+		if(this.step==0)	sound.pause ();
 		this.position.z -= this.step;
-		camara.position.z-=this.step;		
+		camara.position.z-=this.step;	
 
 	};
 
 
-/*
+
 // Declarar un Agente llamado Pared1
-	function Pared1(size, x=0, y=0,z=0){
-		
-		THREE.Object3D.call(this,x,y,z);
-		
+	function Pared1(size, x=0, y=0,z=0){		
+		THREE.Object3D.call(this,x,y,z);		
 		THREE.ImageUtils.crossOrigin = '';
 		var cajatextura1   = THREE.ImageUtils.loadTexture('bmetal.jpg');
-		var cajamaterial1  = new THREE.MeshBasicMaterial( {map: cajatextura1} );
-		
+		var cajamaterial1  = new THREE.MeshBasicMaterial( {map: cajatextura1} );		
 		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial1));
 		this.size= size;
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}
-	Pared1.prototype= new THREE.Object3D();
+	}Pared1.prototype= new THREE.Object3D();
 	  
 	  
 	  
@@ -211,9 +160,8 @@
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}
-	Pared2.prototype= new THREE.Object3D();
-*/
+	}Pared2.prototype= new THREE.Object3D();
+
 
 // Declarar el Agente corrrespondiente al Asteroide Basico
 	function Ast_Basico(size, x=0, y=0,z=0){	
@@ -221,60 +169,49 @@
 	          var L = size;
 		  THREE.ImageUtils.crossOrigin = '';
 		  var ast_textura2   = THREE.ImageUtils.loadTexture('Gris.jpg');
-		  var material  = new THREE.MeshBasicMaterial( {map: ast_textura2} );
-		
+		  var material  = new THREE.MeshBasicMaterial( {map: ast_textura2} );		
 		  var crp_basico = new THREE.SphereGeometry(3*L,6,6);
-		  var crp_basicoM = new THREE.Mesh(crp_basico, material)
-
+		  var crp_basicoM = new THREE.Mesh(crp_basico, material);
 		  var toro1 = new THREE.TorusGeometry( 0.8*L, 0.2*L, 8, 8 );
 		  toro1.rotateX(Math.PI/-5);  
 		  toro1.rotateY(Math.PI/4);  	
 		  toro1.translate(1.61*L,1.61*L,1.61*L);
-		  var toroM1 = new THREE.Mesh(toro1, material)
-
+		  var toroM1 = new THREE.Mesh(toro1, material);
 		  var toro2 = new THREE.TorusGeometry( 0.6*L, 0.15*L, 8, 8 );
 		  toro2.rotateX(Math.PI/-7);  
 		  toro2.rotateY(Math.PI/-4);  	
 		  toro2.translate(-1.85*L,1*L,2*L);
-		  var toroM2 = new THREE.Mesh(toro2, material)
-
+		  var toroM2 = new THREE.Mesh(toro2, material);
 		  var toro3 = new THREE.TorusGeometry( 0.6*L, 0.15*L, 8, 8 );
 		  toro3.rotateX(Math.PI/6);  
 		  toro3.rotateY(Math.PI/-4);  	
 		  toro3.translate(-1.5*L,-1.7*L,1.85*L);
-		  var toroM3 = new THREE.Mesh(toro3, material)
-
+		  var toroM3 = new THREE.Mesh(toro3, material);
 		  var toro4 = new THREE.TorusGeometry( 0.7*L, 0.18*L, 8, 8 );
 		  toro4.translate(0.1*L,-0.1*L,2.6*L);
-		  var toroM4 = new THREE.Mesh(toro4, material)
-
+		  var toroM4 = new THREE.Mesh(toro4, material);
 		  var toro5 = new THREE.TorusGeometry( 0.6*L, 0.15*L, 8, 8 );
 		  toro5.rotateX(Math.PI/6);  
 		  toro5.rotateY(Math.PI/4);  	
 		  toro5.translate(1.5*L,-1.7*L,1.85*L);
-		  var toroM5 = new THREE.Mesh(toro5, material)
-
+		  var toroM5 = new THREE.Mesh(toro5, material):
 		  var toro6 = new THREE.TorusGeometry( 0.8*L, 0.2*L, 5, 5 );
 		  toro6.rotateX(Math.PI/2);  	
 		  toro6.rotateZ(Math.PI/10);  	
 		  toro6.translate(-0.8*L,2.7*L,0.3*L);
-		  var toroM6 = new THREE.Mesh(toro6, material)
-
+		  var toroM6 = new THREE.Mesh(toro6, material);
 		  var toro7 = new THREE.TorusGeometry( 0.6*L, 0.2*L, 6, 6 );
 		  toro7.rotateY(Math.PI/2);  	
 		  toro7.translate(2.75*L,-0.1*L,0);
-		  var toroM7 = new THREE.Mesh(toro7, material)
-
+		  var toroM7 = new THREE.Mesh(toro7, material):
 		  var toro8 = new THREE.TorusGeometry( 0.6*L, 0.2*L, 5, 5 );
 		  toro8.rotateX(Math.PI/2);  	
 		  toro8.translate(0,-2.75*L,0.4*L);
-		  var toroM8 = new THREE.Mesh(toro8, material)
-
+		  var toroM8 = new THREE.Mesh(toro8, material);
 		  var toro9 = new THREE.TorusGeometry( 0.4*L, 0.2*L, 5, 5 );
 		  toro9.rotateY(Math.PI/2);  	
 		  toro9.translate(-2.80*L,-0.4*L,0);
-		  var toroM9 = new THREE.Mesh(toro9, material)
-
+		  var toroM9 = new THREE.Mesh(toro9, material);
 		  var Asteroide = new THREE.Geometry();
 		  Asteroide.merge(crp_basicoM.geometry, crp_basicoM.matrix);
 		  Asteroide.merge(toroM1.geometry, toroM1.matrix);
@@ -286,15 +223,13 @@
 		  Asteroide.merge(toroM7.geometry, toroM7.matrix);
 		  Asteroide.merge(toroM8.geometry, toroM8.matrix);
 		  Asteroide.merge(toroM9.geometry, toroM9.matrix);
-		  var AsteroideM = new THREE.Mesh( Asteroide, material );
-		
-		this.add(AsteroideM);
-	       	this.size= size;
-		this.position.x= x;
-		this.position.y=y;
-		this.position.z=z;
-	}
-	Ast_Basico.prototype= new THREE.Object3D();  
+		  var AsteroideM = new THREE.Mesh( Asteroide, material );		
+		  this.add(AsteroideM);
+	       	  this.size= size;
+		  this.position.x= x;
+		  this.position.y=y;
+		  this.position.z=z;
+	}Ast_Basico.prototype= new THREE.Object3D();  
 	   
 	  
 	 
@@ -302,75 +237,61 @@
 	function Ast_Punta(size, x=0, y=0,z=0){	
 		  THREE.Object3D.call(this,x,y,z);
 		  var K=size;
-		  //var material = new THREE.MeshNormalMaterial( );	
 		  THREE.ImageUtils.crossOrigin = '';
 		  var ast_textura1   = THREE.ImageUtils.loadTexture('Lave2.jpg');
 		  var material  = new THREE.MeshBasicMaterial( {map: ast_textura1} );
-		
-		  //var cuerpo = new THREE.IcosahedronBufferGeometry(3,0);
 		  var crp_Punta = new THREE.SphereGeometry(3*K,7,7);
-		  var crp_PuntaM = new THREE.Mesh(crp_Punta, material)
-
+		  var crp_PuntaM = new THREE.Mesh(crp_Punta, material);
 		  var punta1 = new THREE.ConeGeometry( 0.8*K, 1.0*K, 7 );
 		  punta1.rotateZ(Math.PI/3.5);
 		  punta1.rotateY(Math.PI/4);
 		  punta1.translate(-1.7*K,1.7*K,2.2*K);
-		  var puntaM1 = new THREE.Mesh(punta1, material)
-
+		  var puntaM1 = new THREE.Mesh(punta1, material);
 		  var punta2 = new THREE.ConeGeometry( 1.0*K, 1.0*K, 7 );
 		  punta2.rotateZ(Math.PI/-4);
 		  punta2.rotateX(Math.PI/4);
 		  punta2.translate(1.9*K,1.7*K,2.2*K);
-		  var puntaM2 = new THREE.Mesh(punta2, material)
-
+		  var puntaM2 = new THREE.Mesh(punta2, material);
 		  var punta3 = new THREE.ConeGeometry( 0.9*K, 0.8*K, 7);
 		  punta3.rotateZ(Math.PI/-3);
 		  punta3.rotateY(Math.PI/-4);
 		  punta3.rotateX(Math.PI/2.4);
 		  punta3.translate(1.9*K,-1.7*K,2.0*K);
-		  var puntaM3 = new THREE.Mesh(punta3, material)
-
+		  var puntaM3 = new THREE.Mesh(punta3, material);
 		  var punta4 = new THREE.ConeGeometry( 1.0*K, 1.0*K, 7 );
 		  punta4.rotateX(Math.PI/2); 
 		  punta4.translate(-0.2*K,0,4.4*K);
-		  var puntaM4 =  new THREE.Mesh(punta4, material)
-
+		  var puntaM4 =  new THREE.Mesh(punta4, material);
 		  var punta5 = new THREE.ConeGeometry( 0.4*K, 0.8*K, 7 );
 		  punta5.rotateZ(Math.PI*0.8);
 		  punta5.rotateY(Math.PI*0.2);
 		  punta5.rotateX(Math.PI*-0.2);
 		  punta5.translate(-1.8*K,-1.8*K,2.2*K);
-		  var puntaM5 =  new THREE.Mesh(punta5, material)
-
+		  var puntaM5 =  new THREE.Mesh(punta5, material);
 		  var punta5 = new THREE.ConeGeometry( 0.6*K, 0.8*K, 7 );
 		  punta5.rotateZ(Math.PI*0.8);
 		  punta5.rotateY(Math.PI*0.2);
 		  punta5.rotateX(Math.PI*-0.2);
 		  punta5.translate(-1.8*K,-1.8*K,2.2*K);
-		  var puntaM5 =  new THREE.Mesh(punta5, material)
-
+		  var puntaM5 =  new THREE.Mesh(punta5, material);
 		  var punta6 = new THREE.ConeGeometry( 0.5*K, 0.8*K, 7 );
 		  punta6.rotateZ(Math.PI);
 		  punta6.rotateX(Math.PI*-0.3);
 		  punta6.translate(-0.2*K,-2.5*K,2.5*K);
-		  var puntaM6 =  new THREE.Mesh(punta6, material)
-
+		  var puntaM6 =  new THREE.Mesh(punta6, material);
 		  var punta7 = new THREE.ConeGeometry( 1.0*K, 0.8*K, 7 );
 		  punta7.rotateZ(Math.PI/2);
 		  punta7.rotateY(Math.PI*0.1);
 		  punta7.translate(-3.2*K,0,0);
-		  var puntaM7 =  new THREE.Mesh(punta7, material)
-
+		  var puntaM7 =  new THREE.Mesh(punta7, material);
 		  var punta8 = new THREE.ConeGeometry( 1.0*K, 0.8*K, 7 );
 		  punta8.translate(0,3.15*K,0);
-		  var puntaM8 =  new THREE.Mesh(punta8, material)
-
+		  var puntaM8 =  new THREE.Mesh(punta8, material);
 		  var punta9 = new THREE.ConeGeometry( 1.0*K, 0.8*K, 7 );
 		  punta9.rotateZ(Math.PI/-2);
 		  punta9.rotateY(Math.PI*-0.1);
 		  punta9.translate(3.0*K,0,0.3*K);
-		  var puntaM9 =  new THREE.Mesh(punta9, material)
-
+		  var puntaM9 =  new THREE.Mesh(punta9, material);
 		  var Ast_Punta = new THREE.Geometry();
 		  Ast_Punta.merge(crp_PuntaM.geometry, crp_PuntaM.matrix);
 		  Ast_Punta.merge(puntaM1.geometry, puntaM1.matrix);
@@ -382,25 +303,22 @@
 		  Ast_Punta.merge(puntaM7.geometry, puntaM7.matrix);
 		  Ast_Punta.merge(puntaM8.geometry, puntaM8.matrix);
 		  Ast_Punta.merge(puntaM9.geometry, puntaM9.matrix);
-		  var Ast_PuntaM = new THREE.Mesh( Ast_Punta, material );
-		
+		  var Ast_PuntaM = new THREE.Mesh( Ast_Punta, material );		
 	        this.add(Ast_PuntaM);
 	       	this.size= size;
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}
-	Ast_Punta.prototype= new THREE.Object3D();  
+	}Ast_Punta.prototype= new THREE.Object3D();  
 	  
 	
-// Declarar un Agente llamado Atari
+// Declarar un Agente llamado Dode
       function Dode(size, x=0, y=0,z=0){	
           THREE.Object3D.call(this,x,y,z);	  
 	  Q=size;
 	  THREE.ImageUtils.crossOrigin = '';
           var ast_textura3   = THREE.ImageUtils.loadTexture('Azul.jpg');
-          var material  = new THREE.MeshBasicMaterial( {map: ast_textura3} );
-		
+          var material  = new THREE.MeshBasicMaterial( {map: ast_textura3} );		
 	  var crp_dode = new THREE.DodecahedronGeometry(3*Q,0);
 	  crp_dode.rotateX(Math.PI/4);  	
 	  crp_dode.rotateY(Math.PI/4);  	
@@ -410,8 +328,7 @@
 	  this.position.x=x;
 	  this.position.y=y;
           this.position.z=z;
-	}
-	Dode.prototype= new THREE.Object3D();
+	}Dode.prototype= new THREE.Object3D();
 
 	  
 
@@ -429,8 +346,7 @@
 		P2figura.lineTo(1*escalaAtari,4*escalaAtari);P2figura.lineTo(0*escalaAtari,4*escalaAtari);
 		var P2extrudeSettings = {steps: 2*escalaAtari,amount: 1*escalaAtari,bevelEnabled: true,bevelThickness: 1*escalaAtari,bevelSize: 1*escalaAtari,bevelSegments: 1*escalaAtari};
 		var P2forma = new THREE.ExtrudeGeometry( P2figura,P2extrudeSettings);
-		P2forma.translate(-3.5*escalaAtari,-3.5*escalaAtari,0);
-		
+		P2forma.translate(-3.5*escalaAtari,-3.5*escalaAtari,0);		
 		THREE.ImageUtils.crossOrigin = '';
                 var P2textura   = THREE.ImageUtils.loadTexture('amar.jpg');
                 var P2material  = new THREE.MeshBasicMaterial( {map: P2textura} );
@@ -440,8 +356,7 @@
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}
-	Atari.prototype= new THREE.Object3D();
+	}Atari.prototype= new THREE.Object3D();
 
 	  
 
@@ -468,8 +383,7 @@
 		this.position.x= x;
 		this.position.y=y;
 		this.position.z=z;
-	}
-	Fantasma.prototype= new THREE.Object3D();
+	}Fantasma.prototype= new THREE.Object3D();
 
 
 
@@ -478,8 +392,7 @@
 	function setup(){
 		entorno = new Environment();
 		camara = new THREE.PerspectiveCamera();
-		camara.position.z=30;
-		
+		camara.position.z=30;		
 		listener = new THREE.AudioListener();
 		camara.add( listener );
 		sound = new THREE.Audio( listener );
@@ -487,45 +400,42 @@
 		audioLoader.load( 'cancion.ogg', function( buffer ) {sound.setBuffer( buffer );sound.setLoop(true);sound.setVolume(1);sound.play();});
 
 
+		var ancho = -1*100;
 
-
-for(j = 0; j <20; j++){
-	for(i = 0; i < j/4; i++){
-		entorno.add(new Atari(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
-		//entorno.add(new Pared2(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
-	}
-}
+		for(j = 0; j <20; j++){
+			for(i = 0; i < j/4; i++){
+				entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));	
+			}
+		}
 		
-for(j; j <40; j++){
-	for(i = 0; i < (j-20)/4; i++){
-		entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
-	}
-}
+		for(j; j <40; j++){
+			for(i = 0; i < (j-20)/4; i++){
+				entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			}
+		}
 
 
-for(j; j <60; j++){
-	for(i = 0; i < (j-40)/4; i++){
-		entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
-	}
-}
+		for(j; j <60; j++){
+			for(i = 0; i < (j-40)/4; i++){
+				entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			}
+		}
 
-for(j; j <80; j++){
-	for(i = 0; i < (j-60)/4; i++){
-		entorno.add(new Ast_Basico(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
-	}
-}
+		for(j; j <80; j++){
+			for(i = 0; i < (j-60)/4; i++){
+				entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+				entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+				entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+				
+			}
+		}
 		
+		entorno.add(new Nave(1,0,0));
 		
-
-		entorno.add(new Nave(2,0,0));
 		entorno.add(camara);
-
 		renderer = new THREE.WebGLRenderer();
-		renderer.setSize( window.innerHeight*.95,
-				  window.innerHeight*.95);
-		document.body.appendChild( renderer.domElement);
-
-		
+		renderer.setSize( window.innerHeight*.95,window.innerHeight*.95);
+		document.body.appendChild( renderer.domElement);		
 		var tipoEvento = 'resize';
 		var capturar = false;
 		window.addEventListener( tipoEvento, listener, capturar);
@@ -536,7 +446,6 @@ for(j; j <80; j++){
 	  
 // Inicio del programa
 	function loop(){
-
 		requestAnimationFrame( loop);
  		entorno.sense();
 		entorno.plan();

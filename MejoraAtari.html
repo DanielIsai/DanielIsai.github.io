@@ -426,7 +426,12 @@
 				entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 				entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 				entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-				
+			}
+		}
+		
+		for(j; j <100; j++){
+			for(i = 0; i < (j-80)/4; i++){
+				entorno.add(new Pared1(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 			}
 		}
 		

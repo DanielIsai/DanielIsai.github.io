@@ -402,41 +402,41 @@
 
 		var ancho = -1*100;
 
-		for(j = 0; j <20; j++){
+		for(j = 0; j <10; j++){
 			for(i = 0; i < j/4; i++){
 				entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));	
 			}
 		}
 		
-		for(j; j <40; j++){
-			for(i = 0; i < (j-20)/4; i++){
+		for(j; j <20; j++){
+			for(i = 0; i < (j-10)/4; i++){
 				entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 			}
 		}
 
 
-		for(j; j <60; j++){
-			for(i = 0; i < (j-40)/4; i++){
+		for(j; j <30; j++){
+			for(i = 0; i < (j-20)/4; i++){
 				entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 			}
 		}
 		
 			
 		
-		for(j; j <80; j++){
-			for(i = 0; i < (j-60)/4; i++){
+		for(j; j <40; j++){
+			for(i = 0; i < (j-30)/4; i++){
 				entorno.add(new Pared1(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 			}
 		}
 		
-		for(j; j <100; j++){
-			for(i = 0; i < (j-80)/4; i++){
+		for(j; j <50; j++){
+			for(i = 0; i < (j-40)/4; i++){
 				entorno.add(new Pared2(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 			}
 		}
 		
-		for(j; j <120; j++){
-			for(i = 0; i < (j-100)/4; i++){
+		for(j; j <60; j++){
+			for(i = 0; i < (j-50)/6; i++){
 				entorno.add(new Pared1(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 				entorno.add(new Pared2(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 				
@@ -444,8 +444,8 @@
 		}
 			
 		
-		for(j; j <140; j++){
-			for(i = 0; i < (j-120)/5; i++){
+		for(j; j <70; j++){
+			for(i = 0; i < (j-60)/8; i++){
 				entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 				entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 				entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));

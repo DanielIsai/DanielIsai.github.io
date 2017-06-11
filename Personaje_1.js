@@ -35,6 +35,6 @@ P1arbolForma.merge(P1cabeza2Malla.geometry, P1cabeza2Malla.matrix);
 
 
 
-var P1material = new THREE.MeshLambertMaterial({color:"#00cc00"});
+var P1material = new THREE.MeshNormalMaterial();
 var P1arbolMalla = new THREE.Mesh(P1arbolForma, P1material);
 

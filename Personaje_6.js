@@ -103,7 +103,7 @@
 		TorchitForma.merge(plumasMalla.geometry, plumasMalla.matrix);
 
 		
-		var material = new THREE.MeshLambertMaterial({color:"#00cc00"})
+		var material = new THREE.MeshNormalMaterial();
 		var TorchitMalla = new THREE.Mesh(TorchitForma, material);
                 TorchitMalla.rotateX( Math.PI );
           	TorchitMalla.rotateY( Math.PI+0.5);		

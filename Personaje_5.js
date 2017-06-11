@@ -1,30 +1,30 @@
 var forma = new THREE.Geometry();
 
-forma.vertices.push( new THREE.Vector3( 2,  0,  0 ) ); // VÃ©rtice 0
-forma.vertices.push( new THREE.Vector3( 9,  0,  0 ) ); // VÃ©rtice 1
-forma.vertices.push( new THREE.Vector3( 9,  2,  0 ) ); // VÃ©rtice 2
-forma.vertices.push( new THREE.Vector3( 3,  2,  0 ) ); // VÃ©rtice 3
-forma.vertices.push( new THREE.Vector3( 2,  3,  0 ) ); // VÃ©rtice 4
-forma.vertices.push( new THREE.Vector3( 2,  5,  0 ) ); // VÃ©rtice 5
-forma.vertices.push( new THREE.Vector3( 3,  6,  0 ) ); // VÃ©rtice 6
-forma.vertices.push( new THREE.Vector3( 9,  6,  0 ) ); // VÃ©rtice 7
-forma.vertices.push( new THREE.Vector3( 9,  8,  0 ) ); // VÃ©rtice 8
-forma.vertices.push( new THREE.Vector3( 2,  8,  0 ) ); // VÃ©rtice 9
-forma.vertices.push( new THREE.Vector3( 0,  6,  0 ) ); // VÃ©rtice 10
-forma.vertices.push( new THREE.Vector3( 0,  2,  0 ) ); // VÃ©rtice 11
+forma.vertices.push( new THREE.Vector3( 2,  0,  0 ) ); // Vértice 0
+forma.vertices.push( new THREE.Vector3( 9,  0,  0 ) ); // Vértice 1
+forma.vertices.push( new THREE.Vector3( 9,  2,  0 ) ); // Vértice 2
+forma.vertices.push( new THREE.Vector3( 3,  2,  0 ) ); // Vértice 3
+forma.vertices.push( new THREE.Vector3( 2,  3,  0 ) ); // Vértice 4
+forma.vertices.push( new THREE.Vector3( 2,  5,  0 ) ); // Vértice 5
+forma.vertices.push( new THREE.Vector3( 3,  6,  0 ) ); // Vértice 6
+forma.vertices.push( new THREE.Vector3( 9,  6,  0 ) ); // Vértice 7
+forma.vertices.push( new THREE.Vector3( 9,  8,  0 ) ); // Vértice 8
+forma.vertices.push( new THREE.Vector3( 2,  8,  0 ) ); // Vértice 9
+forma.vertices.push( new THREE.Vector3( 0,  6,  0 ) ); // Vértice 10
+forma.vertices.push( new THREE.Vector3( 0,  2,  0 ) ); // Vértice 11
 
-forma.vertices.push( new THREE.Vector3( 2,  0,  -2 ) ); // VÃ©rtice 12
-forma.vertices.push( new THREE.Vector3( 9,  0,  -2 ) ); // VÃ©rtice 13
-forma.vertices.push( new THREE.Vector3( 9,  2,  -2 ) ); // VÃ©rtice 14
-forma.vertices.push( new THREE.Vector3( 3,  2,  -2 ) ); // VÃ©rtice 15
-forma.vertices.push( new THREE.Vector3( 2,  3,  -2 ) ); // VÃ©rtice 16
-forma.vertices.push( new THREE.Vector3( 2,  5,  -2 ) ); // VÃ©rtice 17
-forma.vertices.push( new THREE.Vector3( 3,  6,  -2 ) ); // VÃ©rtice 18
-forma.vertices.push( new THREE.Vector3( 9,  6,  -2 ) ); // VÃ©rtice 19
-forma.vertices.push( new THREE.Vector3( 9,  8,  -2 ) ); // VÃ©rtice 20
-forma.vertices.push( new THREE.Vector3( 2,  8,  -2 ) ); // VÃ©rtice 21
-forma.vertices.push( new THREE.Vector3( 0,  6,  -2 ) ); // VÃ©rtice 22
-forma.vertices.push( new THREE.Vector3( 0,  2,  -2 ) ); // VÃ©rtice 23
+forma.vertices.push( new THREE.Vector3( 2,  0,  -2 ) ); // Vértice 12
+forma.vertices.push( new THREE.Vector3( 9,  0,  -2 ) ); // Vértice 13
+forma.vertices.push( new THREE.Vector3( 9,  2,  -2 ) ); // Vértice 14
+forma.vertices.push( new THREE.Vector3( 3,  2,  -2 ) ); // Vértice 15
+forma.vertices.push( new THREE.Vector3( 2,  3,  -2 ) ); // Vértice 16
+forma.vertices.push( new THREE.Vector3( 2,  5,  -2 ) ); // Vértice 17
+forma.vertices.push( new THREE.Vector3( 3,  6,  -2 ) ); // Vértice 18
+forma.vertices.push( new THREE.Vector3( 9,  6,  -2 ) ); // Vértice 19
+forma.vertices.push( new THREE.Vector3( 9,  8,  -2 ) ); // Vértice 20
+forma.vertices.push( new THREE.Vector3( 2,  8,  -2 ) ); // Vértice 21
+forma.vertices.push( new THREE.Vector3( 0,  6,  -2 ) ); // Vértice 22
+forma.vertices.push( new THREE.Vector3( 0,  2,  -2 ) ); // Vértice 23
 
 
 
@@ -106,7 +106,7 @@ var MagnemiteForma = new THREE.Geometry();
 MagnemiteForma.merge(malla.geometry, malla.matrix);
 MagnemiteForma.merge(cuerpoMalla.geometry, cuerpoMalla.matrix);
 
-var material = new THREE.MeshLambertMaterial({color:"#00cc00"})
+var material = new THREE.MeshNormalMaterial();
 var MagnemiteMalla = new THREE.Mesh(MagnemiteForma, material);
 MagnemiteMalla.rotateX( Math.PI + 0.5 );
 MagnemiteMalla.rotateY( Math.PI + 0.5 );		

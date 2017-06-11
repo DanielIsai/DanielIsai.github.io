@@ -127,7 +127,12 @@
 		TIEForma.merge(ala1Malla.geometry, ala1Malla.matrix);
 		TIEForma.merge(ala2Malla.geometry, ala2Malla.matrix);
 		TIEForma.merge(soporteMalla.geometry, soporteMalla.matrix);
-		var TIE = new THREE.Mesh(TIEForma,new THREE.MeshNormalMaterial());	
+		var TIE = new THREE.Mesh(TIEForma,new THREE.MeshNormalMaterial());
+		
+		
+		
+		
+		
 		this.add(TIE);			
 		this.step= 1;
 		this.colision=0;
@@ -212,11 +217,16 @@
 
 
 // Declarar un Agente llamado Pared1
-	function Pared1(size, x=0, y=0,z=0){	
-		THREE.Object3D.call(this,x,y,z);		
+	function Pared1(size, x=0, y=0,z=0){
+		
+		THREE.Object3D.call(this,x,y,z);
+		
 		THREE.ImageUtils.crossOrigin = '';
 		var cajatextura1   = THREE.ImageUtils.loadTexture('bmetal.jpg');
-		var cajamaterial1  = new THREE.MeshBasicMaterial( {map: cajatextura1} );		
+		var cajamaterial1  = new THREE.MeshBasicMaterial( {map: cajatextura1} );
+		
+		
+		
 		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial1));
 		this.size= size;
 		this.position.x= x;

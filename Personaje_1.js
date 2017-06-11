@@ -33,8 +33,8 @@ P1arbolForma.merge(P1cabeza1Malla.geometry, P1cabeza1Malla.matrix);
 P1arbolForma.merge(P1cabeza2Malla.geometry, P1cabeza2Malla.matrix);
 
 
-
-
-var P1material = new THREE.MeshNormalMaterial();
+THREE.ImageUtils.crossOrigin = '';
+var P1textura   = THREE.ImageUtils.loadTexture('espacio.jpg');
+var P1material  = new THREE.MeshBasicMaterial( {map: P1textura} );
 var P1arbolMalla = new THREE.Mesh(P1arbolForma, P1material);
 

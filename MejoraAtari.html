@@ -215,7 +215,7 @@
 	function Pared(size, x=0, y=0,z=0){	
 		THREE.Object3D.call(this,x,y,z);		
 		THREE.ImageUtils.crossOrigin = '';
-		var cajatextura   = THREE.ImageUtils.loadTexture('espacio.jpg');
+		var cajatextura   = THREE.ImageUtils.loadTexture('metal.jpg');
 		var cajamaterial  = new THREE.MeshBasicMaterial( {map: cajatextura} );		
 		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial));
 		this.size= size;
@@ -322,7 +322,7 @@
 
 
 for(j = 0; j <20; j++){
-	for(i = 0; i < j; i++){
+	for(i = 0; i < j/4; i++){
 		entorno.add(new Pared(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
 	}
 }

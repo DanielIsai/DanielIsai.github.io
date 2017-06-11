@@ -454,7 +454,7 @@
 
 
 for(j = 0; j <20; j++){
-	for(i = 0; i < j/2; i++){
+	for(i = 0; i < j/4; i++){
 		entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-150*Math.random())-150*j));	
 		//entorno.add(new Pared2(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
 	}
@@ -462,15 +462,15 @@ for(j = 0; j <20; j++){
 
 
 for(j; j <40; j++){
-	for(i = 0; i < (j-20); i++){
+	for(i = 0; i < (j-20)/4; i++){
 		entorno.add(new Ast_Punta(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(-150*Math.random())-150*j));
 	}
 }
 
 
 for(j; j <60; j++){
-	for(i = 0; i < (j-40); i++){
-		entorno.add(new Fantasma(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
+	for(i = 0; i < (j-40)/4; i++){
+		entorno.add(new Fantasma(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-150*Math.random())-150*j));
 	}
 }
 

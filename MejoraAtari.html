@@ -13,7 +13,7 @@
 
   <script>
 
-// Funcion de movimiento con el teclado
+// Funcion de movimiento con el teclado4
 	function push(e){
 		if (e.keyCode===65)
 		pos = 1;
@@ -481,20 +481,24 @@ for(j = 0; j <20; j++){
 	}
 }
 
+for(j = 0; j <20; j++){
+		entorno.add();
+}		
 
-for(j; j <40; j++){
+for(j=20; j <40; j++){
 	for(i = 0; i < (j-20)/4; i++){
-		entorno.add(new Ast_Punta(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
+		entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
 	}
 }
 
 
 for(j; j <60; j++){
 	for(i = 0; i < (j-40)/4; i++){
-		entorno.add(new Dode(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
+		entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
 	}
 }
 
+		
 
 		entorno.add(new Nave(1,0,0));
 		entorno.add(camara);

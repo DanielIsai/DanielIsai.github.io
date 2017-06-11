@@ -168,9 +168,7 @@
 	};
 
 
-
-
-
+/*
 // Declarar un Agente llamado Pared1
 	function Pared1(size, x=0, y=0,z=0){
 		
@@ -203,8 +201,92 @@
 		this.position.z=z;
 	}
 	Pared2.prototype= new THREE.Object3D();
+*/
 
+// Declarar el Agente corrrespondiente al Asteroide Basico
+	function Ast_Basico(size, x=0, y=0,z=0){	
+		  THREE.Object3D.call(this,x,y,z);
+	          var L = size;
+		  THREE.ImageUtils.crossOrigin = '';
+		  var ast_textura2   = THREE.ImageUtils.loadTexture('Tierra.jpg');
+		  var ast_material  = new THREE.MeshBasicMaterial( {map: ast_textura2} );
+		
+		  var crp_basico = new THREE.SphereGeometry(3*L,6,6);
+		  var crp_basicoM = new THREE.Mesh(crp_basico, material)
+
+		  var toro1 = new THREE.TorusGeometry( 0.8*L, 0.2*L, 8, 8 );
+		  toro1.rotateX(Math.PI/-5);  
+		  toro1.rotateY(Math.PI/4);  	
+		  toro1.translate(1.61*L,1.61*L,1.61*L);
+		  var toroM1 = new THREE.Mesh(toro1, material)
+
+		  var toro2 = new THREE.TorusGeometry( 0.6*L, 0.15*L, 8, 8 );
+		  toro2.rotateX(Math.PI/-7);  
+		  toro2.rotateY(Math.PI/-4);  	
+		  toro2.translate(-1.85*L,1*L,2*L);
+		  var toroM2 = new THREE.Mesh(toro2, material)
+
+		  var toro3 = new THREE.TorusGeometry( 0.6*L, 0.15*L, 8, 8 );
+		  toro3.rotateX(Math.PI/6);  
+		  toro3.rotateY(Math.PI/-4);  	
+		  toro3.translate(-1.5*L,-1.7*L,1.85*L);
+		  var toroM3 = new THREE.Mesh(toro3, material)
+
+		  var toro4 = new THREE.TorusGeometry( 0.7*L, 0.18*L, 8, 8 );
+		  toro4.translate(0.1*L,-0.1*L,2.6*L);
+		  var toroM4 = new THREE.Mesh(toro4, material)
+
+		  var toro5 = new THREE.TorusGeometry( 0.6*L, 0.15*L, 8, 8 );
+		  toro5.rotateX(Math.PI/6);  
+		  toro5.rotateY(Math.PI/4);  	
+		  toro5.translate(1.5*L,-1.7*L,1.85*L);
+		  var toroM5 = new THREE.Mesh(toro5, material)
+
+		  var toro6 = new THREE.TorusGeometry( 0.8*L, 0.2*L, 5, 5 );
+		  toro6.rotateX(Math.PI/2);  	
+		  toro6.rotateZ(Math.PI/10);  	
+		  toro6.translate(-0.8*L,2.7*L,0.3*L);
+		  var toroM6 = new THREE.Mesh(toro6, material)
+
+		  var toro7 = new THREE.TorusGeometry( 0.6*L, 0.2*L, 6, 6 );
+		  toro7.rotateY(Math.PI/2);  	
+		  toro7.translate(2.75*L,-0.1*L,0);
+		  var toroM7 = new THREE.Mesh(toro7, material)
+
+		  var toro8 = new THREE.TorusGeometry( 0.6*L, 0.2*L, 5, 5 );
+		  toro8.rotateX(Math.PI/2);  	
+		  toro8.translate(0,-2.75*L,0.4*L);
+		  var toroM8 = new THREE.Mesh(toro8, material)
+
+		  var toro9 = new THREE.TorusGeometry( 0.4*L, 0.2*L, 5, 5 );
+		  toro9.rotateY(Math.PI/2);  	
+		  toro9.translate(-2.80*L,-0.4*L,0);
+		  var toroM9 = new THREE.Mesh(toro9, material)
+
+
+		  var Asteroide = new THREE.Geometry();
+		  Asteroide.merge(crp_basicoM.geometry, crp_basicoM.matrix);
+		  Asteroide.merge(toroM1.geometry, toroM1.matrix);
+		  Asteroide.merge(toroM2.geometry, toroM2.matrix);
+		  Asteroide.merge(toroM3.geometry, toroM3.matrix);
+		  Asteroide.merge(toroM4.geometry, toroM4.matrix);
+		  Asteroide.merge(toroM5.geometry, toroM5.matrix);
+		  Asteroide.merge(toroM6.geometry, toroM6.matrix);
+		  Asteroide.merge(toroM7.geometry, toroM7.matrix);
+		  Asteroide.merge(toroM8.geometry, toroM8.matrix);
+		  Asteroide.merge(toroM9.geometry, toroM9.matrix);
+		  var AsteroideM = new THREE.Mesh( Asteroide, ast_material );
+		
+		this.add(Asteroide);
+	       	this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;
+	}
+	Ast_Basico.prototype= new THREE.Object3D();  
+	   
 	  
+	 
 // Declarar el Agente corrrespondiente al Asteroide de Puntas
 	function Ast_Punta(size, x=0, y=0,z=0){	
 		  THREE.Object3D.call(this,x,y,z);
@@ -374,8 +456,8 @@
 
 for(j = 0; j <20; j++){
 	for(i = 0; i < j/2; i++){
-		entorno.add(new Pared1(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
-		entorno.add(new Pared2(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
+		entorno.add(new Ast_Basico(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
+		//entorno.add(new Pared2(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
 	}
 }
 

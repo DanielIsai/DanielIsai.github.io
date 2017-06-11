@@ -23,5 +23,8 @@ P3arbolForma.merge(P3sombreroMalla.geometry, P3sombreroMalla.matrix);
 P3arbolForma.merge(P3esferaMalla.geometry, P3esferaMalla.matrix);
 P3arbolForma.merge(P3baseMalla.geometry, P3baseMalla.matrix);
 
-var P3material = new THREE.MeshNormalMaterial();
+
+THREE.ImageUtils.crossOrigin = '';
+var P3textura   = THREE.ImageUtils.loadTexture('morado.jpg');
+var P3material  = new THREE.MeshBasicMaterial( {map: P3textura} );
 var P3arbolMalla = new THREE.Mesh( P3arbolForma, P3material );

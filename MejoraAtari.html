@@ -263,7 +263,6 @@
 		  toro9.translate(-2.80*L,-0.4*L,0);
 		  var toroM9 = new THREE.Mesh(toro9, material)
 
-
 		  var Asteroide = new THREE.Geometry();
 		  Asteroide.merge(crp_basicoM.geometry, crp_basicoM.matrix);
 		  Asteroide.merge(toroM1.geometry, toroM1.matrix);
@@ -277,7 +276,7 @@
 		  Asteroide.merge(toroM9.geometry, toroM9.matrix);
 		  var AsteroideM = new THREE.Mesh( Asteroide, material );
 		
-		this.add(Asteroide);
+		this.add(AsteroideM);
 	       	this.size= size;
 		this.position.x= x;
 		this.position.y=y;

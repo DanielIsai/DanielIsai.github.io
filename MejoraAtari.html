@@ -418,8 +418,11 @@
 		var P2extrudeSettings = {steps: 2*escalaAtari,amount: 1*escalaAtari,bevelEnabled: true,bevelThickness: 1*escalaAtari,bevelSize: 1*escalaAtari,bevelSegments: 1*escalaAtari};
 		var P2forma = new THREE.ExtrudeGeometry( P2figura,P2extrudeSettings);
 		P2forma.translate(-3.5*escalaAtari,-3.5*escalaAtari,0);
-		var P2material = new THREE.MeshNormalMaterial();
-		var P2malla = new THREE.Mesh( P2forma, P2material );
+		
+		THREE.ImageUtils.crossOrigin = '';
+                var P2textura   = THREE.ImageUtils.loadTexture('Rojo.jpg');
+                var P2material  = new THREE.MeshBasicMaterial( {map: P2textura} );
+	        var P2malla = new THREE.Mesh( P2forma, P2material );
 		this.add(P2malla);
 		this.size= size;
 		this.position.x= x;
@@ -480,12 +483,8 @@ for(j = 0; j <20; j++){
 		//entorno.add(new Pared2(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
 	}
 }
-
-for(j = 0; j <20; j++){
-		entorno.add();
-}		
-
-for(j=20; j <40; j++){
+		
+for(j; j <40; j++){
 	for(i = 0; i < (j-20)/4; i++){
 		entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
 	}
@@ -498,6 +497,12 @@ for(j; j <60; j++){
 	}
 }
 
+for(j; j <80; j++){
+	for(i = 0; i < (j-60)/4; i++){
+		entorno.add(new Atari(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
+	}
+}
+		
 		
 
 		entorno.add(new Nave(1,0,0));

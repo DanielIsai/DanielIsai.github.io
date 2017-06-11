@@ -195,7 +195,6 @@
 		if(this.step==0)
 		sound.pause ();
 
-		
 
 		this.position.z -= this.step;
 		camara.position.z-=this.step;
@@ -294,20 +293,11 @@
 		camara = new THREE.PerspectiveCamera();
 		camara.position.z=30;
 		
-		var listener = new THREE.AudioListener();
+		listener = new THREE.AudioListener();
 		camara.add( listener );
-		var sound = new THREE.Audio( listener );
-
-		var audioLoader = new THREE.AudioLoader();
-
-
-
-		audioLoader.load( 'cancion.ogg', function( buffer ) {
-		sound.setBuffer( buffer );
-		sound.setLoop(true);
-		sound.setVolume(1);
-		sound.play();
-		});
+		sound = new THREE.Audio( listener );
+		audioLoader = new THREE.AudioLoader();
+		audioLoader.load( 'cancion.ogg', function( buffer ) {sound.setBuffer( buffer );sound.setLoop(true);sound.setVolume(1);sound.play();});
 
 
 
@@ -402,11 +392,14 @@ for(j; j <60; j++){
 	
 	var entorno, camara, renderer;
 	var pos;
+	var listener, sound, audioLoader;
+	  
 	setup();
 	loop();
 
 
 
+		
 
 
 

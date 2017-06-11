@@ -137,10 +137,9 @@
 		TIEForma.merge(ala1Malla.geometry, ala1Malla.matrix);
 		TIEForma.merge(ala2Malla.geometry, ala2Malla.matrix);
 		TIEForma.merge(soporteMalla.geometry, soporteMalla.matrix);		
-		var TIE = new THREE.Mesh(TIEForma);
-
 		
-		this.add(TIE);			
+	
+		this.add(TIEForma);			
 		this.step= 1;
 		this.colision=0;
 		this.radius = r;

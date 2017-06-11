@@ -380,6 +380,27 @@
 	}
 	Ast_Punta.prototype= new THREE.Object3D();  
 	  
+	
+// Declarar un Agente llamado Atari
+      function Dode(size, x=0, y=0,z=0){	
+          THREE.Object3D.call(this,x,y,z);	  
+	  ar Q=size;
+	  THREE.ImageUtils.crossOrigin = '';
+          var ast_textura3   = THREE.ImageUtils.loadTexture('Azul.jpg');
+          var material  = new THREE.MeshBasicMaterial( {map: ast_textura3} );
+		
+	  var crp_dode = new THREE.DodecahedronGeometry(3*Q,0);
+	  crp_dode.rotateX(Math.PI/4);  	
+	  crp_dode.rotateY(Math.PI/4);  	
+	  var crp_dodeM = new THREE.Mesh(crp_dode, material)
+	  this.add(crp_dodeM);
+	  this.size= size;
+	  this.position.x=x;
+	  this.position.y=y;
+          this.position.z=z;
+	}
+	Dode.prototype= new THREE.Object3D();
+
 	  
 
 // Declarar un Agente llamado Atari
@@ -470,7 +491,7 @@ for(j; j <40; j++){
 
 for(j; j <60; j++){
 	for(i = 0; i < (j-40)/4; i++){
-		entorno.add(new Fantasma(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
+		entorno.add(new Dode(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
 	}
 }
 

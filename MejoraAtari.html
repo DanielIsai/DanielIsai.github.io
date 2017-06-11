@@ -1,0 +1,468 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title>ViajeEstrellas</title>
+    <meta http-equiv="Content-Type"
+              content="text/html; charset=UTF-8">  
+  </head>
+  <body>
+
+  <script   src="three.min.js">
+  </script>
+
+  
+
+  <script>
+
+// Funcion de movimiento con el teclado
+
+	function push(e){
+		if (e.keyCode===65)
+		pos = 1;
+		else if (e.keyCode===90)
+		pos = 2;
+		else if (e.keyCode===83)
+		pos = 3;
+		else if (e.keyCode===68)
+		pos = 4;
+	}
+
+
+
+
+
+// Funcion para ajuste de pantalla
+
+	var listener = function() {
+		camara.aspect = window.innerWidth/window.innerHeight;
+		camara.updateProjectionMatrix();
+		renderer.setSize(window.innerWidth, window.innerHeight);
+	}
+
+
+
+
+
+
+// Declaración de Agente
+
+	function Agent(x=0, y=0){
+		THREE.Object3D.call(this);
+		this.position.x= x;
+		this.position.y= y;
+		}
+
+
+	Agent.prototype = new THREE.Object3D();
+
+	Agent.prototype.sense= function(environment) {};
+	Agent.prototype.plan= function(environment) {};
+	Agent.prototype.act= function(environment) {};
+
+
+// Declaración del Ambiente
+
+	function Environment(){
+		THREE.Scene.call(this);
+	}
+
+
+	Environment.prototype= new THREE.Scene();
+
+
+	Environment.prototype.sense = function(){
+		for(var i=0; i< this.children.length; i++){
+			if (this.children[i].sense !== undefined)
+				this.children[i].sense(this);
+		}
+	}
+
+
+	Environment.prototype.plan= function(){
+		for(var i=0; i< this.children.length; i++){
+			if (this.children[i].plan !== undefined)
+				this.children[i].plan(this);
+		}
+	}
+
+
+	Environment.prototype.act = function (){
+		for(var i=0; i< this.children.length; i++){
+			if (this.children[i].act !== undefined)
+				this.children[i].act(this);	
+		}
+	}
+
+
+
+
+// Declarar un Agente llamado Nave
+
+
+	function Nave (r,x=0, y=0){
+
+		Agent.call(this,x,y);
+
+		
+		var escalaTIE = r;
+
+		var cabinaForma = new THREE.SphereGeometry(1*escalaTIE);
+		var cabinaMalla = new THREE.Mesh(cabinaForma);
+		var ala1Forma = new THREE.CylinderGeometry(1.5*escalaTIE, 1.5*escalaTIE, 0.25*escalaTIE, 6);
+		ala1Forma.rotateZ( Math.PI/2);
+		ala1Forma.translate(-1.5*escalaTIE,0,0);
+		var ala1Malla = new THREE.Mesh(ala1Forma);
+		var ala2Forma = new THREE.CylinderGeometry(1.5*escalaTIE, 1.5*escalaTIE, 0.25*escalaTIE, 6);
+		ala2Forma.rotateZ( Math.PI/2);
+		ala2Forma.translate(1.5*escalaTIE,0,0);
+		var ala2Malla = new THREE.Mesh(ala2Forma);
+		var soporteForma = new THREE.CylinderGeometry(0.3*escalaTIE, 0.3*escalaTIE, 3*escalaTIE);
+		soporteForma.rotateZ( Math.PI/2);
+		var soporteMalla = new THREE.Mesh(soporteForma); 
+		var TIEForma = new THREE.Geometry();
+		TIEForma.merge(cabinaMalla.geometry, cabinaMalla.matrix);
+		TIEForma.merge(ala1Malla.geometry, ala1Malla.matrix);
+		TIEForma.merge(ala2Malla.geometry, ala2Malla.matrix);
+		TIEForma.merge(soporteMalla.geometry, soporteMalla.matrix);
+		var TIE = new THREE.Mesh(TIEForma, new THREE.MeshNormalMaterial());
+
+		
+		this.add(TIE);			
+		this.step= 1;
+		this.colision=0;
+		this.radius = r;
+		this.sensor1= new THREE.Raycaster( this.position,new THREE.Vector3(0,0,-1));
+		//this.sensor2= new THREE.Raycaster( this.position,new THREE.Vector3(-1,0,0));
+		//this.sensor3= new THREE.Raycaster( this.position,new THREE.Vector3( 1,0,0));
+
+	}
+
+	Nave.prototype= new Agent();
+
+
+
+	Nave.prototype.sense = function(environment){
+	
+		this.sensor1.set(this.position, new THREE.Vector3(0,0,-1));
+		//this.sensor2.set(this.position, new THREE.Vector3(-1,0,0));
+		//this.sensor3.set(this.position, new THREE.Vector3( 1,0,0));
+
+
+
+		var obstaculo1= this.sensor1.intersectObjects(environment.children,true);
+		//var obstaculo2= this.sensor2.intersectObjects(environment.children,true);
+		//var obstaculo3= this.sensor3.intersectObjects(environment.children,true);
+
+
+		if ( (obstaculo1.length >0 && ( obstaculo1[0].distance <=2)))
+			this.colision= 1;
+		else
+			this.colision=0;
+
+		};
+
+
+	Nave.prototype.act= function(environment) {
+
+		if (this.colision===1){
+			this.step= 0;
+		}
+
+		else{
+			if(pos==1)
+			this.position.y += this.step/10;
+			if(pos==2)
+			this.position.y -= this.step/10;
+			if(pos==3)
+			this.position.x -= this.step/10;
+			if(pos==4)
+			this.position.x += this.step/10;
+		}
+
+		if(this.position.x<-15)
+		this.step = 0;
+
+		if(this.position.x>15)
+		this.step = 0;
+
+		if(this.position.y>15)
+		this.step = 0;
+
+		if(this.position.y<-15)
+		this.step = 0;
+
+
+
+		
+
+		this.position.z -= this.step;
+		camara.position.z-=this.step;
+
+
+
+
+
+		
+
+	};
+
+
+
+
+
+// Declarar un Agente llamado Pared
+
+
+	function Pared(size, x=0, y=0,z=0){
+	
+		THREE.Object3D.call(this,x,y,z);
+
+		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, size),
+				             new THREE.MeshNormalMaterial()));
+		this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;
+	}
+
+
+	Pared.prototype= new THREE.Object3D();
+
+
+
+// Declarar un Agente llamado Atari
+
+
+	function Atari(size, x=0, y=0,z=0){
+	
+		THREE.Object3D.call(this,x,y,z);
+
+
+
+		var P2figura = new THREE.Shape();
+		var escalaAtari = size;
+		P2figura.lineTo(0*escalaAtari,0*escalaAtari);P2figura.lineTo(1*escalaAtari,0*escalaAtari);P2figura.lineTo(1*escalaAtari,2*escalaAtari);P2figura.lineTo(2*escalaAtari,2*escalaAtari);P2figura.lineTo(2*escalaAtari,1*escalaAtari);
+		P2figura.lineTo(3*escalaAtari,1*escalaAtari);P2figura.lineTo(3*escalaAtari,2*escalaAtari);P2figura.lineTo(4*escalaAtari,2*escalaAtari);P2figura.lineTo(4*escalaAtari,1*escalaAtari);P2figura.lineTo(5*escalaAtari,1*escalaAtari);
+		P2figura.lineTo(5*escalaAtari,2*escalaAtari);P2figura.lineTo(6*escalaAtari,2*escalaAtari);P2figura.lineTo(6*escalaAtari,0*escalaAtari);P2figura.lineTo(7*escalaAtari,0*escalaAtari);P2figura.lineTo(7*escalaAtari,4*escalaAtari);
+		P2figura.lineTo(6*escalaAtari,4*escalaAtari);P2figura.lineTo(6*escalaAtari,5*escalaAtari);P2figura.lineTo(7*escalaAtari,5*escalaAtari);P2figura.lineTo(7*escalaAtari,7*escalaAtari);P2figura.lineTo(6*escalaAtari,7*escalaAtari);
+		P2figura.lineTo(6*escalaAtari,6*escalaAtari);P2figura.lineTo(4*escalaAtari,6*escalaAtari);P2figura.lineTo(4*escalaAtari,7*escalaAtari);P2figura.lineTo(3*escalaAtari,7*escalaAtari);P2figura.lineTo(3*escalaAtari,6*escalaAtari);
+		P2figura.lineTo(1*escalaAtari,6*escalaAtari);P2figura.lineTo(1*escalaAtari,7*escalaAtari);P2figura.lineTo(0*escalaAtari,7*escalaAtari);P2figura.lineTo(0*escalaAtari,5*escalaAtari);P2figura.lineTo(1*escalaAtari,5*escalaAtari);
+		P2figura.lineTo(1*escalaAtari,4*escalaAtari);P2figura.lineTo(0*escalaAtari,4*escalaAtari);
+
+		var P2extrudeSettings = {steps: 2*escalaAtari,amount: 1*escalaAtari,bevelEnabled: true,bevelThickness: 1*escalaAtari,bevelSize: 1*escalaAtari,bevelSegments: 1*escalaAtari};
+
+		var P2forma = new THREE.ExtrudeGeometry( P2figura,P2extrudeSettings);
+		P2forma.translate(-3.5*escalaAtari,-3.5*escalaAtari,0);
+
+		var P2material = new THREE.MeshNormalMaterial();
+		var P2malla = new THREE.Mesh( P2forma, P2material );
+
+		this.add(P2malla);
+		this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;
+	}
+
+
+	Atari.prototype= new THREE.Object3D();
+
+
+
+
+
+
+// Declarar un Agente llamado Fantasma
+
+
+	function Fantasma(size, x=0, y=0,z=0){
+	
+		THREE.Object3D.call(this,x,y,z);
+		
+		var P4figura = new THREE.Shape();
+		var escalaFan = size;
+
+		P4figura.lineTo(0*escalaFan,0*escalaFan);P4figura.lineTo(1*escalaFan,0*escalaFan);P4figura.lineTo(1*escalaFan,1*escalaFan);P4figura.lineTo(2*escalaFan,1*escalaFan);P4figura.lineTo(2*escalaFan,2*escalaFan);
+		P4figura.lineTo(3*escalaFan,2*escalaFan);P4figura.lineTo(3*escalaFan,1*escalaFan);P4figura.lineTo(4*escalaFan,1*escalaFan);P4figura.lineTo(4*escalaFan,0*escalaFan);P4figura.lineTo(6*escalaFan,0*escalaFan);
+		P4figura.lineTo(6*escalaFan,2*escalaFan);P4figura.lineTo(8*escalaFan,2*escalaFan);P4figura.lineTo(8*escalaFan,0*escalaFan);P4figura.lineTo(10*escalaFan,0*escalaFan);P4figura.lineTo(10*escalaFan,1*escalaFan);
+		P4figura.lineTo(11*escalaFan,1*escalaFan);P4figura.lineTo(11*escalaFan,2*escalaFan);P4figura.lineTo(12*escalaFan,2*escalaFan);P4figura.lineTo(12*escalaFan,1*escalaFan);P4figura.lineTo(13*escalaFan,1*escalaFan);
+		P4figura.lineTo(13*escalaFan,0*escalaFan);P4figura.lineTo(14*escalaFan,0*escalaFan);P4figura.lineTo(14*escalaFan,8*escalaFan);P4figura.lineTo(13*escalaFan,8*escalaFan);P4figura.lineTo(13*escalaFan,11*escalaFan);
+		P4figura.lineTo(12*escalaFan,11*escalaFan);P4figura.lineTo(12*escalaFan,12*escalaFan);P4figura.lineTo(11*escalaFan,12*escalaFan);P4figura.lineTo(11*escalaFan,13*escalaFan);P4figura.lineTo(9*escalaFan,13*escalaFan);
+		P4figura.lineTo(9*escalaFan,14*escalaFan);P4figura.lineTo(5*escalaFan,14*escalaFan);P4figura.lineTo(5*escalaFan,13*escalaFan);P4figura.lineTo(3*escalaFan,13*escalaFan);P4figura.lineTo(3*escalaFan,12*escalaFan);
+		P4figura.lineTo(2*escalaFan,12*escalaFan);P4figura.lineTo(2*escalaFan,11*escalaFan);P4figura.lineTo(1*escalaFan,11*escalaFan);P4figura.lineTo(1*escalaFan,8*escalaFan);P4figura.lineTo(0*escalaFan,8*escalaFan);
+
+		var P4extrudeSettings = {steps: 2*escalaFan,amount: 6*escalaFan,bevelEnabled: true,bevelThickness: 1*escalaFan,bevelSize: 1*escalaFan,bevelSegments: 1*escalaFan};
+
+		var P4forma = new THREE.ExtrudeGeometry( P4figura,P4extrudeSettings);
+		P4forma.translate(-7*escalaFan,-7*escalaFan,0);
+
+		var P4material = new THREE.MeshNormalMaterial();
+		var P4malla = new THREE.Mesh( P4forma, P4material );
+
+		this.add(P4malla);
+		this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;
+	}
+
+
+	Fantasma.prototype= new THREE.Object3D();
+
+
+
+
+
+
+
+
+
+
+
+// Configuración del programa
+
+
+
+	function setup(){
+
+		entorno = new Environment();
+		camara = new THREE.PerspectiveCamera();
+		camara.position.z=30;
+
+
+
+
+
+		var listener = new THREE.AudioListener();
+		camara.add( listener );
+		var sound = new THREE.Audio( listener );
+
+		var audioLoader = new THREE.AudioLoader();
+
+
+
+		audioLoader.load( 'cancion.ogg', function( buffer ) {
+		sound.setBuffer( buffer );
+		sound.setLoop(true);
+		sound.setVolume(10);
+		sound.play();
+		});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+for(j = 0; j <20; j++){
+	for(i = 0; i < j; i++){
+		entorno.add(new Pared(8*Math.random()+2,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));	
+	}
+}
+
+
+for(j; j <40; j++){
+	for(i = 0; i < (j-20); i++){
+		entorno.add(new Atari(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
+	}
+}
+
+
+for(j; j <60; j++){
+	for(i = 0; i < (j-40); i++){
+		entorno.add(new Fantasma(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(-100*Math.random())-100*j));
+	}
+}
+
+
+
+
+
+
+
+
+
+		entorno.add(new Nave(1,0,0));
+
+
+		entorno.add(camara);
+
+		
+
+		renderer = new THREE.WebGLRenderer();
+
+		renderer.setSize( window.innerHeight*.95,
+				  window.innerHeight*.95);
+
+		document.body.appendChild( renderer.domElement);
+
+		
+		var tipoEvento = 'resize';
+		var capturar = false;
+
+		window.addEventListener( tipoEvento, listener, capturar);
+		window.addEventListener( 'keydown',push, false);
+	}
+
+
+
+
+// Inicio del programa
+
+
+	function loop(){
+
+		requestAnimationFrame( loop);
+ 		entorno.sense();
+		entorno.plan();
+		entorno.act();
+		renderer.render(entorno, camara);
+	}
+
+
+	
+
+
+
+// Declaración de variables
+	
+	var entorno, camara, renderer;
+	var pos;
+	setup();
+	loop();
+
+
+
+
+
+
+
+
+
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+

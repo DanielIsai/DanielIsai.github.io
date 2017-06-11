@@ -109,9 +109,11 @@
 
 		var cabinaForma = new THREE.SphereGeometry(1*escalaTIE);
 		var cabinaMalla = new THREE.Mesh(cabinaForma);
+		
+		
 		var ala1Forma = new THREE.CylinderGeometry(1.5*escalaTIE, 1.5*escalaTIE, 0.25*escalaTIE, 6);
 		ala1Forma.rotateZ( Math.PI/2);
-		ala1Forma.translate(-1.5*escalaTIE,0,0);
+		ala1Forma.translate(-1.5*escalaTIE,0,0);		
 		var ala1Malla = new THREE.Mesh(ala1Forma);
 		var ala2Forma = new THREE.CylinderGeometry(1.5*escalaTIE, 1.5*escalaTIE, 0.25*escalaTIE, 6);
 		ala2Forma.rotateZ( Math.PI/2);
@@ -125,7 +127,13 @@
 		TIEForma.merge(ala1Malla.geometry, ala1Malla.matrix);
 		TIEForma.merge(ala2Malla.geometry, ala2Malla.matrix);
 		TIEForma.merge(soporteMalla.geometry, soporteMalla.matrix);
-		var TIE = new THREE.Mesh(TIEForma, new THREE.MeshNormalMaterial());
+		
+		THREE.ImageUtils.crossOrigin = '';
+		var alatextura   = THREE.ImageUtils.loadTexture('ala.jpg');
+		var alamaterial  = new THREE.MeshBasicMaterial( {map: alatextura} );
+		
+		
+		var TIE = new THREE.Mesh(TIEForma, alamaterial);
 
 		
 		this.add(TIE);			

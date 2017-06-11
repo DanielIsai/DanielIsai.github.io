@@ -45,7 +45,7 @@
 
 
 
-// Declaraci髇 de Agente
+// Declaraci贸n de Agente
 
 	function Agent(x=0, y=0){
 		THREE.Object3D.call(this);
@@ -61,7 +61,7 @@
 	Agent.prototype.act= function(environment) {};
 
 
-// Declaraci髇 del Ambiente
+// Declaraci贸n del Ambiente
 
 	function Environment(){
 		THREE.Scene.call(this);
@@ -218,7 +218,7 @@
 	
 		THREE.Object3D.call(this,x,y,z);
 
-		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, size),
+		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),
 				             new THREE.MeshNormalMaterial()));
 		this.size= size;
 		this.position.x= x;
@@ -320,7 +320,7 @@
 
 
 
-// Configuraci髇 del programa
+// Configuraci贸n del programa
 
 
 
@@ -438,7 +438,7 @@ for(j; j <60; j++){
 
 
 
-// Declaraci髇 de variables
+// Declaraci贸n de variables
 	
 	var entorno, camara, renderer;
 	var pos;

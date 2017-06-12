@@ -65,14 +65,12 @@
 		for(var i=0; i< this.children.length; i++){
 			if (this.children[i].sense !== undefined)
 				this.children[i].sense(this);
-		}
-	}
+	}}
 	Environment.prototype.plan= function(){
 		for(var i=0; i< this.children.length; i++){
 			if (this.children[i].plan !== undefined)
 				this.children[i].plan(this);
-		}
-	}
+	}}
 	Environment.prototype.act = function (){
 		for(var i=0; i< this.children.length; i++){
 			if (this.children[i].act !== undefined)
@@ -144,10 +142,11 @@
 		if(this.position.y>15)	this.step = 0;
 		if(this.position.y<-15)	this.step = 0;		
 		if(this.step==0)	sound.pause ();
-		this.position.z -= this.step;
-		camara.position.z-=this.step;
-		iluminacion.position.z-=this.step;
-		tableroMalla.position.z-=this.step;
+		
+		this.position.z -= 0//this.step;
+		camara.position.z-=0//this.step;
+		iluminacion.position.z-=0//this.step;
+		tableroMalla.position.z-=0//this.step;
 
 	};
 

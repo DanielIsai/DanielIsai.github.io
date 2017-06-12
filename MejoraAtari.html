@@ -143,10 +143,10 @@
 		if(this.position.y<-15)	this.step = 0;		
 		if(this.step==0)	sound.pause ();
 		
-		this.position.z -= 0//this.step;
-		camara.position.z-=0//this.step;
-		iluminacion.position.z-=0//this.step;
-		tableroMalla.position.z-=0//this.step;
+		this.position.z -= this.step;
+		camara.position.z-=this.step;
+		iluminacion.position.z-=this.step;
+		tableroMalla.position.z-=this.step;
 
 	};
 
@@ -475,7 +475,7 @@
 		
 		entorno.add(camara);
 		entorno.add(iluminacion);
-		entorno.add(tableroMalla);
+		//entorno.add(tableroMalla);
 		
 		lienzo= document.getElementById("luzSombras");		
 		renderer = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});

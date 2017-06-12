@@ -108,7 +108,8 @@
 		var TIE_material  = new THREE.MeshBasicMaterial( {map: TIE_textura} );		
 		var TIE = new THREE.Mesh(TIEForma,TIE_material);	
 		
-		this.add(TIE);			
+		this.add(TIE);	
+		this.castShadow= true;
 		this.step= 1;
 		this.colision=0;
 		this.radius = r;
@@ -416,7 +417,7 @@
 		entorno = new Environment();
 		camara = new THREE.PerspectiveCamera();
 		camara.position.z=30;	
-		//camara.position.y=5;
+		camara.position.y=5;
 		listener = new THREE.AudioListener();
 		camara.add( listener );
 		sound = new THREE.Audio( listener );
@@ -444,41 +445,33 @@
 
 
 		for(j; j <3*largo; j++){
-			for(i = 0; i < (j-2*largo)/4; i++){
-				entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-			}
-		}
-		
-			
+		for(i = 0; i < (j-2*largo)/4; i++){
+			entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}			
 		
 		for(j; j <4*largo; j++){
-			for(i = 0; i < (j-3*largo)/4; i++){
-				entorno.add(new Pared1(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-			}
-		}
+		for(i = 0; i < (j-3*largo)/4; i++){
+			entorno.add(new Pared1(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
 		
 		for(j; j <5*largo; j++){
-			for(i = 0; i < (j-4*largo)/4; i++){
-				entorno.add(new Pared2(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-			}
-		}
+		for(i = 0; i < (j-4*largo)/4; i++){
+			entorno.add(new Pared2(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
 		
 		for(j; j <6*largo; j++){
-			for(i = 0; i < (j-5*largo)/6; i++){
-				entorno.add(new Pared1(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-				entorno.add(new Pared2(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-				
-			}
-		}
+		for(i = 0; i < (j-5*largo)/6; i++){
+			entorno.add(new Pared1(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Pared2(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
 			
 		
 		for(j; j <7*largo; j++){
-			for(i = 0; i < (j-6*largo)/8; i++){
-				entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-				entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-				entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-			}
-		}
+		for(i = 0; i < (j-6*largo)/8; i++){
+			entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
 		
 
 		
@@ -490,11 +483,12 @@
 		
 		
 		entorno.add(camara);
-		//entorno.add(tableroMalla);
+		entorno.add(tableroMalla);
 		renderer = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});
 		renderer.setSize( window.innerHeight*.95,window.innerHeight*.95);
 		renderer.shadowMapEnabled= true;		
 		document.body.appendChild( renderer.domElement);
+		tableroMalla.receiveShadow= true;
 		iluminacion.castShadow= true;
 		var tipoEvento = 'resize';
 		var capturar = false;

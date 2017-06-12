@@ -144,7 +144,8 @@
 		if(this.position.y<-15)	this.step = 0;		
 		if(this.step==0)	sound.pause ();
 		this.position.z -= this.step;
-		camara.position.z-=this.step;	
+		camara.position.z-=this.step;
+		iluminacion.position.z-=this.step;
 
 	};
 

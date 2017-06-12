@@ -411,19 +411,19 @@
 	function setup(){
 		
 		iluminacion = new THREE.PointLight(0xFFFFFF);
-		iluminacion.position.y= 50; 
+		iluminacion.position.y= 100; 
 		
 		entorno = new Environment();
 		camara = new THREE.PerspectiveCamera();
 		camara.position.z=30;	
-		camara.position.y=3;
+		camara.position.y=3;		
 		listener = new THREE.AudioListener();
 		camara.add( listener );
 		sound = new THREE.Audio( listener );
 		audioLoader = new THREE.AudioLoader();
 		audioLoader.load( 'cancion.ogg', function( buffer ) {sound.setBuffer( buffer );sound.setLoop(true);sound.setVolume(1);sound.play();});
 
-		tableroForma = new THREE.CylinderGeometry(15,15,1);
+		tableroForma = new THREE.CylinderGeometry(10,10,1);
 		tableroMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
 		tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
 		tableroMalla.translateY(-4);
@@ -473,16 +473,15 @@
 		
 		entorno.add(new Nave(1,0,0));
 		
-		entorno.add(iluminacion);
-		lienzo= document.getElementById("luzSombras");
-		
-		
 		entorno.add(camara);
+		entorno.add(iluminacion);
 		entorno.add(tableroMalla);
+		
+		lienzo= document.getElementById("luzSombras");		
 		renderer = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});
-		renderer.setSize( window.innerHeight*.95,window.innerHeight*.95);
-		renderer.shadowMapEnabled= true;		
-		document.body.appendChild( renderer.domElement);
+		renderer.setSize(600,600);
+		renderer.shadowMapEnabled= true;
+		
 		tableroMalla.receiveShadow= true;
 		iluminacion.castShadow= true;
 		var tipoEvento = 'resize';

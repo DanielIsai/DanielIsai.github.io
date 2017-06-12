@@ -146,6 +146,7 @@
 		this.position.z -= this.step;
 		camara.position.z-=this.step;
 		iluminacion.position.z-=this.step;
+		tableroMalla.position.z-=this.step;
 
 	};
 
@@ -410,7 +411,7 @@
 	function setup(){
 		
 		iluminacion = new THREE.PointLight(0xFFFFFF);
-		iluminacion.position.z= 10; 
+		iluminacion.position.y= 50; 
 		
 		entorno = new Environment();
 		camara = new THREE.PerspectiveCamera();
@@ -421,6 +422,9 @@
 		audioLoader = new THREE.AudioLoader();
 		audioLoader.load( 'cancion.ogg', function( buffer ) {sound.setBuffer( buffer );sound.setLoop(true);sound.setVolume(1);sound.play();});
 
+		tableroForma = new THREE.CylinderGeometry(15,15,1);
+		tableroMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+		tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
 
 		var ancho = -1*100;
 		var largo = 20;
@@ -485,6 +489,7 @@
 		
 		
 		entorno.add(camara);
+		entorno.add(tableroMalla);
 		renderer = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});
 		renderer.setSize( window.innerHeight*.95,window.innerHeight*.95);
 		renderer.shadowMapEnabled= true;		
@@ -513,6 +518,7 @@
 	var entorno, camara, renderer;
 	var pos,iluminacion,lienzo;
 	var listener, sound, audioLoader;
+	var tableroForma, tableroMaterial,tableroMalla;	  
 	  
 	setup();
 	loop();

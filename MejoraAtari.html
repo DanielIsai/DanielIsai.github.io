@@ -5,8 +5,22 @@
     <title>ViajeEstrellas</title>
     <meta http-equiv="Content-Type"
               content="text/html; charset=UTF-8">  
+    <style>
+      body { text-align: center; }
+    </style>
+	  
+  <canvas id= "luzSombras" width= "600" heigth= "600">
+      &iexcl;No funciona!
+  </canvas>
+	  	  
+	  
+	  
+	  
   </head>
   <body>
+	  
+	  
+	  
   <script src="three.min.js">
   </script>
 
@@ -92,12 +106,14 @@
 		THREE.ImageUtils.crossOrigin = '';
 		var TIE_textura  = THREE.ImageUtils.loadTexture('nave.jpg');
 		var TIE_material  = new THREE.MeshBasicMaterial( {map: TIE_textura} );		
-		var TIE = new THREE.Mesh(TIEForma,TIE_material);		
+		var TIE = new THREE.Mesh(TIEForma,TIE_material);	
+		
 		this.add(TIE);			
 		this.step= 1;
 		this.colision=0;
 		this.radius = r;
 		this.sensor1= new THREE.Raycaster( this.position,new THREE.Vector3(0,0,-1));
+		this.castShadow = true;
 	}Nave.prototype= new Agent();
 
 	  
@@ -229,6 +245,7 @@
 		  this.position.x= x;
 		  this.position.y=y;
 		  this.position.z=z;
+		  this.receiveShadow = true;
 	}Ast_Basico.prototype= new THREE.Object3D();  
 	   
 	  
@@ -390,6 +407,10 @@
 
 // Configuración del programa
 	function setup(){
+		
+		iluminacion = new THREE.PointLight(0xFFFFFF);
+		iluminacion.position.z= 10; 
+		
 		entorno = new Environment();
 		camara = new THREE.PerspectiveCamera();
 		camara.position.z=30;		
@@ -458,10 +479,16 @@
 		
 		entorno.add(new Nave(1,0,0));
 		
+		entorno.add(iluminacion);
+		lienzo= document.getElementById("luzSombras");
+		
+		
 		entorno.add(camara);
-		renderer = new THREE.WebGLRenderer();
+		renderer = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});
 		renderer.setSize( window.innerHeight*.95,window.innerHeight*.95);
-		document.body.appendChild( renderer.domElement);		
+		renderer.shadowMapEnabled= true;		
+		document.body.appendChild( renderer.domElement);
+		iluminacion.castShadow= true;
 		var tipoEvento = 'resize';
 		var capturar = false;
 		window.addEventListener( tipoEvento, listener, capturar);
@@ -483,7 +510,7 @@
 	  
 // Declaración de variables
 	var entorno, camara, renderer;
-	var pos;
+	var pos,iluminacion,lienzo;
 	var listener, sound, audioLoader;
 	  
 	setup();

@@ -426,22 +426,19 @@
 		tableroForma = new THREE.CylinderGeometry(15,15,1);
 		tableroMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
 		tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
-
+		tableroMalla.translateY(-10);
 		var ancho = -1*100;
 		var largo = 10;
 
 		for(j = 0; j <largo; j++){
-			for(i = 0; i < j/4; i++){
-				entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));	
-			}
-		}
+		for(i = 0; i < j/4; i++){
+			entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));	
+		}}
 		
 		for(j; j <2*largo; j++){
-			for(i = 0; i < (j-largo)/4; i++){
-				entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-			}
-		}
-
+		for(i = 0; i < (j-largo)/4; i++){
+			entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
 
 		for(j; j <3*largo; j++){
 		for(i = 0; i < (j-2*largo)/4; i++){
@@ -462,8 +459,7 @@
 		for(i = 0; i < (j-5*largo)/6; i++){
 			entorno.add(new Pared1(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 			entorno.add(new Pared2(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-		}}
-			
+		}}		
 		
 		for(j; j <7*largo; j++){
 		for(i = 0; i < (j-6*largo)/8; i++){

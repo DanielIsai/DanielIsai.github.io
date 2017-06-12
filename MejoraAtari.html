@@ -416,7 +416,7 @@
 		entorno = new Environment();
 		camara = new THREE.PerspectiveCamera();
 		camara.position.z=30;	
-		camara.position.y=5;
+		//camara.position.y=5;
 		listener = new THREE.AudioListener();
 		camara.add( listener );
 		sound = new THREE.Audio( listener );
@@ -490,7 +490,7 @@
 		
 		
 		entorno.add(camara);
-		entorno.add(tableroMalla);
+		//entorno.add(tableroMalla);
 		renderer = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});
 		renderer.setSize( window.innerHeight*.95,window.innerHeight*.95);
 		renderer.shadowMapEnabled= true;		

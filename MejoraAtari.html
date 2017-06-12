@@ -416,7 +416,7 @@
 		entorno = new Environment();
 		camara = new THREE.PerspectiveCamera();
 		camara.position.z=30;	
-		camara.position.y=5;
+		camara.position.y=3;
 		listener = new THREE.AudioListener();
 		camara.add( listener );
 		sound = new THREE.Audio( listener );
@@ -426,7 +426,7 @@
 		tableroForma = new THREE.CylinderGeometry(15,15,1);
 		tableroMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
 		tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
-		tableroMalla.translateY(-5);
+		tableroMalla.translateY(-4);
 		var ancho = -1*100;
 		var largo = 10;
 

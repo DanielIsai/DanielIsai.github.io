@@ -154,9 +154,11 @@
 	function Pared1(size, x=0, y=0,z=0){		
 		THREE.Object3D.call(this,x,y,z);		
 		THREE.ImageUtils.crossOrigin = '';
-		var cajatextura1   = THREE.ImageUtils.loadTexture('bmetal.jpg');
-		var cajamaterial1  = new THREE.MeshBasicMaterial( {map: cajatextura1} );		
-		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial1));
+		var cajatextura1   = THREE.ImageUtils.loadTexture('bmetal.jpg');		
+		var cajamaterial1  = new THREE.MeshLambertMaterial({map: cajatextura1});
+		var pp1 = new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial1);		
+		pp1.receiveShadow = true;
+		this.add(pp1);
 		this.size= size;
 		this.position.x= x;
 		this.position.y=y;
@@ -170,8 +172,10 @@
 		THREE.Object3D.call(this,x,y,z);		
 		THREE.ImageUtils.crossOrigin = '';
 		var cajatextura2   = THREE.ImageUtils.loadTexture('metal.jpg');
-		var cajamaterial2  = new THREE.MeshBasicMaterial( {map: cajatextura2} );		
-		this.add(new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial2));
+		var cajamaterial2  = new THREE.MeshLambertMaterial({map: cajatextura2});
+		pp2 = new THREE.Mesh(new THREE.BoxGeometry(size, size, 2),cajamaterial2);
+		pp2.receiveShadow = true;
+		this.add(pp2);
 		this.size= size;
 		this.position.x= x;
 		this.position.y=y;
@@ -428,7 +432,7 @@
 		tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
 		tableroMalla.translateY(-4);
 		var ancho = -1*100;
-		var largo = 5;
+		var largo = 10;
 
 		for(j = 0; j <largo; j++){
 		for(i = 0; i < j/4; i++){

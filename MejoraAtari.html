@@ -104,15 +104,13 @@
 		THREE.ImageUtils.crossOrigin = '';
 		var TIE_textura  = THREE.ImageUtils.loadTexture('nave.jpg');
 		var TIE_material  = new THREE.MeshBasicMaterial( {map: TIE_textura} );		
-		var TIE = new THREE.Mesh(TIEForma,TIE_material);	
-		
+		var TIE = new THREE.Mesh(TIEForma,TIE_material);		
+		TIE.castShadow = true;		
 		this.add(TIE);	
-		this.castShadow= true;
 		this.step= 1;
 		this.colision=0;
 		this.radius = r;
 		this.sensor1= new THREE.Raycaster( this.position,new THREE.Vector3(0,0,-1));
-		this.castShadow = true;
 	}Nave.prototype= new Agent();
 
 	  
@@ -143,10 +141,10 @@
 		if(this.position.y<-15)	this.step = 0;		
 		if(this.step==0)	sound.pause ();
 		
-		this.position.z -= this.step;
-		camara.position.z-=this.step;
-		iluminacion.position.z-=this.step;
-		tableroMalla.position.z-=this.step;
+		this.position.z -= 0//this.step;
+		camara.position.z-=0//this.step;
+		iluminacion.position.z-=0//this.step;
+		tableroMalla.position.z-=0//this.step;
 
 	};
 
@@ -475,7 +473,7 @@
 		
 		entorno.add(camara);
 		entorno.add(iluminacion);
-		//entorno.add(tableroMalla);
+		entorno.add(tableroMalla);
 		
 		lienzo= document.getElementById("luzSombras");		
 		renderer = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});

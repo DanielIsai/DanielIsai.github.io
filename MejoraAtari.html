@@ -149,6 +149,48 @@
 	};
 
 
+	  
+// Declarar un Agente llamado Atari_Az
+	function Atari_Az(size, x=0, y=0,z=0){		
+		THREE.Object3D.call(this,x,y,z);		
+		
+		THREE.ImageUtils.crossOrigin = '';
+		var A_A_textura   = THREE.ImageUtils.loadTexture('espacio.jpg');
+		var A_A_material = new THREE.MeshLambertMaterial({map: A_A_textura});
+		var A_A_figura = new THREE.Shape();
+		
+		A_A_figura.lineTo(0*size,0*size);A_A_figura.lineTo(1*size,0*size);A_A_figura.lineTo(1*size,2*size);A_A_figura.lineTo(2*size,2*size);A_A_figura.lineTo(2*size,1*size);
+		A_A_figura.lineTo(3*size,1*size);A_A_figura.lineTo(3*size,2*size);A_A_figura.lineTo(4*size,2*size);A_A_figura.lineTo(4*size,1*size);A_A_figura.lineTo(5*size,1*size);
+		A_A_figura.lineTo(5*size,2*size);A_A_figura.lineTo(6*size,2*size);A_A_figura.lineTo(6*size,0*size);A_A_figura.lineTo(7*size,0*size);A_A_figura.lineTo(7*size,4*size);
+		A_A_figura.lineTo(6*size,4*size);A_A_figura.lineTo(6*size,5*size);A_A_figura.lineTo(7*size,5*size);A_A_figura.lineTo(7*size,7*size);A_A_figura.lineTo(6*size,7*size);
+		A_A_figura.lineTo(6*size,6*size);A_A_figura.lineTo(4*size,6*size);A_A_figura.lineTo(4*size,7*size);A_A_figura.lineTo(3*size,7*size);A_A_figura.lineTo(3*size,6*size);
+		A_A_figura.lineTo(1*size,6*size);A_A_figura.lineTo(1*size,7*size);A_A_figura.lineTo(0*size,7*size);A_A_figura.lineTo(0*size,5*size);A_A_figura.lineTo(1*size,5*size);
+		A_A_figura.lineTo(1*size,4*size);A_A_figura.lineTo(0*size,4*size);
+		var A_A_extrudeSettings = {steps: 2*size,amount: 1*size,bevelEnabled: true,bevelThickness: 1*size,bevelSize: 1*size,bevelSegments: 1*size};
+		var A_A_forma = new THREE.ExtrudeGeometry( A_A_figura,A_A_extrudeSettings);	
+		var A_A_malla = new THREE.Mesh( A_A_forma, A_A_material );		
+		A_A_malla.receiveShadow = true;
+		this.add(A_A_malla);
+		this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;
+	}Atari_Az.prototype= new THREE.Object3D();	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 
 // Declarar un Agente llamado Pared1
 	function Pared1(size, x=0, y=0,z=0){		
@@ -472,8 +514,15 @@
 			entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 		}}
 		
+		for(j; j <8*largo; j++){
+		for(i = 0; i < (j-7*largo)/8; i++){
+			entorno.add(new Atari_Az(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
+		
 
 		
+		
+
 		
 		entorno.add(new Nave(1,0,0));
 		

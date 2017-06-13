@@ -255,8 +255,8 @@
 		  THREE.Object3D.call(this,x,y,z);
 		  var K=size;
 		  THREE.ImageUtils.crossOrigin = '';
-		  var ast_textura1   = THREE.ImageUtils.loadTexture('Lave2.jpg');
-		  var material  = new THREE.MeshBasicMaterial( {map: ast_textura1} );
+		  var ast_textura1   = THREE.ImageUtils.loadTexture('Lave2.jpg');		
+		  var material  = new THREE.MeshLambertMaterial({map: ast_textura1});		
 		  var crp_Punta = new THREE.SphereGeometry(3*K,7,7);
 		  var crp_PuntaM = new THREE.Mesh(crp_Punta, material);
 		  var punta1 = new THREE.ConeGeometry( 0.8*K, 1.0*K, 7 );
@@ -320,12 +320,13 @@
 		  Ast_Punta.merge(puntaM7.geometry, puntaM7.matrix);
 		  Ast_Punta.merge(puntaM8.geometry, puntaM8.matrix);
 		  Ast_Punta.merge(puntaM9.geometry, puntaM9.matrix);
-		  var Ast_PuntaM = new THREE.Mesh( Ast_Punta, material );		
-	        this.add(Ast_PuntaM);
-	       	this.size= size;
-		this.position.x= x;
-		this.position.y=y;
-		this.position.z=z;
+		  var  = new THREE.Mesh( Ast_Punta, material );		
+		  Ast_PuntaM.receiveShadow = true; 
+	          this.add(Ast_PuntaM);
+	       	  this.size= size;
+		  this.position.x= x;
+		  this.position.y=y;
+		  this.position.z=z;
 	}Ast_Punta.prototype= new THREE.Object3D();  
 	  
 	

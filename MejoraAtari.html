@@ -335,12 +335,13 @@
           THREE.Object3D.call(this,x,y,z);	  
 	  Q=size;
 	  THREE.ImageUtils.crossOrigin = '';
-          var ast_textura3   = THREE.ImageUtils.loadTexture('Azul.jpg');
-          var material  = new THREE.MeshBasicMaterial( {map: ast_textura3} );		
+          var ast_textura3   = THREE.ImageUtils.loadTexture('Azul.jpg');          
+	  var material = new THREE.MeshLambertMaterial({map: ast_textura3} );		     	
 	  var crp_dode = new THREE.DodecahedronGeometry(3*Q,0);
 	  crp_dode.rotateX(Math.PI/4);  	
 	  crp_dode.rotateY(Math.PI/4);  	
 	  var crp_dodeM = new THREE.Mesh(crp_dode, material);
+	  crp_dodeM.receiveShadow = true; 	      
 	  this.add(crp_dodeM);
 	  this.size= size;
 	  this.position.x=x;
@@ -427,7 +428,7 @@
 		tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
 		tableroMalla.translateY(-4);
 		var ancho = -1*100;
-		var largo = 20;
+		var largo = 5;
 
 		for(j = 0; j <largo; j++){
 		for(i = 0; i < j/4; i++){

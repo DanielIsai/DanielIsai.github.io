@@ -212,7 +212,32 @@
 	  
 	  
 	  
-	  
+// Declarar un Agente llamado Atari_R
+	function Atari_R(*size, x=0, y=0,z=0){		
+		THREE.Object3D.call(this,x,y,z);			
+
+		THREE.ImageUtils.crossOrigin = '';
+		var A_R_textura   = THREE.ImageUtils.loadTexture('red.jpg');		
+		var A_R_material = new THREE.MeshLambertMaterial({map: A_R_textura}  );		
+		var A_R_figura = new THREE.Shape();		
+		A_R_figura.lineTo(0*size,0*size);A_R_figura.lineTo(1*size,0*size);A_R_figura.lineTo(1*size,2*size);A_R_figura.lineTo(2*size,2*size);A_R_figura.lineTo(2*size,1*size);
+		A_R_figura.lineTo(3*size,1*size);A_R_figura.lineTo(3*size,2*size);A_R_figura.lineTo(4*size,2*size);A_R_figura.lineTo(4*size,1*size);A_R_figura.lineTo(5*size,1*size);
+		A_R_figura.lineTo(5*size,2*size);A_R_figura.lineTo(6*size,2*size);A_R_figura.lineTo(6*size,0*size);A_R_figura.lineTo(7*size,0*size);A_R_figura.lineTo(7*size,4*size);
+		A_R_figura.lineTo(6*size,4*size);A_R_figura.lineTo(6*size,5*size);A_R_figura.lineTo(7*size,5*size);A_R_figura.lineTo(7*size,7*size);A_R_figura.lineTo(6*size,7*size);
+		A_R_figura.lineTo(6*size,6*size);A_R_figura.lineTo(4*size,6*size);A_R_figura.lineTo(4*size,7*size);A_R_figura.lineTo(3*size,7*size);A_R_figura.lineTo(3*size,6*size);
+		A_R_figura.lineTo(1*size,6*size);A_R_figura.lineTo(1*size,7*size);A_R_figura.lineTo(0*size,7*size);A_R_figura.lineTo(0*size,5*size);A_R_figura.lineTo(1*size,5*size);
+		A_R_figura.lineTo(1*size,4*size);A_R_figura.lineTo(0*size,4*size);
+		var A_R_extrudeSettings = {steps: 2, amount: 1,	bevelEnabled: true, bevelThickness: 1, bevelSize: 1, bevelSegments: 1};
+		var A_R_forma = new THREE.ExtrudeGeometry( A_R_figura,A_R_extrudeSettings);	
+		var A_R_malla = new THREE.Mesh( A_R_forma, A_R_material );		
+		
+		A_R_malla.receiveShadow = true;
+		this.add(A_R_malla);
+		this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;
+	}Atari_R.prototype= new THREE.Object3D();	
 	  
 	  
 	  
@@ -523,6 +548,7 @@
 		
 		iluminacion = new THREE.PointLight(0xFFFFFF);
 		iluminacion.position.y= 100; 
+		iluminacion.position.z= 20; 
 		
 		entorno = new Environment();
 		camara = new THREE.PerspectiveCamera();
@@ -583,6 +609,7 @@
 		for(i = 0; i < (j-7*largo)/8; i++){
 			entorno.add(new Atari_Az(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 			entorno.add(new Atari_Am(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Atari_R(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 		}}
 		
 

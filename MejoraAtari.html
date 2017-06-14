@@ -592,7 +592,7 @@
 		tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
 		tableroMalla.translateY(-6);
 		var ancho = -1*100;
-		var largo = 10;
+		var largo = 20;
 
 		for(j = 0; j <largo; j++){
 		for(i = 0; i < j/4; i++){
@@ -649,7 +649,7 @@
 		
 		entorno.add(camara);
 		entorno.add(iluminacion);
-		entorno.add(tableroMalla);
+		//entorno.add(tableroMalla);
 		
 		lienzo= document.getElementById("luzSombras");		
 		renderer = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});

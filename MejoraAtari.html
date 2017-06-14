@@ -633,10 +633,11 @@
 		}}
 		
 		for(j; j <8*largo; j++){
-		for(i = 0; i < (j-7*largo)/8; i++){
-			entorno.add(new Atari_Az(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-			entorno.add(new Atari_Am(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-			entorno.add(new Atari_R(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		for(i = 0; i < (j-7*largo)/10; i++){
+			entorno.add(new Atari_Az(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Atari_Am(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Atari_R(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Atari_V(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 		}}
 		
 

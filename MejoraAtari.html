@@ -592,7 +592,7 @@
 		tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
 		tableroMalla.translateY(-6);
 		var ancho = -1*100;
-		var largo = 20;
+		var largo = 10;
 
 		for(j = 0; j <largo; j++){
 		for(i = 0; i < j/4; i++){
@@ -632,7 +632,7 @@
 			entorno.add(new Dode(2,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 		}}
 		
-		for(j; j <8*largo; j++){
+		for(j; j <8*2*largo; j++){
 		for(i = 0; i < (j-7*largo)/10; i++){
 			entorno.add(new Atari_Az(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 			entorno.add(new Atari_Am(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));

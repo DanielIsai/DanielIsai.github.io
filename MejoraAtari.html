@@ -439,7 +439,13 @@
 	  
 // Declarar un Agente llamado San
 	function San(size, x=0, y=0,z=0){		
-		THREE.Object3D.call(this,x,y,z);		
+		THREE.Object3D.call(this,x,y,z);
+		
+		THREE.ImageUtils.crossOrigin = '';
+		var Santextura   = THREE.ImageUtils.loadTexture('nave.jpg');
+		var Sanmaterial = new THREE.MeshLambertMaterial({map: Santextura} );	
+		
+		
 		
 	var cabeza = new THREE.SphereGeometry(4.5,15,15);
 	cabeza.translate(0,12,0);
@@ -542,7 +548,7 @@
 	Saga.rotateX( Math.PI/8 );
 	Saga.rotateY( Math.PI/-7 );
 	
-	var SagaM = new THREE.Mesh(Saga, SagaMaterial);
+	var SagaM = new THREE.Mesh(Saga, Sanmaterial);
 
 		
 		

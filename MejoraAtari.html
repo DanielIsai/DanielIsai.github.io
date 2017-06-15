@@ -60,7 +60,16 @@
 	function Environment(){
 		THREE.Scene.call(this);
 	}
-	Environment.prototype= new THREE.Scene();
+	  
+	var escena = new THREE.Scene();
+	escena.background = new THREE.CubeTextureLoader()
+	     .load('atras');
+	  
+	  
+	Environment.prototype= escena;
+	  
+	  
+	  
 	Environment.prototype.sense = function(){
 		for(var i=0; i< this.children.length; i++){
 			if (this.children[i].sense !== undefined)

@@ -578,7 +578,11 @@
 	  
 // Declarar un Agente llamado Reliquia
 	function Reli(size, x=0, y=0,z=0){		
-		THREE.Object3D.call(this,x,y,z);		
+		THREE.Object3D.call(this,x,y,z);
+		
+		THREE.ImageUtils.crossOrigin = '';
+		var Relitextura   = THREE.ImageUtils.loadTexture('rocas.jpg');		
+		var Relimaterial  = new THREE.MeshLambertMaterial({map: Relitextura});		
 		var cuerpo = new THREE.SphereGeometry(6,15,15);
 		var cuerpoM = new THREE.Mesh(cuerpo);
 		var cilindro = new THREE.CylinderGeometry( 4.5, 3, 2, 16 );
@@ -644,7 +648,7 @@
 	Reliquia.merge(conominiM.geometry, conominiM.matrix);	
 	Reliquia.rotateX( Math.PI/8 );
 	Reliquia.rotateY( Math.PI/-8 );
-	var ReliquiaM = new THREE.Mesh( Reliquia, ReliquiaMaterial )
+	var ReliquiaM = new THREE.Mesh( Reliquia, Relimaterial )
 	  
 		
 		

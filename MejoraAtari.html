@@ -182,9 +182,87 @@
 		this.position.z=z;		
 	}Fant_Az.prototype= new THREE.Object3D();	  
 	  
+	 
 	  
 	  
 	  
+// Declarar un Agente llamado Fant_Am
+	function Fant_Am(size, x=0, y=0,z=0){		
+		THREE.Object3D.call(this,x,y,z);		
+		THREE.ImageUtils.crossOrigin = '';
+  		var textura   = THREE.ImageUtils.loadTexture('amar.jpg');
+  		var Fanmaterial  = new THREE.MeshBasicMaterial( {map: textura} );
+		var P4figura = new THREE.Shape();
+		P4figura.lineTo(0*size,0*size);P4figura.lineTo(1*size,0*size);P4figura.lineTo(1*size,1*size);P4figura.lineTo(2*size,1*size);P4figura.lineTo(2*size,2*size);P4figura.lineTo(3*size,2*size);
+		P4figura.lineTo(3*size,1*size);P4figura.lineTo(4*size,1*size);P4figura.lineTo(4*size,0*size);P4figura.lineTo(6*size,0*size);P4figura.lineTo(6*size,2*size);P4figura.lineTo(8*size,2*size);
+		P4figura.lineTo(8*size,0*size);P4figura.lineTo(10*size,0*size);P4figura.lineTo(10*size,1*size);P4figura.lineTo(11*size,1*size);P4figura.lineTo(11*size,2*size);P4figura.lineTo(12*size,2*size);
+		P4figura.lineTo(12*size,1*size);P4figura.lineTo(13*size,1*size);P4figura.lineTo(13*size,0*size);P4figura.lineTo(14*size,0*size);P4figura.lineTo(14*size,8*size);P4figura.lineTo(13*size,8*size);
+		P4figura.lineTo(13*size,11*size);P4figura.lineTo(12*size,11*size);P4figura.lineTo(12*size,12*size);P4figura.lineTo(11*size,12*size);P4figura.lineTo(11*size,13*size);P4figura.lineTo(9*size,13*size);
+		P4figura.lineTo(9*size,14*size);P4figura.lineTo(5*size,14*size);P4figura.lineTo(5*size,13*size);P4figura.lineTo(3*size,13*size);P4figura.lineTo(3*size,12*size);P4figura.lineTo(2*size,12*size);
+		P4figura.lineTo(2*size,11*size);P4figura.lineTo(1*size,11*size);P4figura.lineTo(1*size,8*size);P4figura.lineTo(0*size,8*size);
+		var P4extrudeSettings = {steps: 2, amount: 6, bevelEnabled: true, bevelThickness: 1, bevelSize: 1, bevelSegments: 1};
+		var P4forma = new THREE.ExtrudeGeometry( P4figura,P4extrudeSettings);
+		var Fanmalla = new THREE.Mesh( P4forma, Fanmaterial );		
+		Fanmalla .receiveShadow = true;
+		this.add(Fanmalla);
+		this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;		
+	}Fant_Am.prototype= new THREE.Object3D();	  
+	  
+	  
+	  
+// Declarar un Agente llamado Fant_R
+	function Fant_R(size, x=0, y=0,z=0){		
+		THREE.Object3D.call(this,x,y,z);		
+		THREE.ImageUtils.crossOrigin = '';
+  		var textura   = THREE.ImageUtils.loadTexture('red.jpg');
+  		var Fanmaterial  = new THREE.MeshBasicMaterial( {map: textura} );
+		var P4figura = new THREE.Shape();
+		P4figura.lineTo(0*size,0*size);P4figura.lineTo(1*size,0*size);P4figura.lineTo(1*size,1*size);P4figura.lineTo(2*size,1*size);P4figura.lineTo(2*size,2*size);P4figura.lineTo(3*size,2*size);
+		P4figura.lineTo(3*size,1*size);P4figura.lineTo(4*size,1*size);P4figura.lineTo(4*size,0*size);P4figura.lineTo(6*size,0*size);P4figura.lineTo(6*size,2*size);P4figura.lineTo(8*size,2*size);
+		P4figura.lineTo(8*size,0*size);P4figura.lineTo(10*size,0*size);P4figura.lineTo(10*size,1*size);P4figura.lineTo(11*size,1*size);P4figura.lineTo(11*size,2*size);P4figura.lineTo(12*size,2*size);
+		P4figura.lineTo(12*size,1*size);P4figura.lineTo(13*size,1*size);P4figura.lineTo(13*size,0*size);P4figura.lineTo(14*size,0*size);P4figura.lineTo(14*size,8*size);P4figura.lineTo(13*size,8*size);
+		P4figura.lineTo(13*size,11*size);P4figura.lineTo(12*size,11*size);P4figura.lineTo(12*size,12*size);P4figura.lineTo(11*size,12*size);P4figura.lineTo(11*size,13*size);P4figura.lineTo(9*size,13*size);
+		P4figura.lineTo(9*size,14*size);P4figura.lineTo(5*size,14*size);P4figura.lineTo(5*size,13*size);P4figura.lineTo(3*size,13*size);P4figura.lineTo(3*size,12*size);P4figura.lineTo(2*size,12*size);
+		P4figura.lineTo(2*size,11*size);P4figura.lineTo(1*size,11*size);P4figura.lineTo(1*size,8*size);P4figura.lineTo(0*size,8*size);
+		var P4extrudeSettings = {steps: 2, amount: 6, bevelEnabled: true, bevelThickness: 1, bevelSize: 1, bevelSegments: 1};
+		var P4forma = new THREE.ExtrudeGeometry( P4figura,P4extrudeSettings);
+		var Fanmalla = new THREE.Mesh( P4forma, Fanmaterial );		
+		Fanmalla .receiveShadow = true;
+		this.add(Fanmalla);
+		this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;		
+	}Fant_R.prototype= new THREE.Object3D();	  
+	  
+	  
+// Declarar un Agente llamado Fant_V
+	function Fant_V(size, x=0, y=0,z=0){		
+		THREE.Object3D.call(this,x,y,z);		
+		THREE.ImageUtils.crossOrigin = '';
+  		var textura   = THREE.ImageUtils.loadTexture('erdes.jpg');
+  		var Fanmaterial  = new THREE.MeshBasicMaterial( {map: textura} );
+		var P4figura = new THREE.Shape();
+		P4figura.lineTo(0*size,0*size);P4figura.lineTo(1*size,0*size);P4figura.lineTo(1*size,1*size);P4figura.lineTo(2*size,1*size);P4figura.lineTo(2*size,2*size);P4figura.lineTo(3*size,2*size);
+		P4figura.lineTo(3*size,1*size);P4figura.lineTo(4*size,1*size);P4figura.lineTo(4*size,0*size);P4figura.lineTo(6*size,0*size);P4figura.lineTo(6*size,2*size);P4figura.lineTo(8*size,2*size);
+		P4figura.lineTo(8*size,0*size);P4figura.lineTo(10*size,0*size);P4figura.lineTo(10*size,1*size);P4figura.lineTo(11*size,1*size);P4figura.lineTo(11*size,2*size);P4figura.lineTo(12*size,2*size);
+		P4figura.lineTo(12*size,1*size);P4figura.lineTo(13*size,1*size);P4figura.lineTo(13*size,0*size);P4figura.lineTo(14*size,0*size);P4figura.lineTo(14*size,8*size);P4figura.lineTo(13*size,8*size);
+		P4figura.lineTo(13*size,11*size);P4figura.lineTo(12*size,11*size);P4figura.lineTo(12*size,12*size);P4figura.lineTo(11*size,12*size);P4figura.lineTo(11*size,13*size);P4figura.lineTo(9*size,13*size);
+		P4figura.lineTo(9*size,14*size);P4figura.lineTo(5*size,14*size);P4figura.lineTo(5*size,13*size);P4figura.lineTo(3*size,13*size);P4figura.lineTo(3*size,12*size);P4figura.lineTo(2*size,12*size);
+		P4figura.lineTo(2*size,11*size);P4figura.lineTo(1*size,11*size);P4figura.lineTo(1*size,8*size);P4figura.lineTo(0*size,8*size);
+		var P4extrudeSettings = {steps: 2, amount: 6, bevelEnabled: true, bevelThickness: 1, bevelSize: 1, bevelSegments: 1};
+		var P4forma = new THREE.ExtrudeGeometry( P4figura,P4extrudeSettings);
+		var Fanmalla = new THREE.Mesh( P4forma, Fanmaterial );		
+		Fanmalla .receiveShadow = true;
+		this.add(Fanmalla);
+		this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;		
+	}Fant_V.prototype= new THREE.Object3D();
 	  
 	  
 	  
@@ -698,7 +776,10 @@
 		
 		for(j; j <9*largo; j++){
 		for(i = 0; i < (j-8*largo)/10; i++){
-			entorno.add(new Fant_Az(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));			
+			entorno.add(new Fant_Az(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Fant_Am(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Fant_R(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Fant_V(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 		}}
 		
 

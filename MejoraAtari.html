@@ -427,7 +427,7 @@
 		THREE.ImageUtils.crossOrigin = '';
 		var cajatextura1   = THREE.ImageUtils.loadTexture('bmetal.jpg');		
 		var cajamaterial1  = new THREE.MeshLambertMaterial({map: cajatextura1});		
-		var pp1 = new THREE.Mesh(new THREE.TorusKnotGeometry(1*size,9,100,12,3,4),cajamaterial1);		
+		var pp1 = new THREE.Mesh(new THREE.TorusKnotGeometry(1*size,5,100,12,3,4),cajamaterial1);		
 		pp1.receiveShadow = true;
 		this.add(pp1);
 		this.size= size;
@@ -744,7 +744,7 @@
 		for(j = 0; j <largo; j++){
 		for(i = 0; i < j/4; i++){
 			//entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));	
-			entorno.add(new Tor(10,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Tor(8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 		}}
 		
 		for(j; j <2*largo; j++){

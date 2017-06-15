@@ -959,10 +959,11 @@
 		var tablero_material  = new THREE.MeshBasicMaterial({map: tablero_textura});		
 		tableroMalla = new THREE.Mesh(new THREE.BoxGeometry(25, 25, 2),tablero_material);
 		tableroMalla.position.z=2;
+		tableroMalla.position.y=3;
 		
 		THREE.ImageUtils.crossOrigin = '';
 		var abajo_textura = THREE.ImageUtils.loadTexture('atras.jpg');		
-		var abajo_material  = new THREE.MeshBasicMaterial({map: abajo_textura});		
+		var abajo_material  = new THREE.MeshLambertMaterial({map: abajo_textura});		
 		abajoMalla = new THREE.Mesh(new THREE.CylinderGeometry( 8, 8, 0.25, 6 ),abajo_material);
 		abajoMalla.position.y=-3;
 		

@@ -131,9 +131,7 @@
 	  
 
 	Nave.prototype.act= function(environment) {
-		if (this.colision===1){
-			this.step= 0;
-			sound.pause ();}
+		if (this.colision===1){	this.step= 0; sound.pause ();}
 		else{
 			if(pos==1)	this.position.y += this.step/10;
 			if(pos==2)	this.position.y -= this.step/10;
@@ -141,10 +139,10 @@
 			if(pos==4)	this.position.x += this.step/10;
 			if(pos==5)	this.step = 1;
 		}
-		if(this.position.x<-15)	this.step = 0;sound.pause ();
-		if(this.position.x>15)	this.step = 0;sound.pause ();
-		if(this.position.y>15)	this.step = 0;sound.pause ();
-		if(this.position.y<-15)	this.step = 0;sound.pause ();
+		if(this.position.x<-15)	{this.step = 0;sound.pause ();}
+		if(this.position.x>15)	{this.step = 0;sound.pause ();}
+		if(this.position.y>15)	{this.step = 0;sound.pause ();}
+		if(this.position.y<-15)	{this.step = 0;sound.pause ();}
 			
 		
 		this.position.z -= this.step;

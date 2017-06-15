@@ -60,11 +60,9 @@
 // Declaración del Ambiente
 	function Environment(){
 		THREE.Scene.call(this);
-	}
+	} Environment= new THREE.Scene();
 	  
-	var escena = new THREE.Scene();
-	escena.background = new THREE.CubeTextureLoader().load(['atras.jpg','atras.jpg','atras.jpg','atras.jpg','atras.jpg','atras.jpg']);
-	Environment.prototype= escena;
+	
 	  
 	  
 	  

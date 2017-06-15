@@ -427,7 +427,7 @@
 		THREE.ImageUtils.crossOrigin = '';
 		var cajatextura1   = THREE.ImageUtils.loadTexture('bmetal.jpg');		
 		var cajamaterial1  = new THREE.MeshLambertMaterial({map: cajatextura1});		
-		var pp1 = new THREE.Mesh(new THREE.TorusKnotGeometry(0.27*size,0.1*size,128*size,32*size),cajamaterial1);		
+		var pp1 = new THREE.Mesh(new THREE.TorusKnotGeometry(1*size,0.1,128,32),cajamaterial1);		
 		pp1.receiveShadow = true;
 		this.add(pp1);
 		this.size= size;

@@ -133,6 +133,7 @@
 	Nave.prototype.act= function(environment) {
 		if (this.colision===1)
 			this.step= 0;
+			sound.pause ();
 		else{
 			if(pos==1)	this.position.y += this.step/10;
 			if(pos==2)	this.position.y -= this.step/10;
@@ -140,11 +141,11 @@
 			if(pos==4)	this.position.x += this.step/10;
 			if(pos==5)	this.step = 1;
 		}
-		if(this.position.x<-15)	this.step = 0;
-		if(this.position.x>15)	this.step = 0;
-		if(this.position.y>15)	this.step = 0;
-		if(this.position.y<-15)	this.step = 0;		
-		if(this.step==0)	sound.pause ();
+		if(this.position.x<-15)	this.step = 0;sound.pause ();
+		if(this.position.x>15)	this.step = 0;sound.pause ();
+		if(this.position.y>15)	this.step = 0;sound.pause ();
+		if(this.position.y<-15)	this.step = 0;sound.pause ();
+			
 		
 		this.position.z -= this.step;
 		camara.position.z-=this.step;
@@ -964,7 +965,7 @@
 		
 		
 		var ancho = -1*100;
-		var largo = 5;
+		var largo = 20;
 
 		for(j = 0; j <largo; j++){
 		for(i = 0; i < j/4; i++){
@@ -1028,7 +1029,7 @@
 		
 		for(j; j <11*largo; j++){
 		for(i = 0; i < (j-10*largo)/10; i++){
-			entorno.add(new Tor(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Tor(8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 		}}
 		
 		for(j; j <12*largo; j++){

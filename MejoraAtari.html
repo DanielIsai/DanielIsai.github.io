@@ -665,6 +665,22 @@
 	  
 
 	  
+// Declarar un Agente llamado Abajo
+	function Abajo(size, x=0, y=0,z=0){		
+		THREE.Object3D.call(this,x,y,z);		
+		THREE.ImageUtils.crossOrigin = '';
+		var abajo_textura = THREE.ImageUtils.loadTexture('ala.jpg');		
+		var abajo_material  = new THREE.MeshLambertMaterial({map: abajo_textura});		
+		abajoMalla = new THREE.Mesh(new THREE.CylinderGeometry( 8, 8, 0.25, 6 ),abajo_material);			
+		abajoMalla.receiveShadow = true;
+		this.add(abajoMalla);
+		this.size= size;
+		this.position.x= x;
+		this.position.y=y;
+		this.position.z=z;
+	}Abajo.prototype= new THREE.Object3D();
+	  
+	  
 	  
 	  
 	  
@@ -961,12 +977,7 @@
 		tableroMalla.position.z=2;
 		tableroMalla.position.y=3;
 		
-		THREE.ImageUtils.crossOrigin = '';
-		var abajo_textura = THREE.ImageUtils.loadTexture('atras.jpg');		
-		var abajo_material  = new THREE.MeshLambertMaterial({map: abajo_textura});		
-		abajoMalla = new THREE.Mesh(new THREE.CylinderGeometry( 8, 8, 0.25, 6 ),abajo_material);
-		abajoMalla.position.y=-3;
-		
+
 		
 		
 
@@ -975,6 +986,11 @@
 		
 		var ancho = -1*100;
 		var largo = 20;
+		
+		
+		entorno.add(new Abajo(1,0,-3,0);
+		
+		
 
 		for(j = 0; j <largo; j++){
 		for(i = 0; i < j/4; i++){
@@ -1066,7 +1082,7 @@
 		
 		entorno.add(camara);
 		
-		entorno.add(abajoMalla);
+		
 		entorno.add(iluminacion);
 		entorno.add(tableroMalla);
 		
@@ -1077,7 +1093,7 @@
 		
 		tableroMalla.receiveShadow= true;
 		iluminacion.castShadow= true;
-		abajoMalla.receiveShadow = true;
+		
 		var tipoEvento = 'resize';
 		var capturar = false;
 		window.addEventListener( tipoEvento, listener, capturar);

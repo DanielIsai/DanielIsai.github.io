@@ -960,19 +960,16 @@
 		tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
 		tableroMalla.translateY(-6);
 		var ancho = -1*100;
-		var largo = 10;
+		var largo = 5;
 
 		for(j = 0; j <largo; j++){
 		for(i = 0; i < j/4; i++){
-			//entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));	
-			entorno.add(new Reli(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Ast_Basico(1.5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));			
 		}}
 		
 		for(j; j <2*largo; j++){
 		for(i = 0; i < (j-largo)/4; i++){
-			//entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-			//entorno.add(new Tor(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
-			entorno.add(new San(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+			entorno.add(new Ast_Punta(1.8,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 		}}
 
 		for(j; j <3*largo; j++){
@@ -1018,6 +1015,33 @@
 			entorno.add(new Fant_R(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 			entorno.add(new Fant_V(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
 		}}
+		
+		
+		for(j; j <10*largo; j++){
+		for(i = 0; i < (j-9*largo)/10; i++){
+			entorno.add(new Tor(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
+		
+		for(j; j <11*largo; j++){
+		for(i = 0; i < (j-10*largo)/10; i++){
+			entorno.add(new Tor(5,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
+		
+		for(j; j <12*largo; j++){
+		for(i = 0; i < (j-11*largo)/10; i++){
+			entorno.add(new Reli(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
+		
+		for(j; j <13*largo; j++){
+		for(i = 0; i < (j-12*largo)/10; i++){
+			entorno.add(new Reli(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
+		
+		for(j; j <14*largo; j++){
+		for(i = 0; i < (j-13*largo)/10; i++){
+			entorno.add(new San(1,20*(2*Math.random()-1),20*(2*Math.random()-1),(ancho*Math.random())+ancho*j));
+		}}
+		
 		
 
 		

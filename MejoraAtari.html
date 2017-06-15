@@ -958,7 +958,8 @@
 		THREE.ImageUtils.crossOrigin = '';
 		var tablero_textura = THREE.ImageUtils.loadTexture('Instrucciones.jpg');		
 		var tablero_material  = new THREE.MeshLambertMaterial({map: tablero_textura});		
-		tableroMalla = new THREE.Mesh(new THREE.BoxGeometry(25, 25, 2),tablero_material);		
+		tableroMalla = new THREE.Mesh(new THREE.BoxGeometry(25, 25, 2),tablero_material);
+		tableroMalla.position.z=2;
 		
 
 		

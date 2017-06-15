@@ -131,9 +131,9 @@
 	  
 
 	Nave.prototype.act= function(environment) {
-		if (this.colision===1)
+		if (this.colision===1){
 			this.step= 0;
-			sound.pause ();
+			sound.pause ();}
 		else{
 			if(pos==1)	this.position.y += this.step/10;
 			if(pos==2)	this.position.y -= this.step/10;

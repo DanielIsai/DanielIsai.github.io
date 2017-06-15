@@ -955,10 +955,16 @@
 		audioLoader = new THREE.AudioLoader();
 		audioLoader.load( 'cancion.ogg', function( buffer ) {sound.setBuffer( buffer );sound.setLoop(true);sound.setVolume(1);sound.play();});
 
-		tableroForma = new THREE.CylinderGeometry(10,10,1);
-		tableroMaterial = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
-		tableroMalla = new THREE.Mesh(tableroForma,tableroMaterial);
-		tableroMalla.translateY(-6);
+		
+		THREE.ImageUtils.crossOrigin = '';
+		var tablero_textura = THREE.ImageUtils.loadTexture('Instrucciones.jpg');		
+		var tablero_material  = new THREE.MeshLambertMaterial({map: tablero_textura});		
+		tableroMalla = new THREE.Mesh(new THREE.BoxGeometry(50, 50, 2),tablero_material);		
+		
+
+		
+		
+		
 		var ancho = -1*100;
 		var largo = 5;
 
@@ -1052,7 +1058,7 @@
 		
 		entorno.add(camara);
 		entorno.add(iluminacion);
-		//entorno.add(tableroMalla);
+		entorno.add(tableroMalla);
 		
 		lienzo= document.getElementById("luzSombras");		
 		renderer = new THREE.WebGLRenderer({canvas: lienzo, antialias: true});

@@ -61,10 +61,12 @@
 		THREE.Scene.call(this);
 	}
 	  
-	var escena = new THREE.Scene();
-	escena.background = new THREE.CubeTextureLoader().load('atras.jpg');
-	  
-	  
+	var escena = new THREE.Scene();	  
+	var path = '';
+	var sides = [path+ 'atras.jpg',path+ 'atras.jpg',path+ 'atras.jpg',path+ 'atras.jpg',path+ 'atras.jpg',path+ 'atras.jpg'];
+	var scCube = new THREE.CubeTextureLoader().load(sides);
+	scCube.format = THREE.RGBFormat;
+	escena.background = scCube;	  
 	Environment.prototype= escena;
 	  
 	  

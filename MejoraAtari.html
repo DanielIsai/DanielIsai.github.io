@@ -148,6 +148,7 @@
 		this.position.z -= this.step;
 		camara.position.z-=this.step;
 		iluminacion.position.z-=this.step;
+		abajoMalla.position.z -= this.step;
 	};
 
 
@@ -944,7 +945,8 @@
 		
 		entorno = new Environment();
 		camara = new THREE.PerspectiveCamera();
-		camara.position.z=30;	
+		camara.position.z=30;
+		camara.position.y=3;	
 		listener = new THREE.AudioListener();
 		camara.add( listener );
 		sound = new THREE.Audio( listener );
@@ -957,6 +959,12 @@
 		var tablero_material  = new THREE.MeshBasicMaterial({map: tablero_textura});		
 		tableroMalla = new THREE.Mesh(new THREE.BoxGeometry(25, 25, 2),tablero_material);
 		tableroMalla.position.z=2;
+		
+		THREE.ImageUtils.crossOrigin = '';
+		var abajo_textura = THREE.ImageUtils.loadTexture('atras.jpg');		
+		var abajo_material  = new THREE.MeshBasicMaterial({map: abajo_textura});		
+		abajoMalla = new THREE.Mesh(new THREE.CylinderGeometry( 8, 8, 1, 6 ),abajo_material);
+		abajoMalla.position.y=-3;
 		
 
 		
@@ -1054,6 +1062,8 @@
 		entorno.add(new Nave(1,0,0));
 		
 		entorno.add(camara);
+		
+		entorno.add(abajoMalla);
 		entorno.add(iluminacion);
 		entorno.add(tableroMalla);
 		
@@ -1084,7 +1094,7 @@
 	  
 	  
 // Declaración de variables
-	var entorno, camara, renderer;
+	var entorno, camara, renderer,abajoMalla;
 	var pos,iluminacion,lienzo;
 	var listener, sound, audioLoader;
 	var tableroForma, tableroMaterial,tableroMalla;	  
